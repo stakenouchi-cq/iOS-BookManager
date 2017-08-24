@@ -19,17 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let firstView: FirstViewController = FirstViewController()
         // NavigationControllerを設定する
         let myNavigationController: UINavigationController = UINavigationController(rootViewController: firstView)
-        
-        // おまじない
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = myNavigationController
         self.window?.makeKeyAndVisible()
-        
-        /*
-         self.window = UIWindow(frame: UIScreen.main.bounds)
-         self.window?.rootViewController = ViewController()
-         self.window?.makeKeyAndVisible()
-         */
         
         return true
     }

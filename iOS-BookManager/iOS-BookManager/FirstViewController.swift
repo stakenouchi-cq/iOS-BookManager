@@ -23,10 +23,8 @@ class FirstViewController: UIViewController, UITabBarDelegate, UITextFieldDelega
     // UI関連の変数定義
     let label_address = UILabel()
     @IBOutlet weak var form_address: UITextField!
-    // var form_address = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
     let label_pass = UILabel()
     @IBOutlet weak var form_pass: UITextField!
-    // var form_pass = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
     
     let button1 = UIButton()
     var tabBar: UITabBar!
@@ -120,7 +118,6 @@ class FirstViewController: UIViewController, UITabBarDelegate, UITextFieldDelega
         // ボタンの高さは30pt
         button1.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
         
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -129,18 +126,15 @@ class FirstViewController: UIViewController, UITabBarDelegate, UITextFieldDelega
     }
     
     @IBAction func touchedButton(sender: UIButton) {
-        print("ボタンが押された")
-        // print("このメソッドを呼び出したボタンの情報: \(sender)")
         let bookLineupView: BookLineUpView = BookLineUpView()
         self.navigationController?.pushViewController(bookLineupView, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("最初の画面から遷移します")
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("最初の画面から遷移が完了しました")
+        print("ログイン成功しました")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

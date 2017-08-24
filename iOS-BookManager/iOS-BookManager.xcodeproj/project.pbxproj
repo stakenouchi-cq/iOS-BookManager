@@ -16,6 +16,10 @@
 		F6EF97AA1F4E858A002D6326 /* BookLineUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97A91F4E858A002D6326 /* BookLineUpView.swift */; };
 		F6EF97AC1F4E8610002D6326 /* Oxford_Dict.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */; };
 		F6EF97AE1F4E8628002D6326 /* javabook.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AD1F4E8628002D6326 /* javabook.jpg */; };
+		F6EF97B01F4E8A28002D6326 /* sw3book.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */; };
+		F6EF97B21F4E8AB5002D6326 /* toeicbook.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97B11F4E8AB5002D6326 /* toeicbook.jpg */; };
+		F6EF97B41F4E8B2A002D6326 /* cppbook.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97B31F4E8B2A002D6326 /* cppbook.jpg */; };
+		F6EF97B61F4E8BF5002D6326 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97B51F4E8BF5002D6326 /* no_image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		F6EF97A91F4E858A002D6326 /* BookLineUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookLineUpView.swift; sourceTree = "<group>"; };
 		F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Oxford_Dict.jpg; path = ../../../../Downloads/Oxford_Dict.jpg; sourceTree = "<group>"; };
 		F6EF97AD1F4E8628002D6326 /* javabook.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = javabook.jpg; path = ../../../../Downloads/javabook.jpg; sourceTree = "<group>"; };
+		F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sw3book.jpg; path = ../../../../Downloads/sw3book.jpg; sourceTree = "<group>"; };
+		F6EF97B11F4E8AB5002D6326 /* toeicbook.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = toeicbook.jpg; path = ../../../../Downloads/toeicbook.jpg; sourceTree = "<group>"; };
+		F6EF97B31F4E8B2A002D6326 /* cppbook.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cppbook.jpg; path = ../../../../Downloads/cppbook.jpg; sourceTree = "<group>"; };
+		F6EF97B51F4E8BF5002D6326 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_image.png; path = ../../../../Downloads/no_image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,10 @@
 				F6EF97A71F4E854C002D6326 /* FirstViewController.swift */,
 				F6EF97A91F4E858A002D6326 /* BookLineUpView.swift */,
 				F6EF977B1F4E845D002D6326 /* ViewController.swift */,
+				F6EF97B31F4E8B2A002D6326 /* cppbook.jpg */,
+				F6EF97B11F4E8AB5002D6326 /* toeicbook.jpg */,
+				F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */,
+				F6EF97B51F4E8BF5002D6326 /* no_image.png */,
 				F6EF97801F4E845D002D6326 /* Assets.xcassets */,
 				F6EF97AD1F4E8628002D6326 /* javabook.jpg */,
 				F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */,
@@ -243,7 +255,11 @@
 			files = (
 				F6EF97811F4E845D002D6326 /* Assets.xcassets in Resources */,
 				F6EF97AE1F4E8628002D6326 /* javabook.jpg in Resources */,
+				F6EF97B41F4E8B2A002D6326 /* cppbook.jpg in Resources */,
+				F6EF97B01F4E8A28002D6326 /* sw3book.jpg in Resources */,
+				F6EF97B21F4E8AB5002D6326 /* toeicbook.jpg in Resources */,
 				F6EF97AC1F4E8610002D6326 /* Oxford_Dict.jpg in Resources */,
+				F6EF97B61F4E8BF5002D6326 /* no_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
