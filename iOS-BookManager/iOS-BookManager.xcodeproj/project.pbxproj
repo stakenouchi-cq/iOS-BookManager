@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F619D5991F4FB0B200113B7B /* AddBookModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D5981F4FB0B200113B7B /* AddBookModalViewController.swift */; };
+		F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D59A1F500E5400113B7B /* EditBookViewController.swift */; };
+		F619D59D1F50156E00113B7B /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D59C1F50156E00113B7B /* MyCell.swift */; };
 		F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97791F4E845C002D6326 /* AppDelegate.swift */; };
 		F6EF977C1F4E845D002D6326 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF977B1F4E845D002D6326 /* ViewController.swift */; };
 		F6EF97811F4E845D002D6326 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97801F4E845D002D6326 /* Assets.xcassets */; };
 		F6EF978F1F4E845D002D6326 /* iOS_BookManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF978E1F4E845D002D6326 /* iOS_BookManagerTests.swift */; };
 		F6EF979A1F4E845D002D6326 /* iOS_BookManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97991F4E845D002D6326 /* iOS_BookManagerUITests.swift */; };
 		F6EF97A81F4E854C002D6326 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97A71F4E854C002D6326 /* FirstViewController.swift */; };
-		F6EF97AA1F4E858A002D6326 /* BookLineUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97A91F4E858A002D6326 /* BookLineUpView.swift */; };
+		F6EF97AA1F4E858A002D6326 /* BookLineUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */; };
 		F6EF97AC1F4E8610002D6326 /* Oxford_Dict.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */; };
 		F6EF97AE1F4E8628002D6326 /* javabook.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AD1F4E8628002D6326 /* javabook.jpg */; };
 		F6EF97B01F4E8A28002D6326 /* sw3book.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */; };
@@ -40,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F619D5981F4FB0B200113B7B /* AddBookModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookModalViewController.swift; sourceTree = "<group>"; };
+		F619D59A1F500E5400113B7B /* EditBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookViewController.swift; sourceTree = "<group>"; };
+		F619D59C1F50156E00113B7B /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		F6EF97761F4E845C002D6326 /* iOS-BookManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-BookManager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6EF97791F4E845C002D6326 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6EF977B1F4E845D002D6326 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +58,7 @@
 		F6EF97991F4E845D002D6326 /* iOS_BookManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_BookManagerUITests.swift; sourceTree = "<group>"; };
 		F6EF979B1F4E845D002D6326 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6EF97A71F4E854C002D6326 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		F6EF97A91F4E858A002D6326 /* BookLineUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookLineUpView.swift; sourceTree = "<group>"; };
+		F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookLineUpViewController.swift; sourceTree = "<group>"; };
 		F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Oxford_Dict.jpg; path = ../../../../Downloads/Oxford_Dict.jpg; sourceTree = "<group>"; };
 		F6EF97AD1F4E8628002D6326 /* javabook.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = javabook.jpg; path = ../../../../Downloads/javabook.jpg; sourceTree = "<group>"; };
 		F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sw3book.jpg; path = ../../../../Downloads/sw3book.jpg; sourceTree = "<group>"; };
@@ -111,7 +117,10 @@
 			children = (
 				F6EF97791F4E845C002D6326 /* AppDelegate.swift */,
 				F6EF97A71F4E854C002D6326 /* FirstViewController.swift */,
-				F6EF97A91F4E858A002D6326 /* BookLineUpView.swift */,
+				F619D59A1F500E5400113B7B /* EditBookViewController.swift */,
+				F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */,
+				F619D59C1F50156E00113B7B /* MyCell.swift */,
+				F619D5981F4FB0B200113B7B /* AddBookModalViewController.swift */,
 				F6EF977B1F4E845D002D6326 /* ViewController.swift */,
 				F6EF97B31F4E8B2A002D6326 /* cppbook.jpg */,
 				F6EF97B11F4E8AB5002D6326 /* toeicbook.jpg */,
@@ -285,9 +294,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6EF97A81F4E854C002D6326 /* FirstViewController.swift in Sources */,
+				F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */,
 				F6EF977C1F4E845D002D6326 /* ViewController.swift in Sources */,
-				F6EF97AA1F4E858A002D6326 /* BookLineUpView.swift in Sources */,
+				F6EF97AA1F4E858A002D6326 /* BookLineUpViewController.swift in Sources */,
+				F619D59D1F50156E00113B7B /* MyCell.swift in Sources */,
 				F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */,
+				F619D5991F4FB0B200113B7B /* AddBookModalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +533,7 @@
 				F6EF97A01F4E845D002D6326 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F6EF97A11F4E845D002D6326 /* Build configuration list for PBXNativeTarget "iOS-BookManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +542,7 @@
 				F6EF97A31F4E845D002D6326 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F6EF97A41F4E845D002D6326 /* Build configuration list for PBXNativeTarget "iOS-BookManagerUITests" */ = {
 			isa = XCConfigurationList;
@@ -537,6 +551,7 @@
 				F6EF97A61F4E845D002D6326 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

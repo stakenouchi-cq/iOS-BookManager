@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookLineUpView: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var loadButton: UIButton!
     
@@ -21,7 +21,7 @@ class BookLineUpView: UIViewController, UITableViewDelegate, UITableViewDataSour
     let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
     
     /// 画像のファイル名
-    let imageNames: [String] = [
+    var imageNames: [String] = [
         "javabook.jpg",
         "Oxford_Dict.jpg",
         "sw3book.jpg",
@@ -30,24 +30,15 @@ class BookLineUpView: UIViewController, UITableViewDelegate, UITableViewDataSour
     ]
     
     /// 画像のタイトル
-    let imageTitles: [String] = [
+    var bookTitles: [String] = [
         "スッキリわかるJava入門",
         "Oxford英英辞典",
         "詳細!Swift 3 iPhoneアプリ開発入門ノート",
         "200点アップのTOEICテスト英単語 : 得点に大きくつながる意外な意味を持つ英単語.",
         "Accelerated C++ : 効率的なプログラミングのための新しい定跡"
-        ]
-    
-    /// 画像の説明
-    let imageDescriptions: [String] = [
-        "Javaの楽しい入門書",
-        "英英辞典の定番",
-        "Swift入門書",
-        "TOEIC単語集",
-        "C++できれいなコードを書こう"
     ]
     
-    let priceOfBooks: [Int] = [
+    var priceOfBooks: [Int] = [
         3500,
         5000,
         4000,
@@ -55,7 +46,7 @@ class BookLineUpView: UIViewController, UITableViewDelegate, UITableViewDataSour
         3400
     ]
     
-    let publishedDate: [String] = [
+    var boughtDates: [String] = [
         "2014/04/03",
         "2014/04/02",
         "2014/03/15",
@@ -70,8 +61,18 @@ class BookLineUpView: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.navigationItem.title = "登録済み書籍一覧"
         
         // 追加ボタン押下時の動作定義
-        let bookAddButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(onClicked(sender:)))
+        let bookAddButton: UIBarButtonItem = UIBarButtonItem(title: "追加", style: .plain, target: self, action: #selector(onClicked(sender:)))
         bookAddButton.tag = 1
+        
+        // 戻るボタンの表示内容の設定
+        let backButton = UIBarButtonItem()
+        backButton.title = "戻る"
+        self.navigationItem.backBarButtonItem = backButton
+        // 左上部の戻るボタンを表示させる
+        self.navigationItem.hidesBackButton = false
+        // 左上部の戻るボタンを非表示
+        self.navigationItem.hidesBackButton = true
+        
         // ナビゲーションバーの右側に書籍追加ボタン付与
         self.navigationItem.setRightBarButtonItems([bookAddButton], animated: true)
         
@@ -130,11 +131,12 @@ class BookLineUpView: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(MyCell.self), for: indexPath) as! MyCell
-        cell.myLabelOfBookTitle.text = imageTitles[indexPath.row]
+        cell.myLabelOfBookTitle.text = bookTitles[indexPath.row]
         cell.myLabelOfBookPrice.text = priceOfBooks[indexPath.row].description + "円 + 税"
-        cell.myLabelOfDatePublished.text = publishedDate[indexPath.row]
+        cell.myLabelOfDatePublished.text = boughtDates[indexPath.row]
         cell.myImageView.image = UIImage(named: imageNames[indexPath.row])
         return cell
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -142,17 +144,32 @@ class BookLineUpView: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // hogehoge
+        // タップされたcellに対応する書籍編集画面へ移動
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.title = bookTitles[indexPath.row]
+        appDelegate.imagePath = imageNames[indexPath.row]
+        appDelegate.boughtDate = boughtDates[indexPath.row]
+        appDelegate.title = bookTitles[indexPath.row]
+        appDelegate.price = priceOfBooks[indexPath.row]
+        
+        print("\(indexPath.row)番目の書籍編集画面に入ります")
+        let editBookViewController: EditBookViewController = EditBookViewController()
+        self.navigationController?.pushViewController(editBookViewController, animated: false)
     }
     
     func clickBookAddButton(){
         // 書籍追加ボタン押下時の処理を追加
-        print("書籍追加ページに行きます")
+        
+        let addBookModalView = AddBookModalViewController()
+        let navi = UINavigationController(rootViewController: addBookModalView) // モーダル画面でもナビゲーションバーが出るようにする
+        print("書籍追加のモーダル画面をopen")
+        addBookModalView.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        present(navi, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
     func onClicked(sender: UIButton){
@@ -161,70 +178,15 @@ class BookLineUpView: UIViewController, UITableViewDelegate, UITableViewDataSour
             print("書籍をさらに読み込みます")
         case 1:
             print("書籍の追加を行います")
+            clickBookAddButton()
         default:
             break
         }
     }
     
-}
-
-class MyCell: UITableViewCell {
-    var myLabelOfBookTitle: UILabel!
-    var myLabelOfBookPrice: UILabel!
-    var myLabelOfDatePublished: UILabel!
-    var myImage: UIImage!
-    var myImageView: UIImageView!
-    var bookEditButton: UIButton!
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        myLabelOfBookTitle = UILabel(frame: CGRect.zero)
-        myLabelOfBookTitle.textAlignment = .left
-        contentView.addSubview(myLabelOfBookTitle)
-        
-        myLabelOfBookPrice = UILabel(frame: CGRect.zero)
-        myLabelOfBookPrice.textAlignment = .left
-        contentView.addSubview(myLabelOfBookPrice)
-        
-        myLabelOfDatePublished = UILabel(frame: CGRect.zero)
-        myLabelOfDatePublished.textAlignment = .left
-        contentView.addSubview(myLabelOfDatePublished)
-        
-        myImage = UIImage(named: "no_image.png")
-        myImageView = UIImageView(image: myImage)
-        contentView.addSubview(myImageView)
-        
-        bookEditButton = UIButton()
-        bookEditButton.setTitle(">", for: UIControlState.normal)
-        bookEditButton.setTitleColor(UIColor.black, for: UIControlState.normal)
-        bookEditButton.setTitle(">", for: UIControlState.highlighted)
-        bookEditButton.setTitleColor(UIColor.red, for: UIControlState.highlighted)
-        bookEditButton.addTarget(self, action: #selector(onClicked(sender:)), for: .touchUpInside)
-        contentView.addSubview(bookEditButton)
-        
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder: ) has not been implemented")
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        myLabelOfBookTitle.frame = CGRect(x: 90, y: -25, width: frame.width - 100, height: frame.height)
-        myLabelOfBookPrice.frame = CGRect(x: 90, y: 25, width: 120, height: frame.height)
-        myLabelOfDatePublished.frame = CGRect(x: frame.width - 150, y: 25, width: 120, height: frame.height)
-        myImageView.frame = CGRect(x: 5, y: 0, width: frame.height*(210/297), height: frame.height)
-        bookEditButton.frame = CGRect(x: frame.width - 20, y: 0, width: 10, height: frame.height)
-    }
-    
-    func onClicked(sender: UIButton){
-        print("書籍編集画面に入ります")
+    func gotoBookEdit() {
+        let editBookView: EditBookViewController = EditBookViewController()
+        self.navigationController?.pushViewController(editBookView, animated: true)
     }
     
 }
-

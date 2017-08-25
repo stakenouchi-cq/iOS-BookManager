@@ -13,6 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    // 画面間でデータを受け渡す
+    var price: Int? // 価格
+    var boughtDate: String? // 購入日
+    var imagePath: String? // 書籍のサムネイルへのパス
+    var title: String? // 本のタイトル
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // 最初に表示する画面を指定する
@@ -22,6 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = myNavigationController
         self.window?.makeKeyAndVisible()
+        
+        // 戻るボタンの矢印画像を非表示
+        UINavigationBar.appearance().backIndicatorImage = UIImage()
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage()
         
         return true
     }
@@ -48,6 +59,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
     
 }

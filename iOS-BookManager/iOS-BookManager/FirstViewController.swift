@@ -71,18 +71,18 @@ class FirstViewController: UIViewController, UITabBarDelegate, UITextFieldDelega
         label_pass.translatesAutoresizingMaskIntoConstraints = false
         form_address.translatesAutoresizingMaskIntoConstraints = false
         form_pass.translatesAutoresizingMaskIntoConstraints = false
+        form_pass.isSecureTextEntry = true
         self.view.addSubview(label_address)
         self.view.addSubview(label_pass)
         self.view.addSubview(form_address)
         self.view.addSubview(form_pass)
         
-        // アドレス類の位置設定
+        // アドレスと入力フォーム類の位置設定
         label_address.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
         label_address.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200.0).isActive = true
         form_address.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
         form_address.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 225.0).isActive = true
         form_address.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        // フォーム類の位置設定
         label_pass.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
         label_pass.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300.0).isActive = true
         form_pass.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
@@ -126,8 +126,8 @@ class FirstViewController: UIViewController, UITabBarDelegate, UITextFieldDelega
     }
     
     @IBAction func touchedButton(sender: UIButton) {
-        let bookLineupView: BookLineUpView = BookLineUpView()
-        self.navigationController?.pushViewController(bookLineupView, animated: true)
+        let bookLineupViewController: BookLineUpViewController = BookLineUpViewController()
+        self.navigationController?.pushViewController(bookLineupViewController, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,8 +142,7 @@ class FirstViewController: UIViewController, UITabBarDelegate, UITextFieldDelega
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        form_address.resignFirstResponder()
-        form_pass.resignFirstResponder()
+        textField.resignFirstResponder() // Enter押したら入力おしまい
         return true
     }
     
