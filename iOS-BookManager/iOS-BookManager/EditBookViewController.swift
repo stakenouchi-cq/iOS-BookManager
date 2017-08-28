@@ -169,7 +169,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
      }
      */
     
-    // ボタン押下時の分岐
+    // ボタン押下時の分岐(タブバーは別所でやる)
     func onClicked(sender: UIButton){
         switch sender.tag {
         case 0:

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
     
     var loadButton: UIButton!
     
@@ -28,7 +28,6 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         "toeicbook.jpg",
         "cppbook.jpg"
     ]
-    
     /// 画像のタイトル
     var bookTitles: [String] = [
         "スッキリわかるJava入門",
@@ -37,7 +36,6 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         "200点アップのTOEICテスト英単語 : 得点に大きくつながる意外な意味を持つ英単語.",
         "Accelerated C++ : 効率的なプログラミングのための新しい定跡"
     ]
-    
     var priceOfBooks: [Int] = [
         3500,
         5000,
@@ -45,7 +43,6 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         2500,
         3400
     ]
-    
     var boughtDates: [String] = [
         "2014/04/03",
         "2014/04/02",
@@ -68,8 +65,6 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         let backButton = UIBarButtonItem()
         backButton.title = "戻る"
         self.navigationItem.backBarButtonItem = backButton
-        // 左上部の戻るボタンを表示させる
-        self.navigationItem.hidesBackButton = false
         // 左上部の戻るボタンを非表示
         self.navigationItem.hidesBackButton = true
         
@@ -90,16 +85,13 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         myTableView.dataSource    =   self
         myTableView.register(MyCell.self, forCellReuseIdentifier: NSStringFromClass(MyCell.self))
 
-        
         myTabBar = UITabBar()
         myTabBar.delegate = self as? UITabBarDelegate
         myTabBar.frame = CGRect(x:0, y:displayHeight - tabBarHeight,width:displayWidth, height:tabBarHeight) // サイズをセット
         myTabBar.barTintColor = UIColor.black // バー自身の色をセット
         myTabBar.unselectedItemTintColor = UIColor.white // 非選択ボタンの色
         myTabBar.tintColor = UIColor.blue // ボタン押下時の色
-        let bookLineup: UITabBarItem = UITabBarItem(title: "書籍一覧", image: nil, tag: 1)
-        let gotoSetting: UITabBarItem = UITabBarItem(title: "設定", image: nil, tag: 2)
-        myTabBar.items = [bookLineup, gotoSetting]
+        myTabBar.delegate = self
         
         loadButton = UIButton()
         loadButton.translatesAutoresizingMaskIntoConstraints = false
@@ -115,14 +107,36 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         // ボタン押下時の処理
         loadButton.addTarget(self, action: #selector(onClicked(sender:)), for: .touchUpInside)
         loadButton.tag = 0
-        
         self.view.addSubview(myTableView)
-        self.view.addSubview(myTabBar)
         self.view.addSubview(loadButton)
-        
+        self.view.addSubview(myTabBar)
+        // さらに読み込むボタン位置をここで定義
         loadButton.bottomAnchor.constraint(equalTo: myTabBar.topAnchor).isActive = true
         loadButton.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // 他Viewからこの画面に来たときは，必ず"書籍一覧"のTabBarが選択されるようにする
+        let bookLineup: UITabBarItem = UITabBarItem(title: "書籍一覧", image: nil, tag: 1)
+        let gotoSetting: UITabBarItem = UITabBarItem(title: "設定", image: nil, tag: 2)
+        
+        myTabBar.items = [bookLineup, gotoSetting]
+        myTabBar.selectedItem = bookLineup
+    }
+    
+    // TabBar押下時の動作設定
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        switch item.tag {
+        case 1:
+            print("書籍追加画面に行きます")
+        case 2:
+            print("設定画面に行きます")
+            let settingView: SettingViewController = SettingViewController()
+            self.navigationController?.pushViewController(settingView, animated: false)
+        default:
+            return
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
