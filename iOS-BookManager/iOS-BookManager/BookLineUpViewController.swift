@@ -14,6 +14,7 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let rowHeight: CGFloat = 100
     let tabBarHeight: CGFloat = 49
+    let loadButtonHeight: CGFloat = 20
     var myTableView: UITableView!
     
     // ステータスバーの高さを取得する
@@ -93,6 +94,29 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         myTableView.register(MyCell.self, forCellReuseIdentifier: NSStringFromClass(MyCell.self))
         
         self.view.addSubview(myTableView)
+        
+        loadButton = UIButton()
+        loadButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        loadButton.frame = CGRect(x:0, y:0, width:displayWidth, height:loadButtonHeight)
+        loadButton.backgroundColor = UIColor.white
+        loadButton.layer.borderWidth = 2.0
+        loadButton.layer.borderColor = UIColor.gray.cgColor
+        
+        loadButton.setTitle("*** もっと読み込む ***", for: .normal)
+        loadButton.setTitleColor(UIColor.green, for: .normal)
+        loadButton.setTitle("*** もっと読み込む ***", for: .highlighted)
+        loadButton.setTitleColor(UIColor.red, for: .highlighted)
+        
+        // ボタン押下時の処理
+        loadButton.addTarget(self, action: #selector(onClicked(sender:)), for: .touchUpInside)
+        loadButton.tag = 0
+        
+        self.view.addSubview(loadButton)
+        
+        loadButton.topAnchor.constraint(equalTo: myTableView.bottomAnchor, constant: -83.5).isActive = true
+        loadButton.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        
        
     }
     
