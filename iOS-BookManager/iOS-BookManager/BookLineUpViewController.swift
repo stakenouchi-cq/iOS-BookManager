@@ -104,7 +104,7 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         case 2:
             print("設定画面に行きます")
             let settingView: SettingViewController = SettingViewController()
-            self.navigationController?.pushViewController(settingView, animated: false)
+            self.navigationController?.pushViewController(settingView, animated: true)
         default:
             return
         }
@@ -140,7 +140,7 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         
         print("\(indexPath.row)番目の書籍編集画面に入ります")
         let editBookViewController: EditBookViewController = EditBookViewController()
-        self.navigationController?.pushViewController(editBookViewController, animated: false)
+        self.navigationController?.pushViewController(editBookViewController, animated: true)
     }
     
     func clickBookAddButton(){
