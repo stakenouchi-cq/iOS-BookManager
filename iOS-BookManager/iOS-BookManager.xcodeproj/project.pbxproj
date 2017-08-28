@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F616E8B51F53A9F700B6711F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8B41F53A9F700B6711F /* SettingViewController.swift */; };
 		F616E8B91F53CEF800B6711F /* AccountSettingModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */; };
+		F616E8BD1F5401B300B6711F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8BC1F5401B300B6711F /* TabBarController.swift */; };
 		F619D5991F4FB0B200113B7B /* AddBookModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D5981F4FB0B200113B7B /* AddBookModalViewController.swift */; };
 		F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D59A1F500E5400113B7B /* EditBookViewController.swift */; };
 		F619D59D1F50156E00113B7B /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D59C1F50156E00113B7B /* MyCell.swift */; };
@@ -17,7 +18,7 @@
 		F6EF97811F4E845D002D6326 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97801F4E845D002D6326 /* Assets.xcassets */; };
 		F6EF978F1F4E845D002D6326 /* iOS_BookManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF978E1F4E845D002D6326 /* iOS_BookManagerTests.swift */; };
 		F6EF979A1F4E845D002D6326 /* iOS_BookManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97991F4E845D002D6326 /* iOS_BookManagerUITests.swift */; };
-		F6EF97A81F4E854C002D6326 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97A71F4E854C002D6326 /* FirstViewController.swift */; };
+		F6EF97A81F4E854C002D6326 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97A71F4E854C002D6326 /* LoginViewController.swift */; };
 		F6EF97AA1F4E858A002D6326 /* BookLineUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */; };
 		F6EF97AC1F4E8610002D6326 /* Oxford_Dict.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */; };
 		F6EF97AE1F4E8628002D6326 /* javabook.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AD1F4E8628002D6326 /* javabook.jpg */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		F616E8B41F53A9F700B6711F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSettingModalViewController.swift; path = ../AccountSettingModalViewController.swift; sourceTree = "<group>"; };
+		F616E8BC1F5401B300B6711F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F619D5981F4FB0B200113B7B /* AddBookModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookModalViewController.swift; sourceTree = "<group>"; };
 		F619D59A1F500E5400113B7B /* EditBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookViewController.swift; sourceTree = "<group>"; };
 		F619D59C1F50156E00113B7B /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
@@ -61,7 +63,7 @@
 		F6EF97951F4E845D002D6326 /* iOS-BookManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-BookManagerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6EF97991F4E845D002D6326 /* iOS_BookManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_BookManagerUITests.swift; sourceTree = "<group>"; };
 		F6EF979B1F4E845D002D6326 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F6EF97A71F4E854C002D6326 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		F6EF97A71F4E854C002D6326 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookLineUpViewController.swift; sourceTree = "<group>"; };
 		F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Oxford_Dict.jpg; path = ../../../../Downloads/Oxford_Dict.jpg; sourceTree = "<group>"; };
 		F6EF97AD1F4E8628002D6326 /* javabook.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = javabook.jpg; path = ../../../../Downloads/javabook.jpg; sourceTree = "<group>"; };
@@ -120,7 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				F6EF97791F4E845C002D6326 /* AppDelegate.swift */,
-				F6EF97A71F4E854C002D6326 /* FirstViewController.swift */,
+				F616E8BC1F5401B300B6711F /* TabBarController.swift */,
+				F6EF97A71F4E854C002D6326 /* LoginViewController.swift */,
 				F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */,
 				F616E8B41F53A9F700B6711F /* SettingViewController.swift */,
 				F619D59A1F500E5400113B7B /* EditBookViewController.swift */,
@@ -299,9 +302,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6EF97A81F4E854C002D6326 /* FirstViewController.swift in Sources */,
+				F6EF97A81F4E854C002D6326 /* LoginViewController.swift in Sources */,
 				F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */,
 				F616E8B91F53CEF800B6711F /* AccountSettingModalViewController.swift in Sources */,
+				F616E8BD1F5401B300B6711F /* TabBarController.swift in Sources */,
 				F6EF977C1F4E845D002D6326 /* ViewController.swift in Sources */,
 				F6EF97AA1F4E858A002D6326 /* BookLineUpViewController.swift in Sources */,
 				F616E8B51F53A9F700B6711F /* SettingViewController.swift in Sources */,

@@ -14,7 +14,6 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let rowHeight: CGFloat = 100
     let tabBarHeight: CGFloat = 49
-    var myTabBar: UITabBar!
     var myTableView: UITableView!
     
     // ステータスバーの高さを取得する
@@ -55,6 +54,7 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        automaticallyAdjustsScrollViewInsets = false
         self.navigationItem.title = "登録済み書籍一覧"
         
         // 追加ボタン押下時の動作定義
@@ -79,50 +79,21 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         let displayHeight: CGFloat = self.view.frame.height
         
         // TableViewを生成
-        myTableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight-tabBarHeight)) // ステータスバー分ずらす
+        myTableView = UITableView(frame: CGRect(x: 0, y: 0, width: displayWidth, height: displayHeight))
+        
+        // TableViewがステータスバーに埋もれないよう，先頭部分を調整
+        let edgeInsets = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        myTableView.contentInset = edgeInsets
+        myTableView.scrollIndicatorInsets = edgeInsets
+        
+        // TableViewの高さなどを定義
         myTableView.rowHeight = rowHeight
         myTableView.delegate      =   self
         myTableView.dataSource    =   self
         myTableView.register(MyCell.self, forCellReuseIdentifier: NSStringFromClass(MyCell.self))
-
-        myTabBar = UITabBar()
-        myTabBar.delegate = self as? UITabBarDelegate
-        myTabBar.frame = CGRect(x:0, y:displayHeight - tabBarHeight,width:displayWidth, height:tabBarHeight) // サイズをセット
-        myTabBar.barTintColor = UIColor.black // バー自身の色をセット
-        myTabBar.unselectedItemTintColor = UIColor.white // 非選択ボタンの色
-        myTabBar.tintColor = UIColor.blue // ボタン押下時の色
-        myTabBar.delegate = self
         
-        loadButton = UIButton()
-        loadButton.translatesAutoresizingMaskIntoConstraints = false
-        let moreloadText: String = "さらに読み込む"
-        loadButton.frame = CGRect(x: 0, y: 0, width: displayWidth-tabBarHeight, height: 50)
-        loadButton.setTitle(moreloadText, for: .normal)
-        loadButton.setTitleColor(UIColor.white, for: .normal)
-        loadButton.setTitle(moreloadText, for: .highlighted)
-        loadButton.setTitleColor(UIColor.black, for: .highlighted)
-        loadButton.backgroundColor = UIColor.blue // 背景色
-        loadButton.layer.borderWidth = 2.0 // 枠線の幅
-        loadButton.layer.borderColor = UIColor.cyan.cgColor // 枠線の色
-        // ボタン押下時の処理
-        loadButton.addTarget(self, action: #selector(onClicked(sender:)), for: .touchUpInside)
-        loadButton.tag = 0
         self.view.addSubview(myTableView)
-        self.view.addSubview(loadButton)
-        self.view.addSubview(myTabBar)
-        // さらに読み込むボタン位置をここで定義
-        loadButton.bottomAnchor.constraint(equalTo: myTabBar.topAnchor).isActive = true
-        loadButton.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // 他Viewからこの画面に来たときは，必ず"書籍一覧"のTabBarが選択されるようにする
-        let bookLineup: UITabBarItem = UITabBarItem(title: "書籍一覧", image: nil, tag: 1)
-        let gotoSetting: UITabBarItem = UITabBarItem(title: "設定", image: nil, tag: 2)
-        
-        myTabBar.items = [bookLineup, gotoSetting]
-        myTabBar.selectedItem = bookLineup
+       
     }
     
     // TabBar押下時の動作設定

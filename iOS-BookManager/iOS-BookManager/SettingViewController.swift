@@ -27,7 +27,7 @@ class SettingViewController: UIViewController, UITabBarDelegate {
         self.view.backgroundColor = UIColor.white
         
         // 左上部の戻るボタンを非表示
-        self.navigationItem.hidesBackButton = true
+        self.navigationItem.hidesBackButton = false
         
         gotoSettingButton = UIButton()
         gotoSettingButton.translatesAutoresizingMaskIntoConstraints = false
@@ -43,43 +43,9 @@ class SettingViewController: UIViewController, UITabBarDelegate {
         gotoSettingButton.tag = 0
         self.view.addSubview(gotoSettingButton)
         
-        // タブバーのUI設定
-        myTabBar = UITabBar()
-        myTabBar.delegate = self as? UITabBarDelegate
-        myTabBar.frame = CGRect(x:0, y:displayHeight - tabBarHeight,width:displayWidth, height:tabBarHeight) // サイズをセット
-        myTabBar.barTintColor = UIColor.black // バー自身の色をセット
-        myTabBar.unselectedItemTintColor = UIColor.white // 非選択ボタンの色
-        myTabBar.tintColor = UIColor.blue // ボタン押下時の色
-        myTabBar.delegate = self
-        
-        self.view.addSubview(myTabBar)
-        
         gotoSettingButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         gotoSettingButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -100).isActive = true
         gotoSettingButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // 他Viewからこの画面に来たときは，必ず"書籍一覧"のTabBarが選択されるようにする
-        let bookLineup: UITabBarItem = UITabBarItem(title: "書籍一覧", image: nil, tag: 1)
-        let gotoSetting: UITabBarItem = UITabBarItem(title: "設定", image: nil, tag: 2)
-        
-        myTabBar.items = [bookLineup, gotoSetting]
-        myTabBar.selectedItem = gotoSetting
-    }
-    
-    // TabBar押下時の動作設定
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        switch item.tag {
-        case 1:
-            print("書籍追加画面に行きます")
-            let bookLineupView: BookLineUpViewController = BookLineUpViewController()
-            self.navigationController?.pushViewController(bookLineupView, animated: false)
-        case 2:
-            print("設定画面に行きます")
-        default:
-            return
-        }
     }
     
     func onClicked(sender: UIButton){

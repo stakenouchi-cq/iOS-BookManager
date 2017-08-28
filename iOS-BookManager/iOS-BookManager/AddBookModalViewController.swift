@@ -159,12 +159,6 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true) // キーボードの外に触れたら入力おしまい
     }
-
-    /*
-    func pushedCloseButton(sender: UIButton){
-        self.dismiss(animated: true, completion: nil)
-    }
-     */
     
     // ボタン押下時の分岐
     func onClicked(sender: UIButton){

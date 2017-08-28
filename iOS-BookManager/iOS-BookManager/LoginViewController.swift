@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  LoginViewController.swift
 //  iOS-BookManager
 //
 //  Created by 竹之内翔太郎 on 2017/08/24.
@@ -16,7 +16,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, UITabBarDelegate, UITextFieldDelegate{
+class LoginViewController: UIViewController, UITabBarDelegate, UITextFieldDelegate{
     
     let loginText: String = "Login"
     
@@ -123,8 +123,7 @@ class FirstViewController: UIViewController, UITabBarDelegate, UITextFieldDelega
     }
     
     @IBAction func touchedButton(sender: UIButton) {
-        let bookLineupViewController: BookLineUpViewController = BookLineUpViewController()
-        self.navigationController?.pushViewController(bookLineupViewController, animated: true)
+        UIApplication.shared.keyWindow?.rootViewController = TabBarController()
     }
     
     override func viewWillAppear(_ animated: Bool) {

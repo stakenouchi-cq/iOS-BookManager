@@ -8,10 +8,13 @@
 
 import UIKit
 
-class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationBarDelegate {
+class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationBarDelegate, UITabBarDelegate {
+    
+    let tabBarHeight: CGFloat = 49
 
     let addImageButton = UIButton() // 書籍画像添付ボタン
     
+    var myTabBar: UITabBar!
     let label_BookName = UILabel()
     @IBOutlet weak var form_BookName: UITextField!
     // var form_BookName: UITextField!
@@ -150,9 +153,8 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         
         addImageButton.centerYAnchor.constraint(equalTo: (bookImageView?.centerYAnchor)!).isActive = true
         addImageButton.leftAnchor.constraint(equalTo: (bookImageView?.rightAnchor)!, constant: 10.0).isActive = true
-        
     }
-    
+        
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() // Enter押したら入力おしまい
         return true
@@ -161,12 +163,6 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true) // キーボードの外に触れたら入力おしまい
     }
-    
-    /*
-     func pushedCloseButton(sender: UIButton){
-     self.dismiss(animated: true, completion: nil)
-     }
-     */
     
     // ボタン押下時の分岐(タブバーは別所でやる)
     func onClicked(sender: UIButton){
