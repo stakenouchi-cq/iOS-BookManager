@@ -111,7 +111,6 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         self.view.addSubview(form_BookPrice)
         self.view.addSubview(label_BoughtDate)
         self.view.addSubview(form_BoughtDate)
-        // self.view.addSubview(closeButton)
         self.view.addSubview(addImageButton)
         
         form_BookName.delegate = self as? UITextFieldDelegate

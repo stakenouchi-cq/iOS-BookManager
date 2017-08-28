@@ -95,7 +95,7 @@ class SettingViewController: UIViewController, UITabBarDelegate {
     func clickAccountSettingButton(){
         let accountSettingModalView = AccountSettingModalViewController()
         let navi = UINavigationController(rootViewController: accountSettingModalView) // モーダル画面でもナビゲーションバーが出るようにする
-        print("書籍追加のモーダル画面をopen")
+        print("アカウント設定のモーダル画面をopen")
         accountSettingModalView.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(navi, animated: true, completion: nil)
     }
