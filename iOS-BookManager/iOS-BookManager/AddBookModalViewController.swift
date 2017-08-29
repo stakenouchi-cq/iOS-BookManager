@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavigationBarDelegate {
+class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavigationBarDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     let addImageButton = UIButton() // 書籍画像添付ボタン
     
@@ -20,8 +20,10 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
     let boughtDateLabel = UILabel()
     @IBOutlet weak var boughtDateForm: UITextField!
     
+    // 写真を表示するビュー
     var bookImage: UIImage?
     var bookImageView: UIImageView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,7 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         
         
         // 書籍のサムネイルを定義
+        // bookImageView.image = UIImage(named: "no_image.png")
         bookImage = UIImage(named: "no_image.png")
         bookImageView = UIImageView(image: bookImage)
         bookImageView?.frame = CGRect(x: displayWidth*0.1, y: displayHeight*(4/30), width: displayWidth*0.3, height: displayHeight*0.2)
@@ -159,6 +162,30 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         
     }
     
+    func choosePicture() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            let picker = UIImagePickerController()
+            picker.modalPresentationStyle = UIModalPresentationStyle.popover
+            picker.delegate = self
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            
+            if let popover = picker.popoverPresentationController {
+                popover.sourceView = self.view
+                popover.sourceRect = self.view.frame
+                popover.permittedArrowDirections = UIPopoverArrowDirection.any
+            }
+            self.present(picker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        // ビューに表示する
+        self.bookImageView?.image = image
+        // 写真を選ぶビューを引っ込める
+        self.dismiss(animated: true)
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField.tag {
         case 1,2:
@@ -208,6 +235,7 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
             break
         case 2:
             print("画像登録を行います")
+            choosePicture()
         default:
             break
         }

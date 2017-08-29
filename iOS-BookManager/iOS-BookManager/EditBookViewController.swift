@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationBarDelegate, UITabBarDelegate {
+class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UINavigationBarDelegate, UITabBarDelegate, UIImagePickerControllerDelegate {
     
     let tabBarHeight: CGFloat = 49
 
@@ -159,6 +159,30 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         addImageButton.leftAnchor.constraint(equalTo: (bookImageView?.rightAnchor)!, constant: 10.0).isActive = true
     }
     
+    func choosePicture() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            let picker = UIImagePickerController()
+            picker.modalPresentationStyle = UIModalPresentationStyle.popover
+            picker.delegate = self
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            
+            if let popover = picker.popoverPresentationController {
+                popover.sourceView = self.view
+                popover.sourceRect = self.view.frame
+                popover.permittedArrowDirections = UIPopoverArrowDirection.any
+            }
+            self.present(picker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        // ビューに表示する
+        self.bookImageView?.image = image
+        // 写真を選ぶビューを引っ込める
+        self.dismiss(animated: true)
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField.tag {
         case 1,2:
@@ -207,6 +231,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
             break
         case 2:
             print("画像登録を行います")
+            choosePicture()
         default:
             break
         }
