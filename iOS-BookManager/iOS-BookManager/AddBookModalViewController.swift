@@ -12,13 +12,13 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
 
     let addImageButton = UIButton() // 書籍画像添付ボタン
     
-    let label_BookName = UILabel()
-    @IBOutlet weak var form_BookName: UITextField!
-    // var form_BookName: UITextField!
-    let label_BookPrice = UILabel()
-    @IBOutlet weak var form_BookPrice: UITextField!
-    let label_BoughtDate = UILabel()
-    @IBOutlet weak var form_BoughtDate: UITextField!
+    let bookNameLabel = UILabel()
+    @IBOutlet weak var bookNameForm: UITextField!
+    // var bookNameForm: UITextField!
+    let bookPriceLabel = UILabel()
+    @IBOutlet weak var bookPriceForm: UITextField!
+    let boughtDateLabel = UILabel()
+    @IBOutlet weak var boughtDateForm: UITextField!
     
     var bookImage: UIImage?
     var bookImageView: UIImageView?
@@ -66,54 +66,54 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         addImageButton.layer.borderColor = UIColor.cyan.cgColor // 枠線の色
         addImageButton.tag = 2
         
-        form_BookName = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
-        form_BookPrice = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
-        form_BoughtDate = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
+        bookNameForm = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
+        bookPriceForm = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
+        boughtDateForm = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
         
-        form_BookName.borderStyle = UITextBorderStyle.roundedRect
-        form_BookPrice.borderStyle = UITextBorderStyle.roundedRect
-        form_BoughtDate.borderStyle = UITextBorderStyle.roundedRect
+        bookNameForm.borderStyle = UITextBorderStyle.roundedRect
+        bookPriceForm.borderStyle = UITextBorderStyle.roundedRect
+        boughtDateForm.borderStyle = UITextBorderStyle.roundedRect
         
         // 入力フォームの自動補完およびShiftキーを無効化
-        form_BookName.autocapitalizationType = UITextAutocapitalizationType.none
-        form_BookPrice.autocapitalizationType = UITextAutocapitalizationType.none
-        form_BoughtDate.autocapitalizationType = UITextAutocapitalizationType.none
-        form_BookName.autocorrectionType = UITextAutocorrectionType.no
-        form_BookPrice.autocorrectionType = UITextAutocorrectionType.no
-        form_BoughtDate.autocorrectionType = UITextAutocorrectionType.no
-        form_BookName.returnKeyType = .done
-        form_BookPrice.returnKeyType = .done
-        form_BoughtDate.returnKeyType = .done
+        bookNameForm.autocapitalizationType = UITextAutocapitalizationType.none
+        bookPriceForm.autocapitalizationType = UITextAutocapitalizationType.none
+        boughtDateForm.autocapitalizationType = UITextAutocapitalizationType.none
+        bookNameForm.autocorrectionType = UITextAutocorrectionType.no
+        bookPriceForm.autocorrectionType = UITextAutocorrectionType.no
+        boughtDateForm.autocorrectionType = UITextAutocorrectionType.no
+        bookNameForm.returnKeyType = .done
+        bookPriceForm.returnKeyType = .done
+        boughtDateForm.returnKeyType = .done
         
         // ラベルの中身をセット
-        label_BookName.text = "書籍名"
-        label_BookPrice.text = "金額"
-        label_BoughtDate.text = "購入日"
+        bookNameLabel.text = "書籍名"
+        bookPriceLabel.text = "金額"
+        boughtDateLabel.text = "購入日"
         // フォームの初期値をセット
-        form_BookName.text = ""
-        form_BookPrice.text = ""
-        form_BoughtDate.text = ""
+        bookNameForm.text = ""
+        bookPriceForm.text = ""
+        boughtDateForm.text = ""
         
         // closeButton.center = self.view.center
-        label_BookName.translatesAutoresizingMaskIntoConstraints = false
-        form_BookName.translatesAutoresizingMaskIntoConstraints = false
-        label_BookPrice.translatesAutoresizingMaskIntoConstraints = false
-        form_BookPrice.translatesAutoresizingMaskIntoConstraints = false
-        label_BoughtDate.translatesAutoresizingMaskIntoConstraints = false
-        form_BoughtDate.translatesAutoresizingMaskIntoConstraints = false
+        bookNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        bookNameForm.translatesAutoresizingMaskIntoConstraints = false
+        bookPriceLabel.translatesAutoresizingMaskIntoConstraints = false
+        bookPriceForm.translatesAutoresizingMaskIntoConstraints = false
+        boughtDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        boughtDateForm.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(bookImageView!)
-        self.view.addSubview(label_BookName)
-        self.view.addSubview(form_BookName)
-        self.view.addSubview(label_BookPrice)
-        self.view.addSubview(form_BookPrice)
-        self.view.addSubview(label_BoughtDate)
-        self.view.addSubview(form_BoughtDate)
+        self.view.addSubview(bookNameLabel)
+        self.view.addSubview(bookNameForm)
+        self.view.addSubview(bookPriceLabel)
+        self.view.addSubview(bookPriceForm)
+        self.view.addSubview(boughtDateLabel)
+        self.view.addSubview(boughtDateForm)
         self.view.addSubview(addImageButton)
         
-        form_BookName.delegate = self as? UITextFieldDelegate
-        form_BookPrice.delegate = self as? UITextFieldDelegate
-        form_BoughtDate.delegate = self as? UITextFieldDelegate
+        bookNameForm.delegate = self as? UITextFieldDelegate
+        bookPriceForm.delegate = self as? UITextFieldDelegate
+        boughtDateForm.delegate = self as? UITextFieldDelegate
         
         // アドレスと入力フォーム類の位置設定
         
@@ -125,26 +125,26 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         bookImageView?.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
         bookImageView?.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.33).isActive = true
         
-        label_BookName.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        label_BookName.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        label_BookName.topAnchor.constraint(equalTo: (self.bookImageView?.bottomAnchor)!, constant: 50).isActive = true
-        form_BookName.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        form_BookName.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        form_BookName.topAnchor.constraint(equalTo: label_BookName.bottomAnchor, constant: marginBtwLabForm).isActive = true
-        label_BookPrice.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        label_BookPrice.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        label_BookPrice.topAnchor.constraint(equalTo: label_BookName.bottomAnchor, constant: marginBtwLabels).isActive = true
-        form_BookPrice.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        form_BookPrice.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        form_BookPrice.topAnchor.constraint(equalTo: label_BookPrice.bottomAnchor, constant: marginBtwLabForm).isActive = true
+        bookNameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        bookNameLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        bookNameLabel.topAnchor.constraint(equalTo: (self.bookImageView?.bottomAnchor)!, constant: 50).isActive = true
+        bookNameForm.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        bookNameForm.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        bookNameForm.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: marginBtwLabForm).isActive = true
+        bookPriceLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        bookPriceLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        bookPriceLabel.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: marginBtwLabels).isActive = true
+        bookPriceForm.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        bookPriceForm.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        bookPriceForm.topAnchor.constraint(equalTo: bookPriceLabel.bottomAnchor, constant: marginBtwLabForm).isActive = true
         
-        label_BoughtDate.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        label_BoughtDate.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        label_BoughtDate.topAnchor.constraint(equalTo: label_BookPrice.bottomAnchor, constant: marginBtwLabels).isActive = true
+        boughtDateLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        boughtDateLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        boughtDateLabel.topAnchor.constraint(equalTo: bookPriceLabel.bottomAnchor, constant: marginBtwLabels).isActive = true
         
-        form_BoughtDate.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        form_BoughtDate.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        form_BoughtDate.topAnchor.constraint(equalTo: label_BoughtDate.bottomAnchor, constant: marginBtwLabForm).isActive = true
+        boughtDateForm.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        boughtDateForm.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        boughtDateForm.topAnchor.constraint(equalTo: boughtDateLabel.bottomAnchor, constant: marginBtwLabForm).isActive = true
         
         addImageButton.centerYAnchor.constraint(equalTo: (bookImageView?.centerYAnchor)!).isActive = true
         addImageButton.leftAnchor.constraint(equalTo: (bookImageView?.rightAnchor)!, constant: 10.0).isActive = true
