@@ -77,6 +77,10 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         bookPriceForm.borderStyle = UITextBorderStyle.roundedRect
         boughtDateForm.borderStyle = UITextBorderStyle.roundedRect
         
+        bookNameForm.tag = 1
+        bookPriceForm.tag = 2
+        boughtDateForm.tag = 3
+        
         // 入力フォームの自動補完およびShiftキーを無効化
         bookNameForm.autocapitalizationType = UITextAutocapitalizationType.none
         bookPriceForm.autocapitalizationType = UITextAutocapitalizationType.none
@@ -153,6 +157,34 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         
         addImageButton.centerYAnchor.constraint(equalTo: (bookImageView?.centerYAnchor)!).isActive = true
         addImageButton.leftAnchor.constraint(equalTo: (bookImageView?.rightAnchor)!, constant: 10.0).isActive = true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case 1,2:
+            return
+        case 3:
+            print("日付編集します")
+            dateEditing(sender: textField)
+        default:
+            break
+        }
+    }
+    
+    func dateEditing(sender: UITextField){
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = UIDatePickerMode.date
+        datePicker.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
+        sender.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: UIControlEvents.valueChanged)
+    }
+    
+    func datePickerValueChanged(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        boughtDateForm.text = dateFormatter.string(from: sender.date)
     }
         
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

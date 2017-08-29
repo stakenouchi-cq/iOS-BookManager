@@ -47,6 +47,7 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         saveButton.tag = 1
         self.navigationItem.setRightBarButtonItems([saveButton], animated: true)
         
+        
         // 書籍のサムネイルを定義
         bookImage = UIImage(named: "no_image.png")
         bookImageView = UIImageView(image: bookImage)
@@ -73,6 +74,11 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         bookNameForm.borderStyle = UITextBorderStyle.roundedRect
         bookPriceForm.borderStyle = UITextBorderStyle.roundedRect
         boughtDateForm.borderStyle = UITextBorderStyle.roundedRect
+        
+        // 各TextFieldにタグを制定
+        bookNameForm.tag = 1
+        bookPriceForm.tag = 2
+        boughtDateForm.tag = 3
         
         // 入力フォームの自動補完およびShiftキーを無効化
         bookNameForm.autocapitalizationType = UITextAutocapitalizationType.none
@@ -101,6 +107,8 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         bookPriceForm.translatesAutoresizingMaskIntoConstraints = false
         boughtDateLabel.translatesAutoresizingMaskIntoConstraints = false
         boughtDateForm.translatesAutoresizingMaskIntoConstraints = false
+        
+        // ツールバーを定義
         
         self.view.addSubview(bookImageView!)
         self.view.addSubview(bookNameLabel)
@@ -150,6 +158,35 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         addImageButton.leftAnchor.constraint(equalTo: (bookImageView?.rightAnchor)!, constant: 10.0).isActive = true
         
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case 1,2:
+            return
+        case 3:
+            print("日付編集します")
+            dateEditing(sender: textField)
+        default:
+            break
+        }
+    }
+    
+    func dateEditing(sender: UITextField){
+
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = UIDatePickerMode.date
+        datePicker.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
+        sender.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: UIControlEvents.valueChanged)
+    }
+    
+    func datePickerValueChanged(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        boughtDateForm.text = dateFormatter.string(from: sender.date)
+    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() // Enter押したら入力おしまい
