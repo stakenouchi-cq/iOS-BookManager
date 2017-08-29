@@ -20,6 +20,10 @@ DerivedData
 Pods/*
 Podfile.lock
 
+# Carthage
+iOS-BookManager/Carthage/Checkouts
+iOS-BookManager/Carthage/Build
+
 # others
 *.swp
 !.gitkeep
