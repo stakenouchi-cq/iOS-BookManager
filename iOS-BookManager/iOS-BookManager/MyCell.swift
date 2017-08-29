@@ -15,7 +15,7 @@ class MyCell: UITableViewCell {
     var myLabelOfDatePublished: UILabel!
     var myImage: UIImage!
     var myImageView: UIImageView!
-    var bookEditButton: UIButton!
+    var bookEditLabel: UILabel!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,13 +36,10 @@ class MyCell: UITableViewCell {
         myImageView = UIImageView(image: myImage)
         contentView.addSubview(myImageView)
         
-        bookEditButton = UIButton()
-        bookEditButton.setTitle(">", for: UIControlState.normal)
-        bookEditButton.setTitleColor(UIColor.black, for: UIControlState.normal)
-        bookEditButton.setTitle(">", for: UIControlState.highlighted)
-        bookEditButton.setTitleColor(UIColor.red, for: UIControlState.highlighted)
-        bookEditButton.addTarget(self, action: #selector(onClicked(sender:)), for: .touchUpInside)
-        contentView.addSubview(bookEditButton)
+        bookEditLabel = UILabel()
+        bookEditLabel.text = ">"
+        // bookEditLabel.addTarget(self, action: #selector(onClicked(sender:)), for: .touchUpInside)
+        contentView.addSubview(bookEditLabel)
         
     }
     
@@ -60,7 +57,7 @@ class MyCell: UITableViewCell {
         myLabelOfBookPrice.frame = CGRect(x: 90, y: 25, width: 120, height: frame.height)
         myLabelOfDatePublished.frame = CGRect(x: frame.width - 150, y: 25, width: 120, height: frame.height)
         myImageView.frame = CGRect(x: 5, y: 0, width: frame.height*(210/297), height: frame.height)
-        bookEditButton.frame = CGRect(x: frame.width - 20, y: 0, width: 10, height: frame.height)
+        bookEditLabel.frame = CGRect(x: frame.width - 20, y: 0, width: 10, height: frame.height)
     }
     
     func onClicked(sender: UIButton){
