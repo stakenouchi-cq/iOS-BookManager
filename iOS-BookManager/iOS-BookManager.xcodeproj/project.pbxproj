@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56F98A991F565E9700441CC4 /* BookInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98A981F565E9600441CC4 /* BookInfo.swift */; };
+		56F98A9C1F56735200441CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56F98A9E1F56735200441CC4 /* Localizable.strings */; };
 		F616E8B51F53A9F700B6711F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8B41F53A9F700B6711F /* SettingViewController.swift */; };
 		F616E8B91F53CEF800B6711F /* AccountSettingModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */; };
 		F616E8BD1F5401B300B6711F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8BC1F5401B300B6711F /* TabBarController.swift */; };
@@ -21,7 +23,6 @@
 		F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D59A1F500E5400113B7B /* EditBookViewController.swift */; };
 		F619D59D1F50156E00113B7B /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D59C1F50156E00113B7B /* MyCell.swift */; };
 		F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97791F4E845C002D6326 /* AppDelegate.swift */; };
-		F6EF977C1F4E845D002D6326 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF977B1F4E845D002D6326 /* ViewController.swift */; };
 		F6EF97811F4E845D002D6326 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97801F4E845D002D6326 /* Assets.xcassets */; };
 		F6EF978F1F4E845D002D6326 /* iOS_BookManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF978E1F4E845D002D6326 /* iOS_BookManagerTests.swift */; };
 		F6EF979A1F4E845D002D6326 /* iOS_BookManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97991F4E845D002D6326 /* iOS_BookManagerUITests.swift */; };
@@ -53,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		56F98A981F565E9600441CC4 /* BookInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookInfo.swift; sourceTree = "<group>"; };
+		56F98A9D1F56735200441CC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		56F98A9F1F56738E00441CC4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F616E8B41F53A9F700B6711F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSettingModalViewController.swift; path = ../AccountSettingModalViewController.swift; sourceTree = "<group>"; };
 		F616E8BC1F5401B300B6711F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -68,7 +72,6 @@
 		F619D59C1F50156E00113B7B /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		F6EF97761F4E845C002D6326 /* iOS-BookManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-BookManager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6EF97791F4E845C002D6326 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F6EF977B1F4E845D002D6326 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F6EF97801F4E845D002D6326 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6EF97851F4E845D002D6326 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6EF978A1F4E845D002D6326 /* iOS-BookManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-BookManagerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,7 +167,6 @@
 				F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */,
 				F619D59C1F50156E00113B7B /* MyCell.swift */,
 				F619D5981F4FB0B200113B7B /* AddBookModalViewController.swift */,
-				F6EF977B1F4E845D002D6326 /* ViewController.swift */,
 				F6EF97B31F4E8B2A002D6326 /* cppbook.jpg */,
 				F6EF97B11F4E8AB5002D6326 /* toeicbook.jpg */,
 				F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */,
@@ -173,6 +175,8 @@
 				F6EF97AD1F4E8628002D6326 /* javabook.jpg */,
 				F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */,
 				F6EF97851F4E845D002D6326 /* Info.plist */,
+				56F98A981F565E9600441CC4 /* BookInfo.swift */,
+				56F98A9E1F56735200441CC4 /* Localizable.strings */,
 			);
 			path = "iOS-BookManager";
 			sourceTree = "<group>";
@@ -289,6 +293,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = F6EF976D1F4E845C002D6326;
 			productRefGroup = F6EF97771F4E845C002D6326 /* Products */;
@@ -312,6 +317,7 @@
 				F6EF97811F4E845D002D6326 /* Assets.xcassets in Resources */,
 				F6EF97AE1F4E8628002D6326 /* javabook.jpg in Resources */,
 				F6EF97B41F4E8B2A002D6326 /* cppbook.jpg in Resources */,
+				56F98A9C1F56735200441CC4 /* Localizable.strings in Resources */,
 				F6EF97B01F4E8A28002D6326 /* sw3book.jpg in Resources */,
 				F6EF97B21F4E8AB5002D6326 /* toeicbook.jpg in Resources */,
 				F6EF97AC1F4E8610002D6326 /* Oxford_Dict.jpg in Resources */,
@@ -378,9 +384,9 @@
 				F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */,
 				F616E8B91F53CEF800B6711F /* AccountSettingModalViewController.swift in Sources */,
 				F616E8BD1F5401B300B6711F /* TabBarController.swift in Sources */,
-				F6EF977C1F4E845D002D6326 /* ViewController.swift in Sources */,
 				F6EF97AA1F4E858A002D6326 /* BookLineUpViewController.swift in Sources */,
 				F616E8B51F53A9F700B6711F /* SettingViewController.swift in Sources */,
+				56F98A991F565E9700441CC4 /* BookInfo.swift in Sources */,
 				F619D59D1F50156E00113B7B /* MyCell.swift in Sources */,
 				F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */,
 				F619D5991F4FB0B200113B7B /* AddBookModalViewController.swift in Sources */,
@@ -418,11 +424,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		56F98A9E1F56735200441CC4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56F98A9D1F56735200441CC4 /* Base */,
+				56F98A9F1F56738E00441CC4 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		F6EF979C1F4E845D002D6326 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -474,6 +493,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

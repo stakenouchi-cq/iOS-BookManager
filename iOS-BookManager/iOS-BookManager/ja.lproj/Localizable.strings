@@ -1,0 +1,20 @@
+// 日本語が言語選択されたときに表示
+"mailaddress" = "メールアドレス";
+"password" = "パスワード";
+"accpassword" = "パスワード確認";
+"login" = "ログイン";
+"accountsetting" = "アカウント設定";
+"booklineup" = "書籍一覧";
+"setting" = "設定";
+"add" = "追加";
+"close" = "閉じる";
+"back" = "戻る";
+"loadmore" = "*** もっと読み込む ***";
+"taxout" = "円 + 税";
+"bookname" = "書籍名";
+"price" = "金額";
+"boughtdate" = "購入日";
+"addtmb" = "画像添付ボタン";
+"addbook" = "書籍追加";
+"editbook" = "書籍編集";
+"save" = "保存";

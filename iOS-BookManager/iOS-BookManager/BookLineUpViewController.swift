@@ -1,11 +1,3 @@
-//
-//  BookLineUpView.swift
-//  iOS-BookManager
-//
-//  Created by 竹之内翔太郎 on 2017/08/24.
-//  Copyright © 2017年 shotaro takenouchi. All rights reserved.
-//
-
 import UIKit
 
 class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
@@ -56,15 +48,19 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         automaticallyAdjustsScrollViewInsets = false
-        self.navigationItem.title = "登録済み書籍一覧"
+        
+        let navigationBarTitle = NSLocalizedString("booklineup", comment: "")
+        self.navigationItem.title = navigationBarTitle
         
         // 追加ボタン押下時の動作定義
-        let bookAddButton: UIBarButtonItem = UIBarButtonItem(title: "追加", style: .plain, target: self, action: #selector(onClicked(sender:)))
+        let addTitle = NSLocalizedString("add", comment: "")
+        let bookAddButton: UIBarButtonItem = UIBarButtonItem(title: addTitle, style: .plain, target: self, action: #selector(onClick(sender:)))
         bookAddButton.tag = 1
         
         // 戻るボタンの表示内容の設定
+        let backTitle = NSLocalizedString("back", comment: "")
         let backButton = UIBarButtonItem()
-        backButton.title = "戻る"
+        backButton.title = backTitle
         self.navigationItem.backBarButtonItem = backButton
         // 左上部の戻るボタンを非表示
         self.navigationItem.hidesBackButton = true
@@ -89,8 +85,8 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // TableViewの高さなどを定義
         myTableView.rowHeight = rowHeight
-        myTableView.delegate      =   self
-        myTableView.dataSource    =   self
+        myTableView.delegate = self
+        myTableView.dataSource = self
         myTableView.register(MyCell.self, forCellReuseIdentifier: NSStringFromClass(MyCell.self))
         
         self.view.addSubview(myTableView)
@@ -103,13 +99,14 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         loadButton.layer.borderWidth = 2.0
         loadButton.layer.borderColor = UIColor.gray.cgColor
         
-        loadButton.setTitle("*** もっと読み込む ***", for: .normal)
+        let loadMoreTitle = NSLocalizedString("loadmore", comment: "")
+        loadButton.setTitle(loadMoreTitle, for: .normal)
         loadButton.setTitleColor(UIColor.green, for: .normal)
-        loadButton.setTitle("*** もっと読み込む ***", for: .highlighted)
+        loadButton.setTitle(loadMoreTitle, for: .highlighted)
         loadButton.setTitleColor(UIColor.red, for: .highlighted)
         
         // ボタン押下時の処理
-        loadButton.addTarget(self, action: #selector(onClicked(sender:)), for: .touchUpInside)
+        loadButton.addTarget(self, action: #selector(onClick(sender:)), for: .touchUpInside)
         loadButton.tag = 0
         
         self.view.addSubview(loadButton)
@@ -139,11 +136,12 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let taxOutTitle = NSLocalizedString("taxout", comment: "")
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(MyCell.self), for: indexPath) as! MyCell
-        cell.myLabelOfBookTitle.text = bookTitles[indexPath.row]
-        cell.myLabelOfBookPrice.text = priceOfBooks[indexPath.row].description + "円 + 税"
-        cell.myLabelOfDatePublished.text = boughtDates[indexPath.row]
-        cell.myImageView.image = UIImage(named: imageNames[indexPath.row])
+        cell.bookTitleLabel.text = bookTitles[indexPath.row]
+        cell.bookPriceLabel.text = priceOfBooks[indexPath.row].description + taxOutTitle
+        cell.bookPublishedDate.text = boughtDates[indexPath.row]
+        cell.bookImageView.image = UIImage(named: imageNames[indexPath.row])
         return cell
         
     }
@@ -167,7 +165,7 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationController?.pushViewController(editBookViewController, animated: true)
     }
     
-    func clickBookAddButton(){
+    func touchBookAddButton(){
         // 書籍追加ボタン押下時の処理を追加
         
         let addBookModalView = AddBookModalViewController()
@@ -181,13 +179,13 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         super.didReceiveMemoryWarning()
     }
     
-    func onClicked(sender: UIButton){
+    func onClick(sender: UIButton){
         switch sender.tag {
         case 0:
             print("書籍をさらに読み込みます")
         case 1:
             print("書籍の追加を行います")
-            clickBookAddButton()
+            touchBookAddButton()
         default:
             break
         }

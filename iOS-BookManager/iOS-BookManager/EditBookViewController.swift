@@ -1,11 +1,3 @@
-//
-//  EditBookViewController.swift
-//  iOS-BookManager
-//
-//  Created by 竹之内翔太郎 on 2017/08/25.
-//  Copyright © 2017年 shotaro takenouchi. All rights reserved.
-//
-
 import UIKit
 
 class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UINavigationBarDelegate, UITabBarDelegate, UIImagePickerControllerDelegate {
@@ -16,12 +8,11 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
     var myTabBar: UITabBar!
     let bookNameLabel = UILabel()
-    @IBOutlet weak var bookNameForm: UITextField!
-    // var bookNameForm: UITextField!
+    @IBOutlet weak var bookNameTextField: UITextField!
     let bookPriceLabel = UILabel()
-    @IBOutlet weak var bookPriceForm: UITextField!
+    @IBOutlet weak var bookPriceTextField: UITextField!
     let boughtDateLabel = UILabel()
-    @IBOutlet weak var boughtDateForm: UITextField!
+    @IBOutlet weak var boughtDateTextField: UITextField!
     
     var bookImage: UIImage?
     var bookImageView: UIImageView?
@@ -42,11 +33,13 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         // ナビゲーションバーの表示
         self.navigationController?.navigationBar // ナビゲーションバーを取得
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
-        self.navigationItem.title = "書籍編集"
+        let navigationBarTitle = NSLocalizedString("editbook", comment: "")
+        self.navigationItem.title = navigationBarTitle
         
         // 戻るボタンの表示内容の設定
         
-        let saveButton = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(onClicked(sender:)))
+        let saveTitle = NSLocalizedString("save", comment: "")
+        let saveButton = UIBarButtonItem(title: saveTitle, style: .plain, target: self, action: #selector(onClick(sender:)))
         saveButton.tag = 1
         self.navigationItem.setRightBarButtonItems([saveButton], animated: true)
         
@@ -57,8 +50,9 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         bookImageView?.layer.borderColor = UIColor.gray.cgColor
         bookImageView?.layer.borderWidth = 1.0
         
-        let addImageText: String = "画像添付ボタン"
-        addImageButton.addTarget(self, action: #selector(onClicked(sender:)), for: .touchUpInside) // ボタン押下時の動作
+        let addTmbTiltle = NSLocalizedString("addtmb", comment: "")
+        let addImageText: String = addTmbTiltle
+        addImageButton.addTarget(self, action: #selector(onClick(sender:)), for: .touchUpInside) // ボタン押下時の動作
         addImageButton.frame = CGRect(x: 170, y: 115, width: 120, height: 60) // ボタン枠サイズの設定
         addImageButton.setTitle(addImageText, for: .normal)
         addImageButton.setTitleColor(UIColor.white, for: .normal)
@@ -69,64 +63,69 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         addImageButton.layer.borderColor = UIColor.cyan.cgColor // 枠線の色
         addImageButton.tag = 2
         
-        bookNameForm = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
-        bookPriceForm = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
-        boughtDateForm = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
+        bookNameTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
+        bookPriceTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
+        boughtDateTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
         
-        bookNameForm.borderStyle = UITextBorderStyle.roundedRect
-        bookPriceForm.borderStyle = UITextBorderStyle.roundedRect
-        boughtDateForm.borderStyle = UITextBorderStyle.roundedRect
+        bookNameTextField.borderStyle = UITextBorderStyle.roundedRect
+        bookPriceTextField.borderStyle = UITextBorderStyle.roundedRect
+        boughtDateTextField.borderStyle = UITextBorderStyle.roundedRect
         
-        bookNameForm.tag = 1
-        bookPriceForm.tag = 2
-        boughtDateForm.tag = 3
+        bookNameTextField.tag = 1
+        bookPriceTextField.tag = 2
+        boughtDateTextField.tag = 3
         
         // 入力フォームの自動補完およびShiftキーを無効化
-        bookNameForm.autocapitalizationType = UITextAutocapitalizationType.none
-        bookPriceForm.autocapitalizationType = UITextAutocapitalizationType.none
-        boughtDateForm.autocapitalizationType = UITextAutocapitalizationType.none
-        bookNameForm.autocorrectionType = UITextAutocorrectionType.no
-        bookPriceForm.autocorrectionType = UITextAutocorrectionType.no
-        boughtDateForm.autocorrectionType = UITextAutocorrectionType.no
-        bookNameForm.returnKeyType = .done
-        bookPriceForm.returnKeyType = .done
-        boughtDateForm.returnKeyType = .done
+        bookNameTextField.autocapitalizationType = UITextAutocapitalizationType.none
+        bookPriceTextField.autocapitalizationType = UITextAutocapitalizationType.none
+        boughtDateTextField.autocapitalizationType = UITextAutocapitalizationType.none
+        bookNameTextField.autocorrectionType = UITextAutocorrectionType.no
+        bookPriceTextField.autocorrectionType = UITextAutocorrectionType.no
+        boughtDateTextField.autocorrectionType = UITextAutocorrectionType.no
+        bookNameTextField.returnKeyType = .done
+        bookPriceTextField.returnKeyType = .done
+        boughtDateTextField.returnKeyType = .done
+        
+        let bookNameTitle = NSLocalizedString("bookname", comment: "")
+        let bookPriceTitle = NSLocalizedString("price", comment: "")
+        let boughtDateTitle = NSLocalizedString("boughtdate", comment: "")
+        
         
         // ラベルの中身をセット
-        bookNameLabel.text = "書籍名"
-        bookPriceLabel.text = "金額"
-        boughtDateLabel.text = "購入日"
+        bookNameLabel.text = bookNameTitle
+        bookPriceLabel.text = bookPriceTitle
+        boughtDateLabel.text = boughtDateTitle
         
         // フォームの初期値をセット
-        bookNameForm.text = appDelegate.title
-        bookPriceForm.text = String(describing: appDelegate.price!)
-        boughtDateForm.text = appDelegate.boughtDate
+        bookNameTextField.text = appDelegate.title
+        bookPriceTextField.text = String(describing: appDelegate.price!)
+        boughtDateTextField.text = appDelegate.boughtDate
         
         
         // closeButton.center = self.view.center
         bookNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        bookNameForm.translatesAutoresizingMaskIntoConstraints = false
+        bookNameTextField.translatesAutoresizingMaskIntoConstraints = false
         bookPriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        bookPriceForm.translatesAutoresizingMaskIntoConstraints = false
+        bookPriceTextField.translatesAutoresizingMaskIntoConstraints = false
         boughtDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        boughtDateForm.translatesAutoresizingMaskIntoConstraints = false
+        boughtDateTextField.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(bookImageView!)
         self.view.addSubview(bookNameLabel)
-        self.view.addSubview(bookNameForm)
+        self.view.addSubview(bookNameTextField)
         self.view.addSubview(bookPriceLabel)
-        self.view.addSubview(bookPriceForm)
+        self.view.addSubview(bookPriceTextField)
         self.view.addSubview(boughtDateLabel)
-        self.view.addSubview(boughtDateForm)
+        self.view.addSubview(boughtDateTextField)
         self.view.addSubview(addImageButton)
         
-        bookNameForm.delegate = self as? UITextFieldDelegate
-        bookPriceForm.delegate = self as? UITextFieldDelegate
-        boughtDateForm.delegate = self as? UITextFieldDelegate
+        bookNameTextField.delegate = self as? UITextFieldDelegate
+        bookPriceTextField.delegate = self as? UITextFieldDelegate
+        boughtDateTextField.delegate = self as? UITextFieldDelegate
         
         // アドレスと入力フォーム類の位置設定
         
-        let marginBtwLabForm: CGFloat = 5.0
+        let marginBtwLabTextField: CGFloat = 5.0
         let marginBtwLabels: CGFloat = displayHeight*0.1
         
         bookImageView?.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: displayWidth*0.1).isActive = true
@@ -137,23 +136,23 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         bookNameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         bookNameLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         bookNameLabel.topAnchor.constraint(equalTo: (self.bookImageView?.bottomAnchor)!, constant: 50).isActive = true
-        bookNameForm.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        bookNameForm.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        bookNameForm.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: marginBtwLabForm).isActive = true
+        bookNameTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        bookNameTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        bookNameTextField.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: marginBtwLabTextField).isActive = true
         bookPriceLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         bookPriceLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         bookPriceLabel.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: marginBtwLabels).isActive = true
-        bookPriceForm.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        bookPriceForm.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        bookPriceForm.topAnchor.constraint(equalTo: bookPriceLabel.bottomAnchor, constant: marginBtwLabForm).isActive = true
+        bookPriceTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        bookPriceTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        bookPriceTextField.topAnchor.constraint(equalTo: bookPriceLabel.bottomAnchor, constant: marginBtwLabTextField).isActive = true
         
         boughtDateLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         boughtDateLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         boughtDateLabel.topAnchor.constraint(equalTo: bookPriceLabel.bottomAnchor, constant: marginBtwLabels).isActive = true
         
-        boughtDateForm.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        boughtDateForm.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        boughtDateForm.topAnchor.constraint(equalTo: boughtDateLabel.bottomAnchor, constant: marginBtwLabForm).isActive = true
+        boughtDateTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        boughtDateTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        boughtDateTextField.topAnchor.constraint(equalTo: boughtDateLabel.bottomAnchor, constant: marginBtwLabTextField).isActive = true
         
         addImageButton.centerYAnchor.constraint(equalTo: (bookImageView?.centerYAnchor)!).isActive = true
         addImageButton.leftAnchor.constraint(equalTo: (bookImageView?.rightAnchor)!, constant: 10.0).isActive = true
@@ -208,7 +207,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         let dateFormatter = DateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        boughtDateForm.text = dateFormatter.string(from: sender.date)
+        boughtDateTextField.text = dateFormatter.string(from: sender.date)
     }
         
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -221,7 +220,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     }
     
     // ボタン押下時の分岐(タブバーは別所でやる)
-    func onClicked(sender: UIButton){
+    func onClick(sender: UIButton){
         switch sender.tag {
         case 0:
             print("書籍追加画面を閉じます")

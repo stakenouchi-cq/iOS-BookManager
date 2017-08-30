@@ -47,6 +47,10 @@ excluded:
 # プロジェクト作成時にデフォルトで追加されるコメントをひっかけないため
 line_length: 150
 
+# 関数内の行数制限を定義(初期値:100)
+# 後々，コードを整理したときに厳格な値にする予定
+function_body_length: 300
+
 # 変数名が1文字以上なら許可に変更
 identifier_name:
 min_length: 1
