@@ -1,10 +1,18 @@
-import UIKit
-import Foundation
+//
+//  TableViewCell.swift
+//  iOS-BookManager
+//
+//  Created by 竹之内翔太郎 on 2017/08/30.
+//  Copyright © 2017年 shotaro takenouchi. All rights reserved.
+//
 
-class MyCell: UITableViewCell {
+import UIKit
+
+class BookCell: UITableViewCell {
+    
     var bookTitleLabel: UILabel!
     var bookPriceLabel: UILabel!
-    var bookPublishedDate: UILabel!
+    var bookBoughtDateLabel: UILabel!
     var bookImage: UIImage!
     var bookImageView: UIImageView!
     var bookEditLabel: UILabel!
@@ -20,9 +28,9 @@ class MyCell: UITableViewCell {
         bookPriceLabel.textAlignment = .left
         contentView.addSubview(bookPriceLabel)
         
-        bookPublishedDate = UILabel(frame: CGRect.zero)
-        bookPublishedDate.textAlignment = .left
-        contentView.addSubview(bookPublishedDate)
+        bookBoughtDateLabel = UILabel(frame: CGRect.zero)
+        bookBoughtDateLabel.textAlignment = .left
+        contentView.addSubview(bookBoughtDateLabel)
         
         bookImage = UIImage(named: "no_image.png")
         bookImageView = UIImageView(image: bookImage)
@@ -46,13 +54,18 @@ class MyCell: UITableViewCell {
         super.layoutSubviews()
         bookTitleLabel.frame = CGRect(x: 90, y: -25, width: frame.width - 100, height: frame.height)
         bookPriceLabel.frame = CGRect(x: 90, y: 25, width: 120, height: frame.height)
-        bookPublishedDate.frame = CGRect(x: frame.width - 150, y: 25, width: 120, height: frame.height)
+        bookBoughtDateLabel.frame = CGRect(x: frame.width - 150, y: 25, width: 120, height: frame.height)
         bookImageView.frame = CGRect(x: 5, y: 0, width: frame.height*(210/297), height: frame.height)
         bookEditLabel.frame = CGRect(x: frame.width - 20, y: 0, width: 10, height: frame.height)
     }
     
-    func onClick(sender: UIButton){
-        // print("書籍編集画面に入ります")
+    func registCell(book: Book){
+        // セルに書籍データを登録！
+        let taxOutTitle = NSLocalizedString("taxout", comment: "")
+        bookTitleLabel.text = book.name
+        bookPriceLabel.text = String(describing: book.price) + taxOutTitle
+        bookBoughtDateLabel.text = book.boughtDate
+        bookImageView.image = UIImage(named: book.imagePath)
     }
     
 }

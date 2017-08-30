@@ -3,21 +3,32 @@ import UIKit
 class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UINavigationBarDelegate, UITabBarDelegate, UIImagePickerControllerDelegate {
     
     let tabBarHeight: CGFloat = 49
-
+    
+    // フォームの初期値をセット
+    // 親クラスから値渡しをする
+    var book: Book! {
+        didSet {
+            bookNameTextField.text = self.book.name
+            bookPriceTextField.text = String(self.book.price)
+            boughtDateTextField.text = self.book.boughtDate
+            // bookImageView?.image = UIImage(named: self.book.imagePath)
+            bookImage = UIImage(named: self.book.imagePath)!
+        }
+    }
+    
+    
+    // optionalを外す際に落ちることが多いため，"!"や"?"を使わないようにする
     let addImageButton = UIButton() // 書籍画像添付ボタン
     
-    var myTabBar: UITabBar!
     let bookNameLabel = UILabel()
-    @IBOutlet weak var bookNameTextField: UITextField!
+    let bookNameTextField = UITextField()
     let bookPriceLabel = UILabel()
-    @IBOutlet weak var bookPriceTextField: UITextField!
+    let bookPriceTextField = UITextField()
     let boughtDateLabel = UILabel()
-    @IBOutlet weak var boughtDateTextField: UITextField!
+    let boughtDateTextField = UITextField()
     
-    var bookImage: UIImage?
-    var bookImageView: UIImageView?
-    
-    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    var bookImage = UIImage()
+    var bookImageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +55,11 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         self.navigationItem.setRightBarButtonItems([saveButton], animated: true)
         
         // 書籍のサムネイルを定義
-        bookImage = UIImage(named: appDelegate.imagePath!)
+        // bookImage = UIImage(named: "no_image.png")
         bookImageView = UIImageView(image: bookImage)
-        bookImageView?.frame = CGRect(x: displayWidth*0.1, y: displayHeight*(4/30), width: displayWidth*0.3, height: displayHeight*0.2)
-        bookImageView?.layer.borderColor = UIColor.gray.cgColor
-        bookImageView?.layer.borderWidth = 1.0
+        bookImageView.frame = CGRect(x: displayWidth*0.1, y: displayHeight*(4/30), width: displayWidth*0.3, height: displayHeight*0.2)
+        bookImageView.layer.borderColor = UIColor.gray.cgColor
+        bookImageView.layer.borderWidth = 1.0
         
         let addTmbTiltle = NSLocalizedString("addtmb", comment: "")
         let addImageText: String = addTmbTiltle
@@ -63,9 +74,9 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         addImageButton.layer.borderColor = UIColor.cyan.cgColor // 枠線の色
         addImageButton.tag = 2
         
-        bookNameTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
-        bookPriceTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
-        boughtDateTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
+        bookNameTextField.frame = CGRect(x: 0,y: 0,width: 200,height: 30)
+        bookPriceTextField.frame = CGRect(x: 0,y: 0,width: 200,height: 30)
+        boughtDateTextField.frame = CGRect(x: 0,y: 0,width: 200,height: 30)
         
         bookNameTextField.borderStyle = UITextBorderStyle.roundedRect
         bookPriceTextField.borderStyle = UITextBorderStyle.roundedRect
@@ -96,12 +107,6 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         bookPriceLabel.text = bookPriceTitle
         boughtDateLabel.text = boughtDateTitle
         
-        // フォームの初期値をセット
-        bookNameTextField.text = appDelegate.title
-        bookPriceTextField.text = String(describing: appDelegate.price!)
-        boughtDateTextField.text = appDelegate.boughtDate
-        
-        
         // closeButton.center = self.view.center
         bookNameLabel.translatesAutoresizingMaskIntoConstraints = false
         bookNameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -110,7 +115,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         boughtDateLabel.translatesAutoresizingMaskIntoConstraints = false
         boughtDateTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        self.view.addSubview(bookImageView!)
+        self.view.addSubview(bookImageView)
         self.view.addSubview(bookNameLabel)
         self.view.addSubview(bookNameTextField)
         self.view.addSubview(bookPriceLabel)
@@ -128,14 +133,14 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         let marginBtwLabTextField: CGFloat = 5.0
         let marginBtwLabels: CGFloat = displayHeight*0.1
         
-        bookImageView?.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: displayWidth*0.1).isActive = true
-        bookImageView?.topAnchor.constraint(equalTo: self.view.topAnchor, constant: (2/30)*displayHeight).isActive = true
-        bookImageView?.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
-        bookImageView?.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.33).isActive = true
+        bookImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: displayWidth*0.1).isActive = true
+        bookImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: (2/30)*displayHeight).isActive = true
+        bookImageView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
+        bookImageView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.33).isActive = true
         
         bookNameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         bookNameLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        bookNameLabel.topAnchor.constraint(equalTo: (self.bookImageView?.bottomAnchor)!, constant: 50).isActive = true
+        bookNameLabel.topAnchor.constraint(equalTo: self.bookImageView.bottomAnchor, constant: 50).isActive = true
         bookNameTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         bookNameTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         bookNameTextField.topAnchor.constraint(equalTo: bookNameLabel.bottomAnchor, constant: marginBtwLabTextField).isActive = true
@@ -154,8 +159,8 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         boughtDateTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         boughtDateTextField.topAnchor.constraint(equalTo: boughtDateLabel.bottomAnchor, constant: marginBtwLabTextField).isActive = true
         
-        addImageButton.centerYAnchor.constraint(equalTo: (bookImageView?.centerYAnchor)!).isActive = true
-        addImageButton.leftAnchor.constraint(equalTo: (bookImageView?.rightAnchor)!, constant: 10.0).isActive = true
+        addImageButton.centerYAnchor.constraint(equalTo: bookImageView.centerYAnchor).isActive = true
+        addImageButton.leftAnchor.constraint(equalTo: bookImageView.rightAnchor, constant: 10.0).isActive = true
     }
     
     func choosePicture() {
@@ -177,7 +182,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         // ビューに表示する
-        self.bookImageView?.image = image
+        self.bookImageView.image = image
         // 写真を選ぶビューを引っ込める
         self.dismiss(animated: true)
     }

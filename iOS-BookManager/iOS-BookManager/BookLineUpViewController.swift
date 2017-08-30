@@ -1,16 +1,18 @@
 import UIKit
 
+
 class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarDelegate {
-    
     var loadButton: UIButton!
     
-    let rowHeight: CGFloat = 100
+    // let rowHeight: CGFloat = 50
     let tabBarHeight: CGFloat = 49
     let loadButtonHeight: CGFloat = 20
     var myTableView: UITableView!
     
     // ステータスバーの高さを取得する
     let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+    
+    var books: [Book] = []
     
     /// 画像のファイル名
     var imageNames: [String] = [
@@ -43,12 +45,23 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         "2009/07/30"
     ]
     
+    func generateBookObjects() -> [Book] {
+        var books = [Book]()
+        for i in 0..<bookTitles.count {
+            books.append(Book(id: i, name: bookTitles[i], price: priceOfBooks[i], boughtDate: boughtDates[i], imagePath: imageNames[i]))
+        }
+        return books
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         automaticallyAdjustsScrollViewInsets = false
         
+        books = generateBookObjects() // 書籍のデータオブジェクトの配列
+        
+        // ナビゲーションバーのタイトルを設定
         let navigationBarTitle = NSLocalizedString("booklineup", comment: "")
         self.navigationItem.title = navigationBarTitle
         
@@ -84,10 +97,10 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         myTableView.scrollIndicatorInsets = edgeInsets
         
         // TableViewの高さなどを定義
-        myTableView.rowHeight = rowHeight
+        // myTableView.rowHeight = rowHeight
         myTableView.delegate = self
         myTableView.dataSource = self
-        myTableView.register(MyCell.self, forCellReuseIdentifier: NSStringFromClass(MyCell.self))
+        myTableView.register(BookCell.self, forCellReuseIdentifier: NSStringFromClass(BookCell.self))
         
         self.view.addSubview(myTableView)
         
@@ -111,10 +124,9 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.view.addSubview(loadButton)
         
-        loadButton.topAnchor.constraint(equalTo: myTableView.bottomAnchor, constant: -83.5).isActive = true
+        loadButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -49.0).isActive = true
         loadButton.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         
-       
     }
     
     // TabBar押下時の動作設定
@@ -131,48 +143,45 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let taxOutTitle = NSLocalizedString("taxout", comment: "")
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(MyCell.self), for: indexPath) as! MyCell
-        cell.bookTitleLabel.text = bookTitles[indexPath.row]
-        cell.bookPriceLabel.text = priceOfBooks[indexPath.row].description + taxOutTitle
-        cell.bookPublishedDate.text = boughtDates[indexPath.row]
-        cell.bookImageView.image = UIImage(named: imageNames[indexPath.row])
-        return cell
-        
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return books.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // print(books[indexPath.row].name)
+        let taxOutTitle = NSLocalizedString("taxout", comment: "")
+        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(BookCell.self), for: indexPath) as! BookCell
+        cell.registCell(book: books[indexPath.row])
+        cell.selectionStyle = .none
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // タップされたcellに対応する書籍編集画面へ移動
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        appDelegate.title = bookTitles[indexPath.row]
-        appDelegate.imagePath = imageNames[indexPath.row]
-        appDelegate.boughtDate = boughtDates[indexPath.row]
-        appDelegate.title = bookTitles[indexPath.row]
-        appDelegate.price = priceOfBooks[indexPath.row]
-        
         print("\(indexPath.row)番目の書籍編集画面に入ります")
         let editBookViewController: EditBookViewController = EditBookViewController()
+        print(books[indexPath.row].price)
+        editBookViewController.book = books[indexPath.row]
         self.navigationController?.pushViewController(editBookViewController, animated: true)
     }
     
+    
     func touchBookAddButton(){
         // 書籍追加ボタン押下時の処理を追加
-        
         let addBookModalView = AddBookModalViewController()
         let navi = UINavigationController(rootViewController: addBookModalView) // モーダル画面でもナビゲーションバーが出るようにする
         print("書籍追加のモーダル画面をopen")
         addBookModalView.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(navi, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // セルの高さを設定
+        return 100
     }
     
     override func didReceiveMemoryWarning() {
@@ -191,9 +200,11 @@ class BookLineUpViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    /*
     func gotoBookEdit() {
         let editBookView: EditBookViewController = EditBookViewController()
         self.navigationController?.pushViewController(editBookView, animated: true)
     }
+     */
     
 }

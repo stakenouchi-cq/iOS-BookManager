@@ -6,12 +6,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    // 画面間でデータを受け渡す
-    var price: Int? // 価格
-    var boughtDate: String? // 購入日
-    var imagePath: String? // 書籍のサムネイルへのパス
-    var title: String? // 本のタイトル
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // 初回起動のチェック
         let userDefault = UserDefaults.standard
