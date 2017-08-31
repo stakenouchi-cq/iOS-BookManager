@@ -42,6 +42,7 @@ excluded:
 - iOS-BookManagerUITests/
 - Pods/
 - Carthage/
+- R.generated.swift
 
 # 1行あたりの文字数制限を150に変更
 # プロジェクト作成時にデフォルトで追加されるコメントをひっかけないため

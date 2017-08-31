@@ -1,15 +1,14 @@
 import UIKit
 
 class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavigationBarDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
-    let addImageButton = UIButton() // 書籍画像添付ボタン
     
+    let addImageButton = UIButton() // 書籍画像添付ボタン
     let bookNameLabel = UILabel()
-    @IBOutlet weak var bookNameTextField: UITextField!
+    let bookNameTextField = UITextField()
     let bookPriceLabel = UILabel()
-    @IBOutlet weak var bookPriceTextField: UITextField!
+    let bookPriceTextField = UITextField()
     let boughtDateLabel = UILabel()
-    @IBOutlet weak var boughtDateTextField: UITextField!
+    let boughtDateTextField = UIDatePickerTextField()
     
     // 写真を表示するビュー
     var bookImage: UIImage?
@@ -18,6 +17,7 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // 画面のサイズを取得
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
@@ -27,17 +27,13 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         // ナビゲーションバーの表示
         self.navigationController?.navigationBar // ナビゲーションバーを取得
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
+        self.navigationItem.title = R.string.localizable.addbook()
         
-        let navigationBarTiltle = NSLocalizedString("addbook", comment: "")
-        self.navigationItem.title = navigationBarTiltle
-        
-        let closeTitle = NSLocalizedString("close", comment: "")
-        let closeButton = UIBarButtonItem(title: closeTitle, style: .plain, target: self, action: #selector(onClick(sender:)))
+        let closeButton = UIBarButtonItem(title: R.string.localizable.close(), style: .plain, target: self, action: #selector(onClick(sender:)))
         closeButton.tag = 0
         self.navigationItem.setLeftBarButtonItems([closeButton], animated: true)
         
-        let saveTitle = NSLocalizedString("save", comment: "")
-        let saveButton = UIBarButtonItem(title: saveTitle, style: .plain, target: self, action: #selector(onClick(sender:)))
+        let saveButton = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: #selector(onClick(sender:)))
         saveButton.tag = 1
         self.navigationItem.setRightBarButtonItems([saveButton], animated: true)
         
@@ -47,22 +43,20 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         bookImageView?.layer.borderColor = UIColor.cyan.cgColor
         bookImageView?.layer.borderWidth = 2.5
         
-        let addTmbTiltle = NSLocalizedString("addtmb", comment: "")
-        let addImageText: String = addTmbTiltle
         addImageButton.addTarget(self, action: #selector(onClick(sender:)), for: .touchUpInside) // ボタン押下時の動作
         addImageButton.frame = CGRect(x: 170, y: 115, width: 120, height: 60) // ボタン枠サイズの設定
-        addImageButton.setTitle(addImageText, for: .normal)
+        addImageButton.setTitle(R.string.localizable.addtmb(), for: .normal)
         addImageButton.setTitleColor(UIColor.white, for: .normal)
-        addImageButton.setTitle(addImageText, for: .highlighted)
+        addImageButton.setTitle(R.string.localizable.addtmb(), for: .highlighted)
         addImageButton.setTitleColor(UIColor.black, for: .highlighted)
         addImageButton.backgroundColor = UIColor.blue // 背景色
         addImageButton.layer.borderWidth = 2.0 // 枠線の幅
         addImageButton.layer.borderColor = UIColor.cyan.cgColor // 枠線の色
         addImageButton.tag = 2
         
-        bookNameTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
-        bookPriceTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
-        boughtDateTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
+        bookNameTextField.frame = CGRect(x: 0,y: 0,width: 200,height: 30)
+        bookPriceTextField.frame = CGRect(x: 0,y: 0,width: 200,height: 30)
+        boughtDateTextField.frame = CGRect(x: 0,y: 0,width: 200,height: 30)
         
         bookNameTextField.borderStyle = UITextBorderStyle.roundedRect
         bookPriceTextField.borderStyle = UITextBorderStyle.roundedRect
@@ -84,21 +78,18 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         bookPriceTextField.returnKeyType = .done
         boughtDateTextField.returnKeyType = .done
         
-        let bookNameTitle = NSLocalizedString("bookname", comment: "")
-        let bookPriceTitle = NSLocalizedString("price", comment: "")
-        let boughtDateTitle = NSLocalizedString("boughtdate", comment: "")
-        
+        // 価格は，数字のみ入力できるようにする
+        bookPriceTextField.keyboardType = .numberPad
         
         // ラベルの中身をセット
-        bookNameLabel.text = bookNameTitle
-        bookPriceLabel.text = bookPriceTitle
-        boughtDateLabel.text = boughtDateTitle
+        bookNameLabel.text = R.string.localizable.bookname()
+        bookPriceLabel.text = R.string.localizable.price()
+        boughtDateLabel.text = R.string.localizable.boughtdate()
         // フォームの初期値をセット
         bookNameTextField.text = ""
         bookPriceTextField.text = ""
         boughtDateTextField.text = ""
         
-        // closeButton.center = self.view.center
         bookNameLabel.translatesAutoresizingMaskIntoConstraints = false
         bookNameTextField.translatesAutoresizingMaskIntoConstraints = false
         bookPriceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -122,7 +113,6 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         boughtDateTextField.delegate = self as? UITextFieldDelegate
         
         // アドレスと入力フォーム類の位置設定
-        
         let marginBtwLabTextField: CGFloat = 5.0
         let marginBtwLabels: CGFloat = displayHeight*0.1
         
@@ -154,7 +144,6 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         
         addImageButton.centerYAnchor.constraint(equalTo: (bookImageView?.centerYAnchor)!).isActive = true
         addImageButton.leftAnchor.constraint(equalTo: (bookImageView?.rightAnchor)!, constant: 10.0).isActive = true
-        
     }
     
     func choosePicture() {
@@ -181,35 +170,6 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
         self.dismiss(animated: true)
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        switch textField.tag {
-        case 1,2:
-            return
-        case 3:
-            print("日付編集します")
-            dateEditing(sender: textField)
-        default:
-            break
-        }
-    }
-    
-    func dateEditing(sender: UITextField){
-
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = UIDatePickerMode.date
-        datePicker.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
-        sender.inputView = datePicker
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: UIControlEvents.valueChanged)
-    }
-    
-    func datePickerValueChanged(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        boughtDateTextField.text = dateFormatter.string(from: sender.date)
-    }
-    
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() // Enter押したら入力おしまい
         return true
@@ -220,7 +180,7 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
     }
     
     // ボタン押下時の分岐
-    func onClick(sender: UIButton){
+    func onClick(sender: UIButton) {
         switch sender.tag {
         case 0:
             print("書籍追加画面を閉じます")
@@ -238,7 +198,6 @@ class AddBookModalViewController: UIViewController, UITextFieldDelegate, UINavig
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 }

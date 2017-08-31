@@ -1,11 +1,3 @@
-//
-//  TableViewCell.swift
-//  iOS-BookManager
-//
-//  Created by 竹之内翔太郎 on 2017/08/30.
-//  Copyright © 2017年 shotaro takenouchi. All rights reserved.
-//
-
 import UIKit
 
 class BookCell: UITableViewCell {
@@ -59,11 +51,10 @@ class BookCell: UITableViewCell {
         bookEditLabel.frame = CGRect(x: frame.width - 20, y: 0, width: 10, height: frame.height)
     }
     
-    func registCell(book: Book){
+    func registCell(book: Book) {
         // セルに書籍データを登録！
-        let taxOutTitle = NSLocalizedString("taxout", comment: "")
         bookTitleLabel.text = book.name
-        bookPriceLabel.text = String(describing: book.price) + taxOutTitle
+        bookPriceLabel.text = String(describing: book.price) + R.string.localizable.taxout()
         bookBoughtDateLabel.text = book.boughtDate
         bookImageView.image = UIImage(named: book.imagePath)
     }

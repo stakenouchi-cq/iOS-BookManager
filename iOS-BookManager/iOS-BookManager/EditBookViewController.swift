@@ -8,16 +8,16 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     // 親クラスから値渡しをする
     var book: Book! {
         didSet {
-            bookNameTextField.text = self.book.name
-            bookPriceTextField.text = String(self.book.price)
-            boughtDateTextField.text = self.book.boughtDate
-            // bookImageView?.image = UIImage(named: self.book.imagePath)
-            bookImage = UIImage(named: self.book.imagePath)!
+            // selfは省略可なので，省略
+            bookNameTextField.text = book.name
+            bookPriceTextField.text = String(book.price)
+            boughtDateTextField.text = book.boughtDate
+            bookImage = UIImage(named: book.imagePath)!
         }
     }
     
     
-    // optionalを外す際に落ちることが多いため，"!"や"?"を使わないようにする
+    // optionalをunwrapする際に落ちることが多くて大変なため，非oprionalを使うようにする
     let addImageButton = UIButton() // 書籍画像添付ボタン
     
     let bookNameLabel = UILabel()
@@ -25,15 +25,13 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     let bookPriceLabel = UILabel()
     let bookPriceTextField = UITextField()
     let boughtDateLabel = UILabel()
-    let boughtDateTextField = UITextField()
+    let boughtDateTextField = UIDatePickerTextField()
     
     var bookImage = UIImage()
     var bookImageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         
         // 画面のサイズを取得
         let displayWidth: CGFloat = self.view.frame.width
@@ -44,25 +42,21 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         // ナビゲーションバーの表示
         self.navigationController?.navigationBar // ナビゲーションバーを取得
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
-        let navigationBarTitle = NSLocalizedString("editbook", comment: "")
-        self.navigationItem.title = navigationBarTitle
+        self.navigationItem.title = R.string.localizable.editbook()
         
         // 戻るボタンの表示内容の設定
         
-        let saveTitle = NSLocalizedString("save", comment: "")
-        let saveButton = UIBarButtonItem(title: saveTitle, style: .plain, target: self, action: #selector(onClick(sender:)))
+        let saveButton = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: #selector(onClick(sender:)))
         saveButton.tag = 1
         self.navigationItem.setRightBarButtonItems([saveButton], animated: true)
         
         // 書籍のサムネイルを定義
-        // bookImage = UIImage(named: "no_image.png")
         bookImageView = UIImageView(image: bookImage)
         bookImageView.frame = CGRect(x: displayWidth*0.1, y: displayHeight*(4/30), width: displayWidth*0.3, height: displayHeight*0.2)
         bookImageView.layer.borderColor = UIColor.gray.cgColor
         bookImageView.layer.borderWidth = 1.0
         
-        let addTmbTiltle = NSLocalizedString("addtmb", comment: "")
-        let addImageText: String = addTmbTiltle
+        let addImageText: String = R.string.localizable.addtmb()
         addImageButton.addTarget(self, action: #selector(onClick(sender:)), for: .touchUpInside) // ボタン押下時の動作
         addImageButton.frame = CGRect(x: 170, y: 115, width: 120, height: 60) // ボタン枠サイズの設定
         addImageButton.setTitle(addImageText, for: .normal)
@@ -97,17 +91,14 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         bookPriceTextField.returnKeyType = .done
         boughtDateTextField.returnKeyType = .done
         
-        let bookNameTitle = NSLocalizedString("bookname", comment: "")
-        let bookPriceTitle = NSLocalizedString("price", comment: "")
-        let boughtDateTitle = NSLocalizedString("boughtdate", comment: "")
-        
+        // 価格は，数字のみ入力できるようにする
+        bookPriceTextField.keyboardType = .numberPad
         
         // ラベルの中身をセット
-        bookNameLabel.text = bookNameTitle
-        bookPriceLabel.text = bookPriceTitle
-        boughtDateLabel.text = boughtDateTitle
+        bookNameLabel.text = R.string.localizable.bookname()
+        bookPriceLabel.text = R.string.localizable.price()
+        boughtDateLabel.text = R.string.localizable.boughtdate()
         
-        // closeButton.center = self.view.center
         bookNameLabel.translatesAutoresizingMaskIntoConstraints = false
         bookNameTextField.translatesAutoresizingMaskIntoConstraints = false
         bookPriceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -129,7 +120,6 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         boughtDateTextField.delegate = self as? UITextFieldDelegate
         
         // アドレスと入力フォーム類の位置設定
-        
         let marginBtwLabTextField: CGFloat = 5.0
         let marginBtwLabels: CGFloat = displayHeight*0.1
         
@@ -164,6 +154,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     }
     
     func choosePicture() {
+        // カメラロールの使用許可が出たら，開いて画像選択
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             let picker = UIImagePickerController()
             picker.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -181,38 +172,8 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        // ビューに表示する
-        self.bookImageView.image = image
-        // 写真を選ぶビューを引っ込める
-        self.dismiss(animated: true)
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        switch textField.tag {
-        case 1,2:
-            return
-        case 3:
-            print("日付編集します")
-            dateEditing(sender: textField)
-        default:
-            break
-        }
-    }
-    
-    func dateEditing(sender: UITextField){
-        
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = UIDatePickerMode.date
-        datePicker.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
-        sender.inputView = datePicker
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: UIControlEvents.valueChanged)
-    }
-    
-    func datePickerValueChanged(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        boughtDateTextField.text = dateFormatter.string(from: sender.date)
+        self.bookImageView.image = image // ビューに表示
+        self.dismiss(animated: true) // 写真を選ぶビューを引っ込める
     }
         
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -225,7 +186,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     }
     
     // ボタン押下時の分岐(タブバーは別所でやる)
-    func onClick(sender: UIButton){
+    func onClick(sender: UIButton) {
         switch sender.tag {
         case 0:
             print("書籍追加画面を閉じます")

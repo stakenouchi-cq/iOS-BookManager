@@ -14,8 +14,7 @@ class SettingViewController: UIViewController, UITabBarDelegate {
         let displayHeight: CGFloat = self.view.frame.height
         self.navigationController?.navigationBar // ナビゲーションバーを取得
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
-        let navigationBarTiltle = NSLocalizedString("setting", comment: "")
-        self.navigationItem.title = navigationBarTiltle
+        self.navigationItem.title = R.string.localizable.setting()
         
         self.view.backgroundColor = UIColor.white
         
@@ -26,9 +25,7 @@ class SettingViewController: UIViewController, UITabBarDelegate {
         gotoSettingButton.translatesAutoresizingMaskIntoConstraints = false
         gotoSettingButton.frame = CGRect(x: 0, y: 0, width: displayWidth-tabBarHeight, height: 50)
         
-        let accountSettingTiltle = NSLocalizedString("accountsetting", comment: "")
-        
-        gotoSettingButton.setTitle(accountSettingTiltle, for: .normal)
+        gotoSettingButton.setTitle(R.string.localizable.accountsetting(), for: .normal)
         gotoSettingButton.setTitleColor(UIColor.white, for: .normal)
         gotoSettingButton.backgroundColor = UIColor.blue // 背景色
         gotoSettingButton.layer.borderWidth = 2.0 // 枠線の幅
@@ -43,7 +40,7 @@ class SettingViewController: UIViewController, UITabBarDelegate {
         gotoSettingButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
     }
     
-    func onClick(sender: UIButton){
+    func onClick(sender: UIButton) {
         switch sender.tag {
         case 0:
             print("アカウント設定画面に入ります")
@@ -53,7 +50,7 @@ class SettingViewController: UIViewController, UITabBarDelegate {
         }
     }
     
-    func touchAccountSettingButton(){
+    func touchAccountSettingButton() {
         let accountSettingModalView = AccountSettingModalViewController()
         let navi = UINavigationController(rootViewController: accountSettingModalView) // モーダル画面でもナビゲーションバーが出るようにする
         print("アカウント設定のモーダル画面をopen")

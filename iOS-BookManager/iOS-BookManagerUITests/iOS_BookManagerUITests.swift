@@ -1,11 +1,3 @@
-//
-//  iOS_BookManagerUITests.swift
-//  iOS-BookManagerUITests
-//
-//  Created by 竹之内翔太郎 on 2017/08/24.
-//  Copyright © 2017年 shotaro takenouchi. All rights reserved.
-//
-
 import XCTest
 
 class iOS_BookManagerUITests: XCTestCase {

@@ -11,11 +11,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let navigationController1 = UINavigationController(rootViewController: bookLineUpViewController)
         let navigationController2 = UINavigationController(rootViewController: settingViewController)
         
-        let bookLineUpTitle = NSLocalizedString("booklineup", comment: "")
-        let settingTitle = NSLocalizedString("setting", comment: "")
+        bookLineUpViewController.title = R.string.localizable.booklineup()
+        settingViewController.title = R.string.localizable.setting()
         
-        bookLineUpViewController.title = bookLineUpTitle
-        settingViewController.title = settingTitle
         self.delegate = self
         self.viewControllers = [navigationController1, navigationController2]
     }

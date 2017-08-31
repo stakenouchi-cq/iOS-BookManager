@@ -24,6 +24,9 @@ Podfile.lock
 iOS-BookManager/Carthage/Checkouts
 iOS-BookManager/Carthage/Build
 
+# R.swift
+*.generated.swift
+
 # others
 *.swp
 !.gitkeep

@@ -2,11 +2,10 @@ import UIKit
 
 class LoginViewController: UIViewController, UITabBarDelegate, UITextFieldDelegate{
     
-    // UI関連の変数定義
-    let addressLabel = UILabel()
-    @IBOutlet weak var addressTextField: UITextField!
-    let passLabel = UILabel()
-    @IBOutlet weak var passTextField: UITextField!
+    let mailAddressLabel = UILabel()
+    let mailAddressTextField = UITextField()
+    let passwordLabel = UILabel()
+    let passwordTextField = UITextField()
     
     let loginButton = UIButton()
     var tabBar: UITabBar!
@@ -20,72 +19,66 @@ class LoginViewController: UIViewController, UITabBarDelegate, UITextFieldDelega
         self.navigationController?.navigationBar // ナビゲーションバーを取得
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
         
-        let navigationBarTiltle = NSLocalizedString("booklineup", comment: "")
-        self.navigationItem.title = navigationBarTiltle
+        self.navigationItem.title = R.string.localizable.booklineup()
         
-        addressTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
-        passTextField = UITextField(frame: CGRect(x: 0,y: 0,width: 200,height: 30))
+        mailAddressTextField.frame = CGRect(x: 0,y: 0,width: 200,height: 30)
+        passwordTextField.frame = CGRect(x: 0,y: 0,width: 200,height: 30)
         
         // 入力フォームの自動補完およびShiftキーを無効化
-        addressTextField.autocapitalizationType = UITextAutocapitalizationType.none
-        passTextField.autocapitalizationType = UITextAutocapitalizationType.none
-        addressTextField.autocorrectionType = UITextAutocorrectionType.no
-        passTextField.autocorrectionType = UITextAutocorrectionType.no
+        mailAddressTextField.autocapitalizationType = UITextAutocapitalizationType.none
+        passwordTextField.autocapitalizationType = UITextAutocapitalizationType.none
+        mailAddressTextField.autocorrectionType = UITextAutocorrectionType.no
+        passwordTextField.autocorrectionType = UITextAutocorrectionType.no
         
         // フォームの初期値をセット
-        addressTextField.text = ""
-        passTextField.text = ""
-        
+        mailAddressTextField.text = ""
+        passwordTextField.text = ""
         
         setForms() // アドレスとPassのフォーム位置を定義
         setLoginButton() // ログインボタンの定義
         
-        addressTextField.delegate = self
-        addressTextField.returnKeyType = .done
-        passTextField.delegate = self
-        passTextField.returnKeyType = .done
+        mailAddressTextField.delegate = self
+        mailAddressTextField.returnKeyType = .done
+        passwordTextField.delegate = self
+        passwordTextField.returnKeyType = .done
     }
     
-    func setForms(){
-        
-        let addressTitle = NSLocalizedString("mailaddress", comment: "")
-        let passwordTitle = NSLocalizedString("password", comment: "")
-        addressLabel.text = addressTitle
-        passLabel.text = passwordTitle
-        addressLabel.sizeToFit()
-        passLabel.sizeToFit()
-        addressTextField.borderStyle = UITextBorderStyle.roundedRect
-        passTextField.borderStyle = UITextBorderStyle.roundedRect
-        addressLabel.translatesAutoresizingMaskIntoConstraints = false
-        passLabel.translatesAutoresizingMaskIntoConstraints = false
-        addressTextField.translatesAutoresizingMaskIntoConstraints = false
-        passTextField.translatesAutoresizingMaskIntoConstraints = false
-        passTextField.isSecureTextEntry = true
-        self.view.addSubview(addressLabel)
-        self.view.addSubview(passLabel)
-        self.view.addSubview(addressTextField)
-        self.view.addSubview(passTextField)
+    func setForms() {
+        mailAddressLabel.text = R.string.localizable.mailaddress()
+        passwordLabel.text = R.string.localizable.password()
+        mailAddressLabel.sizeToFit()
+        passwordLabel.sizeToFit()
+        mailAddressTextField.borderStyle = UITextBorderStyle.roundedRect
+        passwordTextField.borderStyle = UITextBorderStyle.roundedRect
+        mailAddressLabel.translatesAutoresizingMaskIntoConstraints = false
+        passwordLabel.translatesAutoresizingMaskIntoConstraints = false
+        mailAddressTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.isSecureTextEntry = true
+        self.view.addSubview(mailAddressLabel)
+        self.view.addSubview(passwordLabel)
+        self.view.addSubview(mailAddressTextField)
+        self.view.addSubview(passwordTextField)
         
         // アドレスと入力フォーム類の位置設定
-        addressLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
-        addressLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200.0).isActive = true
-        addressTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
-        addressTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 225.0).isActive = true
-        addressTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
-        passLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
-        passLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300.0).isActive = true
-        passTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
-        passTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 325.0).isActive = true
-        passTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        mailAddressLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
+        mailAddressLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200.0).isActive = true
+        mailAddressTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
+        mailAddressTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 225.0).isActive = true
+        mailAddressTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
+        passwordLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
+        passwordLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 300.0).isActive = true
+        passwordTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 325.0).isActive = true
+        passwordTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
     }
     
-    func setLoginButton(){
+    func setLoginButton() {
         // ボタン通常時の処理
-        let loginTitle = NSLocalizedString("login", comment: "")
-        loginButton.setTitle(loginTitle, for: .normal)
+        loginButton.setTitle(R.string.localizable.login(), for: .normal)
         loginButton.setTitleColor(UIColor.white, for: .normal)
         // ボタン押下時の処理
-        loginButton.setTitle(loginTitle, for: .highlighted)
+        loginButton.setTitle(R.string.localizable.login(), for: .highlighted)
         
         loginButton.backgroundColor = UIColor.blue // 背景色
         loginButton.layer.borderWidth = 2.0 // 枠線の幅
@@ -110,7 +103,7 @@ class LoginViewController: UIViewController, UITabBarDelegate, UITextFieldDelega
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func touchedButton(sender: UIButton) {
+    func touchedButton(sender: UIButton) {
         UIApplication.shared.keyWindow?.rootViewController = TabBarController()
     }
     
