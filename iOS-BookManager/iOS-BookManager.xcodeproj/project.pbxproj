@@ -14,6 +14,8 @@
 		56F98AA81F57C70400441CC4 /* rswift in Resources */ = {isa = PBXBuildFile; fileRef = 56F98AA71F57C70400441CC4 /* rswift */; };
 		56F98AAF1F57D33200441CC4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AAE1F57D33200441CC4 /* R.generated.swift */; };
 		56F98AB11F57DE7900441CC4 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AB01F57DE7900441CC4 /* DatePicker.swift */; };
+		56F98AB31F58E78900441CC4 /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AB21F58E78900441CC4 /* APIBase.swift */; };
+		56F98AB51F5902F800441CC4 /* ButtonTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AB41F5902F800441CC4 /* ButtonTags.swift */; };
 		F616E8B51F53A9F700B6711F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8B41F53A9F700B6711F /* SettingViewController.swift */; };
 		F616E8B91F53CEF800B6711F /* AccountSettingModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */; };
 		F616E8BD1F5401B300B6711F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8BC1F5401B300B6711F /* TabBarController.swift */; };
@@ -66,6 +68,8 @@
 		56F98AA71F57C70400441CC4 /* rswift */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rswift; sourceTree = "<group>"; };
 		56F98AAE1F57D33200441CC4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		56F98AB01F57DE7900441CC4 /* DatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
+		56F98AB21F58E78900441CC4 /* APIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
+		56F98AB41F5902F800441CC4 /* ButtonTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTags.swift; sourceTree = "<group>"; };
 		F616E8B41F53A9F700B6711F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSettingModalViewController.swift; path = ../AccountSettingModalViewController.swift; sourceTree = "<group>"; };
 		F616E8BC1F5401B300B6711F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 				56F98AB01F57DE7900441CC4 /* DatePicker.swift */,
 				F6EF97A71F4E854C002D6326 /* LoginViewController.swift */,
 				F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */,
+				56F98AB41F5902F800441CC4 /* ButtonTags.swift */,
 				F616E8B41F53A9F700B6711F /* SettingViewController.swift */,
 				F619D59A1F500E5400113B7B /* EditBookViewController.swift */,
 				F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */,
@@ -189,6 +194,7 @@
 				F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */,
 				F6EF97851F4E845D002D6326 /* Info.plist */,
 				56F98A9E1F56735200441CC4 /* Localizable.strings */,
+				56F98AB21F58E78900441CC4 /* APIBase.swift */,
 			);
 			path = "iOS-BookManager";
 			sourceTree = "<group>";
@@ -419,6 +425,8 @@
 				F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */,
 				56F98AAF1F57D33200441CC4 /* R.generated.swift in Sources */,
 				F619D5991F4FB0B200113B7B /* AddBookModalViewController.swift in Sources */,
+				56F98AB51F5902F800441CC4 /* ButtonTags.swift in Sources */,
+				56F98AB31F58E78900441CC4 /* APIBase.swift in Sources */,
 				56F98AB11F57DE7900441CC4 /* DatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
