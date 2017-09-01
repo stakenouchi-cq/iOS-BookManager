@@ -116,7 +116,7 @@ class AccountSettingModalViewController: UIViewController, UITextFieldDelegate, 
     func onClick(sender: UIButton) {
         switch sender.tag {
         case 0:
-            print("書籍追加画面を閉じます")
+            print("アカウント設定画面を閉じます")
             self.dismiss(animated: true, completion: nil)
         case 1:
             print("アカウント情報を更新しました")

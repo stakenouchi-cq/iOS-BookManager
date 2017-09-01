@@ -155,7 +155,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
     func choosePicture() {
         // カメラロールの使用許可が出たら，開いて画像選択
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let picker = UIImagePickerController()
             picker.modalPresentationStyle = UIModalPresentationStyle.popover
             picker.delegate = self
@@ -189,7 +189,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     func onClick(sender: UIButton) {
         switch sender.tag {
         case 0:
-            print("書籍追加画面を閉じます")
+            print("書籍編集画面を閉じます")
             self.dismiss(animated: true, completion: nil)
         case 1:
             print("書籍データを保存しました")
