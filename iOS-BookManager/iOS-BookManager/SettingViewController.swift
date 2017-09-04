@@ -32,7 +32,7 @@ class SettingViewController: UIViewController {
     }
     
     func touchAccountSettingButton() {
-        let accountSettingViewController = AccountSettingViewController()
+        let accountSettingViewController: AccountSettingViewController = AccountSettingViewController()
         let navi = UINavigationController(rootViewController: accountSettingViewController) // モーダル画面でもナビゲーションバーが出るようにする
         print("アカウント設定のモーダル画面をopen")
         accountSettingViewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
