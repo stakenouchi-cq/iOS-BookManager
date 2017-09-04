@@ -75,10 +75,10 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate {
     
     func touchBookAddButton() {
         // 書籍追加ボタン押下時の処理を追加
-        let addBookModalView = AddBookModalViewController()
-        let navi = UINavigationController(rootViewController: addBookModalView) // モーダル画面でもナビゲーションバーが出るようにする
+        let addBookViewController = AddBookViewController()
+        let navi = UINavigationController(rootViewController: addBookViewController) // モーダル画面でもナビゲーションバーが出るようにする
         print("書籍追加のモーダル画面をopen")
-        addBookModalView.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        addBookViewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(navi, animated: true, completion: nil)
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56AAF6311F5CE0D000D7295C /* SignupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AAF6301F5CE0D000D7295C /* SignupAPI.swift */; };
 		56F98A9C1F56735200441CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56F98A9E1F56735200441CC4 /* Localizable.strings */; };
 		56F98AA11F5693AB00441CC4 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AA01F5693AB00441CC4 /* Book.swift */; };
 		56F98AA31F569CC400441CC4 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AA21F569CC400441CC4 /* BookCell.swift */; };
@@ -16,8 +17,11 @@
 		56F98AB11F57DE7900441CC4 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AB01F57DE7900441CC4 /* DatePicker.swift */; };
 		56F98AB31F58E78900441CC4 /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AB21F58E78900441CC4 /* APIBase.swift */; };
 		56F98AB51F5902F800441CC4 /* ButtonTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AB41F5902F800441CC4 /* ButtonTags.swift */; };
+		56F98AB71F594FA100441CC4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AB61F594FA100441CC4 /* User.swift */; };
+		56F98ABB1F595CA900441CC4 /* Check.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98ABA1F595CA900441CC4 /* Check.swift */; };
+		56F98ABD1F5B00D700441CC4 /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98ABC1F5B00D700441CC4 /* LoginAPI.swift */; };
 		F616E8B51F53A9F700B6711F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8B41F53A9F700B6711F /* SettingViewController.swift */; };
-		F616E8B91F53CEF800B6711F /* AccountSettingModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */; };
+		F616E8B91F53CEF800B6711F /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8B81F53CEF800B6711F /* AccountSettingViewController.swift */; };
 		F616E8BD1F5401B300B6711F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F616E8BC1F5401B300B6711F /* TabBarController.swift */; };
 		F616E8C01F54257B00B6711F /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = F616E8BF1F54257B00B6711F /* .swiftlint.yml */; };
 		F616E8C21F54FE1E00B6711F /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = F616E8C11F54FE1E00B6711F /* Cartfile */; };
@@ -26,7 +30,7 @@
 		F616E8CB1F55069F00B6711F /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F616E8C61F55069F00B6711F /* Kingfisher.framework */; };
 		F616E8CC1F55069F00B6711F /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F616E8C71F55069F00B6711F /* Result.framework */; };
 		F616E8CD1F55069F00B6711F /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F616E8C81F55069F00B6711F /* Rswift.framework */; };
-		F619D5991F4FB0B200113B7B /* AddBookModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D5981F4FB0B200113B7B /* AddBookModalViewController.swift */; };
+		F619D5991F4FB0B200113B7B /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D5981F4FB0B200113B7B /* AddBookViewController.swift */; };
 		F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F619D59A1F500E5400113B7B /* EditBookViewController.swift */; };
 		F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97791F4E845C002D6326 /* AppDelegate.swift */; };
 		F6EF97811F4E845D002D6326 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97801F4E845D002D6326 /* Assets.xcassets */; };
@@ -60,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		56AAF6301F5CE0D000D7295C /* SignupAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupAPI.swift; sourceTree = "<group>"; };
 		56F98A9D1F56735200441CC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56F98A9F1F56738E00441CC4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56F98AA01F5693AB00441CC4 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -70,8 +75,11 @@
 		56F98AB01F57DE7900441CC4 /* DatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 		56F98AB21F58E78900441CC4 /* APIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
 		56F98AB41F5902F800441CC4 /* ButtonTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTags.swift; sourceTree = "<group>"; };
+		56F98AB61F594FA100441CC4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		56F98ABA1F595CA900441CC4 /* Check.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Check.swift; sourceTree = "<group>"; };
+		56F98ABC1F5B00D700441CC4 /* LoginAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
 		F616E8B41F53A9F700B6711F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSettingModalViewController.swift; path = ../AccountSettingModalViewController.swift; sourceTree = "<group>"; };
+		F616E8B81F53CEF800B6711F /* AccountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountSettingViewController.swift; path = ../AccountSettingViewController.swift; sourceTree = "<group>"; };
 		F616E8BC1F5401B300B6711F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F616E8BF1F54257B00B6711F /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		F616E8C11F54FE1E00B6711F /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -80,7 +88,7 @@
 		F616E8C61F55069F00B6711F /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		F616E8C71F55069F00B6711F /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		F616E8C81F55069F00B6711F /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rswift.framework; path = Carthage/Build/iOS/Rswift.framework; sourceTree = "<group>"; };
-		F619D5981F4FB0B200113B7B /* AddBookModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookModalViewController.swift; sourceTree = "<group>"; };
+		F619D5981F4FB0B200113B7B /* AddBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
 		F619D59A1F500E5400113B7B /* EditBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookViewController.swift; sourceTree = "<group>"; };
 		F6EF97761F4E845C002D6326 /* iOS-BookManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-BookManager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6EF97791F4E845C002D6326 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -172,19 +180,24 @@
 		F6EF97781F4E845C002D6326 /* iOS-BookManager */ = {
 			isa = PBXGroup;
 			children = (
+				56F98AB21F58E78900441CC4 /* APIBase.swift */,
 				56F98AAE1F57D33200441CC4 /* R.generated.swift */,
 				F6EF97791F4E845C002D6326 /* AppDelegate.swift */,
+				56F98AB61F594FA100441CC4 /* User.swift */,
 				56F98AA01F5693AB00441CC4 /* Book.swift */,
 				56F98AA21F569CC400441CC4 /* BookCell.swift */,
 				F616E8BC1F5401B300B6711F /* TabBarController.swift */,
 				56F98AB01F57DE7900441CC4 /* DatePicker.swift */,
+				56AAF6301F5CE0D000D7295C /* SignupAPI.swift */,
+				56F98ABC1F5B00D700441CC4 /* LoginAPI.swift */,
 				F6EF97A71F4E854C002D6326 /* LoginViewController.swift */,
-				F616E8B81F53CEF800B6711F /* AccountSettingModalViewController.swift */,
+				F616E8B81F53CEF800B6711F /* AccountSettingViewController.swift */,
 				56F98AB41F5902F800441CC4 /* ButtonTags.swift */,
 				F616E8B41F53A9F700B6711F /* SettingViewController.swift */,
 				F619D59A1F500E5400113B7B /* EditBookViewController.swift */,
 				F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */,
-				F619D5981F4FB0B200113B7B /* AddBookModalViewController.swift */,
+				F619D5981F4FB0B200113B7B /* AddBookViewController.swift */,
+				56F98ABA1F595CA900441CC4 /* Check.swift */,
 				F6EF97B31F4E8B2A002D6326 /* cppbook.jpg */,
 				F6EF97B11F4E8AB5002D6326 /* toeicbook.jpg */,
 				F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */,
@@ -194,7 +207,6 @@
 				F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */,
 				F6EF97851F4E845D002D6326 /* Info.plist */,
 				56F98A9E1F56735200441CC4 /* Localizable.strings */,
-				56F98AB21F58E78900441CC4 /* APIBase.swift */,
 			);
 			path = "iOS-BookManager";
 			sourceTree = "<group>";
@@ -416,15 +428,19 @@
 			files = (
 				F6EF97A81F4E854C002D6326 /* LoginViewController.swift in Sources */,
 				F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */,
-				F616E8B91F53CEF800B6711F /* AccountSettingModalViewController.swift in Sources */,
+				56F98ABD1F5B00D700441CC4 /* LoginAPI.swift in Sources */,
+				F616E8B91F53CEF800B6711F /* AccountSettingViewController.swift in Sources */,
+				56F98AB71F594FA100441CC4 /* User.swift in Sources */,
 				56F98AA11F5693AB00441CC4 /* Book.swift in Sources */,
+				56AAF6311F5CE0D000D7295C /* SignupAPI.swift in Sources */,
 				F616E8BD1F5401B300B6711F /* TabBarController.swift in Sources */,
 				F6EF97AA1F4E858A002D6326 /* BookLineUpViewController.swift in Sources */,
 				F616E8B51F53A9F700B6711F /* SettingViewController.swift in Sources */,
 				56F98AA31F569CC400441CC4 /* BookCell.swift in Sources */,
+				56F98ABB1F595CA900441CC4 /* Check.swift in Sources */,
 				F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */,
 				56F98AAF1F57D33200441CC4 /* R.generated.swift in Sources */,
-				F619D5991F4FB0B200113B7B /* AddBookModalViewController.swift in Sources */,
+				F619D5991F4FB0B200113B7B /* AddBookViewController.swift in Sources */,
 				56F98AB51F5902F800441CC4 /* ButtonTags.swift in Sources */,
 				56F98AB31F58E78900441CC4 /* APIBase.swift in Sources */,
 				56F98AB11F57DE7900441CC4 /* DatePicker.swift in Sources */,

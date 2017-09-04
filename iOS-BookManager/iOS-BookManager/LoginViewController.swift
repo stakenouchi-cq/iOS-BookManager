@@ -1,4 +1,6 @@
 import UIKit
+import APIKit
+import Himotoki
 
 class LoginViewController: UIViewController {
     
@@ -18,9 +20,9 @@ class LoginViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
         self.navigationItem.title = R.string.localizable.booklineup()
         
-        loginButton.addTarget(self, action: #selector(touchedButton(sender:)), for: .touchUpInside) // ログインボタン押下時の動作
+        loginButton.addTarget(self, action: #selector(tappedLoginButton(sender:)), for: .touchUpInside) // ログインボタン押下時の動作
         
-        estTextViewRules() // TextViewの入力ルールを制定
+        setTextViewRules() // TextViewの入力ルールを制定
         setLoginViewLayout() // レイアウトの定義
     }
     
@@ -28,7 +30,8 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func touchedButton(sender: UIButton) {
+    func tappedLoginButton(sender: UIButton) {
+        print("ログイン開始します")
         UIApplication.shared.keyWindow?.rootViewController = TabBarController()
     }
     
@@ -44,12 +47,8 @@ class LoginViewController: UIViewController {
     
 }
 
-extension LoginViewController {
-    
-}
-
 extension LoginViewController: UITextFieldDelegate {
-    func estTextViewRules() {
+    func setTextViewRules() {
         // 各TextFieldの移譲
         mailAddressTextField.delegate = self
         passwordTextField.delegate = self
@@ -120,4 +119,5 @@ extension LoginViewController {
         loginButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
     }
+    
 }

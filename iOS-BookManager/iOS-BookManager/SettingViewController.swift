@@ -32,10 +32,10 @@ class SettingViewController: UIViewController {
     }
     
     func touchAccountSettingButton() {
-        let accountSettingModalView = AccountSettingModalViewController()
-        let navi = UINavigationController(rootViewController: accountSettingModalView) // モーダル画面でもナビゲーションバーが出るようにする
+        let accountSettingViewController = AccountSettingViewController()
+        let navi = UINavigationController(rootViewController: accountSettingViewController) // モーダル画面でもナビゲーションバーが出るようにする
         print("アカウント設定のモーダル画面をopen")
-        accountSettingModalView.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        accountSettingViewController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(navi, animated: true, completion: nil)
     }
 
@@ -46,7 +46,8 @@ class SettingViewController: UIViewController {
 }
 
 extension SettingViewController {
-    func setSettingViewLayout(){
+
+    func setSettingViewLayout() {
         let tabBarHeight: CGFloat = 49
         self.view.addSubview(gotoSettingButton)
         gotoSettingButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -63,4 +64,5 @@ extension SettingViewController {
         // ボタン押下時の処理
         gotoSettingButton.addTarget(self, action: #selector(buttonTapped(sender:)), for: .touchUpInside)
     }
+    
 }
