@@ -10,6 +10,11 @@
 		567F35D91F5FA76200614FDB /* cat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 567F35D81F5FA76200614FDB /* cat.gif */; };
 		567F35DB1F5FAC1C00614FDB /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F35DA1F5FAC1C00614FDB /* DateUtil.swift */; };
 		5683564D1F5D11050055CC21 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */; };
+		5683564F1F5D1C3F0055CC21 /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5683564E1F5D1C3F0055CC21 /* APIBase.swift */; };
+		568356511F5D1ED60055CC21 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356501F5D1ED60055CC21 /* UserData.swift */; };
+		568356531F5D20110055CC21 /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356521F5D20110055CC21 /* LoginAPI.swift */; };
+		568356551F5D29350055CC21 /* SignupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356541F5D29350055CC21 /* SignupAPI.swift */; };
+		568356571F5D29B70055CC21 /* LogoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356561F5D29B70055CC21 /* LogoutAPI.swift */; };
 		56F98A9C1F56735200441CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56F98A9E1F56735200441CC4 /* Localizable.strings */; };
 		56F98AA11F5693AB00441CC4 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AA01F5693AB00441CC4 /* Book.swift */; };
 		56F98AA31F569CC400441CC4 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AA21F569CC400441CC4 /* BookCell.swift */; };
@@ -63,6 +68,11 @@
 		567F35D81F5FA76200614FDB /* cat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = cat.gif; path = ../../../../Downloads/cat.gif; sourceTree = "<group>"; };
 		567F35DA1F5FAC1C00614FDB /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
+		5683564E1F5D1C3F0055CC21 /* APIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
+		568356501F5D1ED60055CC21 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		568356521F5D20110055CC21 /* LoginAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
+		568356541F5D29350055CC21 /* SignupAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupAPI.swift; sourceTree = "<group>"; };
+		568356561F5D29B70055CC21 /* LogoutAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutAPI.swift; sourceTree = "<group>"; };
 		56F98A9D1F56735200441CC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56F98A9F1F56738E00441CC4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56F98AA01F5693AB00441CC4 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -175,6 +185,14 @@
 				F6EF97791F4E845C002D6326 /* AppDelegate.swift */,
 				56F98AAE1F57D33200441CC4 /* R.generated.swift */,
 				5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */,
+				568356501F5D1ED60055CC21 /* UserData.swift */,
+				5683564E1F5D1C3F0055CC21 /* APIBase.swift */,
+				568356541F5D29350055CC21 /* SignupAPI.swift */,
+				568356521F5D20110055CC21 /* LoginAPI.swift */,
+				F6EF97A71F4E854C002D6326 /* LoginViewController.swift */,
+				568356561F5D29B70055CC21 /* LogoutAPI.swift */,
+				5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */,
+				56F98AAE1F57D33200441CC4 /* R.generated.swift */,
 				56F98AA01F5693AB00441CC4 /* Book.swift */,
 				56F98AA21F569CC400441CC4 /* BookCell.swift */,
 				F616E8BC1F5401B300B6711F /* TabBarController.swift */,
@@ -417,7 +435,9 @@
 			files = (
 				F6EF97A81F4E854C002D6326 /* LoginViewController.swift in Sources */,
 				F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */,
+				568356571F5D29B70055CC21 /* LogoutAPI.swift in Sources */,
 				56F98AA11F5693AB00441CC4 /* Book.swift in Sources */,
+				568356511F5D1ED60055CC21 /* UserData.swift in Sources */,
 				F616E8BD1F5401B300B6711F /* TabBarController.swift in Sources */,
 				5683564D1F5D11050055CC21 /* AccountSettingViewController.swift in Sources */,
 				F6EF97AA1F4E858A002D6326 /* BookLineUpViewController.swift in Sources */,
@@ -427,6 +447,10 @@
 				F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */,
 				56F98AAF1F57D33200441CC4 /* R.generated.swift in Sources */,
 				F619D5991F4FB0B200113B7B /* AddBookViewController.swift in Sources */,
+				568356531F5D20110055CC21 /* LoginAPI.swift in Sources */,
+				568356551F5D29350055CC21 /* SignupAPI.swift in Sources */,
+				5683564F1F5D1C3F0055CC21 /* APIBase.swift in Sources */,
+				56F98AB51F5902F800441CC4 /* ButtonTags.swift in Sources */,
 				56F98AB11F57DE7900441CC4 /* DatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

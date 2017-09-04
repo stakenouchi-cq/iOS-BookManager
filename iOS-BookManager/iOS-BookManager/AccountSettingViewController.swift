@@ -84,7 +84,7 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
         
         setLoginViewLayout() // レイアウトの定義
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
