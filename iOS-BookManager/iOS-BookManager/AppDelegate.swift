@@ -17,11 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if userDefault.bool(forKey: "firstLaunch") {
             userDefault.set(false, forKey: "firstLaunch")
-            print("このアプリの初回起動です")
+            print("It is the 1st launch")
             // 初回起動の場合，ログイン画面を表示
             self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         } else {
-            print("初回起動ではございません")
+            print("It is not the 1st launch")
             // 初回でない場合，書籍一覧表を表示
             self.window?.rootViewController = TabBarController()
         }

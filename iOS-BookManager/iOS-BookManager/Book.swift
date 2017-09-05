@@ -1,14 +1,12 @@
 import Foundation
 
-class Book {
-    var id: Int
+struct Book {
     var name: String
     var price: Int
     var boughtDate: String
     var imagePath: String
     
-    init(id: Int, name: String, price: Int, boughtDate: String, imagePath: String) {
-        self.id = id
+    init(name: String, price: Int, boughtDate: String, imagePath: String) {
         self.name = name
         self.price = price
         self.boughtDate = boughtDate

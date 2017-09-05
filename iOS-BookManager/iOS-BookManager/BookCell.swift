@@ -2,36 +2,60 @@ import UIKit
 
 class BookCell: UITableViewCell {
     
-    var bookTitleLabel: UILabel!
-    var bookPriceLabel: UILabel!
-    var bookBoughtDateLabel: UILabel!
-    var bookImage: UIImage!
-    var bookImageView: UIImageView!
-    var bookEditLabel: UILabel!
+    let bookTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.layer.masksToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 16.0)
+        label.textAlignment = .left
+        return label
+    }()
+    
+    let bookPriceLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.layer.masksToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 16.0)
+        label.textAlignment = .left
+        return label
+    }()
+    
+    let boughtDateLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.layer.masksToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 16.0)
+        label.textAlignment = .left
+        return label
+    }()
+    
+    let bookEditLabel: UILabel = {
+        let label = UILabel()
+        label.text = ">"
+        label.layer.masksToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 16.0)
+        label.textAlignment = .left
+        return label
+    }()
+    
+    let bookImageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .center
+        view.backgroundColor = UIColor.gray
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        bookTitleLabel = UILabel(frame: CGRect.zero)
-        bookTitleLabel.textAlignment = .left
-        contentView.addSubview(bookTitleLabel)
-        
-        bookPriceLabel = UILabel(frame: CGRect.zero)
-        bookPriceLabel.textAlignment = .left
-        contentView.addSubview(bookPriceLabel)
-        
-        bookBoughtDateLabel = UILabel(frame: CGRect.zero)
-        bookBoughtDateLabel.textAlignment = .left
-        contentView.addSubview(bookBoughtDateLabel)
-        
-        bookImage = UIImage(named: "no_image.png")
-        bookImageView = UIImageView(image: bookImage)
-        contentView.addSubview(bookImageView)
-        
-        bookEditLabel = UILabel()
-        bookEditLabel.text = ">"
-        contentView.addSubview(bookEditLabel)
-        
+        setBookCellLayout()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -42,21 +66,41 @@ class BookCell: UITableViewCell {
         super.prepareForReuse()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        bookTitleLabel.frame = CGRect(x: 90, y: -25, width: frame.width - 100, height: frame.height)
-        bookPriceLabel.frame = CGRect(x: 90, y: 25, width: 120, height: frame.height)
-        bookBoughtDateLabel.frame = CGRect(x: frame.width - 150, y: 25, width: 120, height: frame.height)
-        bookImageView.frame = CGRect(x: 5, y: 0, width: frame.height*(210/297), height: frame.height)
-        bookEditLabel.frame = CGRect(x: frame.width - 20, y: 0, width: 10, height: frame.height)
-    }
-    
     func registCell(book: Book) {
         // セルに書籍データを登録！
         bookTitleLabel.text = book.name
         bookPriceLabel.text = String(describing: book.price) + R.string.localizable.taxout()
-        bookBoughtDateLabel.text = book.boughtDate
+        boughtDateLabel.text = book.boughtDate
         bookImageView.image = UIImage(named: book.imagePath)
     }
     
+}
+
+extension BookCell {
+    func setBookCellLayout() {
+        
+        contentView.addSubview(bookImageView)
+        contentView.addSubview(bookTitleLabel)
+        contentView.addSubview(bookPriceLabel)
+        contentView.addSubview(boughtDateLabel)
+        contentView.addSubview(bookEditLabel)
+        
+        bookImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5.0).isActive = true
+        bookImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.2).isActive = true
+        bookImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
+        
+        bookTitleLabel.leadingAnchor.constraint(equalTo: bookImageView.trailingAnchor, constant: 15.0).isActive = true
+        bookTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0).isActive = true
+        bookTitleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.68).isActive = true
+        
+        bookPriceLabel.leadingAnchor.constraint(equalTo: bookImageView.trailingAnchor, constant: 15.0).isActive = true
+        bookPriceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.0).isActive = true
+        
+        boughtDateLabel.trailingAnchor.constraint(equalTo: bookTitleLabel.trailingAnchor).isActive = true
+        boughtDateLabel.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor).isActive = true
+        
+        bookEditLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5.0).isActive = true
+        bookEditLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        
+    }
 }

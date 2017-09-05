@@ -1,7 +1,7 @@
 // 日本語が言語選択されたときに表示
 "mailaddress" = "メールアドレス";
 "password" = "パスワード";
-"accpassword" = "パスワード確認";
+"passwordconfirm" = "パスワード確認";
 "login" = "ログイン";
 "accountsetting" = "アカウント設定";
 "booklineup" = "書籍一覧";

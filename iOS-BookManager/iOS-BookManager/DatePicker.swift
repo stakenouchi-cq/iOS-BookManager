@@ -3,11 +3,10 @@ import UIKit
 // TextFieldをタップすると，DatePickerとして起動します
 class UIDatePickerTextField: UITextField, UITextFieldDelegate, UIPickerViewDelegate {
     
-    var datePicker: UIDatePicker!
+    var datePicker = UIDatePicker()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        datePicker = UIDatePicker()
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged) // 値が変わったら関数を呼び出す
         datePicker.datePickerMode = .date // 年月日でPickerを表示
         self.inputView = datePicker

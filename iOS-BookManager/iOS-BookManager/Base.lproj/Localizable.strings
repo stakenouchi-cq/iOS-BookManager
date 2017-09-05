@@ -1,7 +1,7 @@
 // 英語が言語選択されたときに表示
 "mailaddress" = "Mail Address";
 "password" = "Password";
-"accpassword" = "Password (retype)";
+"passwordconfirm" = "Password (retype)";
 "accountsetting" = "Account Setting";
 "login" = "Login";
 "booklineup" = "Lineup";
