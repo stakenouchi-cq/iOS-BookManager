@@ -1,0 +1,20 @@
+// 英語が言語選択されたときに表示
+"mailaddress" = "Mail Address";
+"password" = "Password";
+"passwordconfirm" = "Password (retype)";
+"accountsetting" = "Account Setting";
+"login" = "Login";
+"booklineup" = "Lineup";
+"setting" = "Setting";
+"add" = "Add";
+"close" = "Close";
+"back" = "Back";
+"loadmore" = "*** Load More ***";
+"taxout" = "¥%d (tax out)";
+"bookname" = "Title of book";
+"price" = "Price";
+"boughtdate" = "Purchase Date";
+"addtmb" = "Append Image";
+"addbook" = "Add Book Information";
+"editbook" = "Edit Book Information";
+"save" = "Save";

@@ -1,0 +1,73 @@
+# 無効にするルール。
+disabled_rules:
+# コードの記載のない改行を許可したい
+- trailing_whitespace
+# force_cast は場合によっては使用するため
+- force_cast
+
+# デフォルト無効のルールのうち、有効にするもの。
+opt_in_rules:
+- attributes
+- closure_end_indentation
+- closure_spacing
+- conditional_returns_on_newline
+- empty_count
+- explicit_init
+- explicit_type_interface # new
+- fatal_error_message   # new
+# ファイルヘッダを修正してもエラー解除されないため
+#- file_header
+- first_where
+# 場合によっては特に問題ないので
+#- force_unwrapping
+- implicitly_unwrapped_optional # new
+- missing_docs
+- nimble_operator
+- number_separator
+- object_literal
+- operator_usage_whitespace
+- overridden_super_call
+# 基本的にはprivateにしたほうが良いがアプリ規模が小さいので今回は無効
+#- private_outlet
+- prohibited_super_call
+- redundant_nil_coalescing
+# そこまで多くならないので整列していなくても問題ない
+#- sorted_imports
+- switch_case_on_newline
+- valid_docs
+
+# 追加したOSSライブラリは対象に含めたくない
+excluded:
+- iOS-BookManagerTests/
+- iOS-BookManagerUITests/
+- Pods/
+- Carthage/
+- R.generated.swift
+- iOS-BookManager/User.swift
+
+# 変数名の最大文字数
+variable_name_max_length:
+- 60 # warning
+- 80 # error
+
+# 変数名の最小文字数
+variable_name_min_length:
+- 1 # warning
+- 0 # error
+
+# 1行あたりの文字数制限を150に変更
+# プロジェクト作成時にデフォルトで追加されるコメントをひっかけないため
+line_length: 150
+
+# 関数内の行数制限を定義(初期値:100)
+# 後々，コードを整理したときに厳格な値にする予定
+function_body_length: 300
+
+# クラスの行数
+type_body_length:
+- 200 # warning
+- 400 # error
+
+# 変数名が1文字以上なら許可に変更
+identifier_name:
+min_length: 1
