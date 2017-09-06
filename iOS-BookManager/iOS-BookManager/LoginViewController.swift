@@ -4,7 +4,7 @@ import Himotoki
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    let mailAddressLabel: UILabel = {
+    fileprivate let mailAddressLabel: UILabel = {
         let label = UILabel()
         label.text = R.string.localizable.mailaddress()
         label.layer.masksToBounds = true
@@ -14,7 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return label
     }()
     
-    let passwordLabel: UILabel = {
+    fileprivate let passwordLabel: UILabel = {
         let label = UILabel()
         label.text = R.string.localizable.password()
         label.layer.masksToBounds = true
@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return label
     }()
     
-    lazy var mailAddressTextField: UITextField = {
+    fileprivate lazy var mailAddressTextField: UITextField = {
         let textField = UITextField()
         textField.text = ""
         textField.borderStyle = .roundedRect
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    lazy var passwordTextField: UITextField = {
+    fileprivate lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.text = ""
         textField.borderStyle = .roundedRect
@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    let loginButton: UIButton = {
+    fileprivate let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.localizable.login(), for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -66,7 +66,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         self.view.backgroundColor = .white // これで背景が白色に
         // ナビゲーションバーの表示
-        self.navigationController?.navigationBar // ナビゲーションバーを取得
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
         self.navigationItem.title = R.string.localizable.booklineup()
         
@@ -94,32 +93,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension LoginViewController {
-    func setLoginViewLayout() {
+    fileprivate func setLoginViewLayout() {
         self.view.addSubview(mailAddressLabel)
         self.view.addSubview(mailAddressTextField)
         self.view.addSubview(passwordLabel)
         self.view.addSubview(passwordTextField)
         self.view.addSubview(loginButton)
         
-        let marginBtwLabTextField = CGFloat(30.0)
+        let marginBtwLabForm = CGFloat(30.0)
         let marginBtwLabels = CGFloat(self.view.frame.height*0.1)
         
         // アドレスと入力フォーム類の位置設定
         mailAddressLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
         mailAddressLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 150.0).isActive = true
         mailAddressTextField.leadingAnchor.constraint(equalTo: mailAddressLabel.leadingAnchor).isActive = true
-        mailAddressTextField.centerYAnchor.constraint(equalTo: mailAddressLabel.centerYAnchor, constant: marginBtwLabTextField).isActive = true
+        mailAddressTextField.centerYAnchor.constraint(equalTo: mailAddressLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
         mailAddressTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         passwordLabel.leadingAnchor.constraint(equalTo: mailAddressLabel.leadingAnchor).isActive = true
         passwordLabel.centerYAnchor.constraint(equalTo: mailAddressTextField.centerYAnchor, constant: marginBtwLabels).isActive = true
         passwordTextField.leadingAnchor.constraint(equalTo: mailAddressLabel.leadingAnchor).isActive = true
-        passwordTextField.centerYAnchor.constraint(equalTo: passwordLabel.centerYAnchor, constant: marginBtwLabTextField).isActive = true
+        passwordTextField.centerYAnchor.constraint(equalTo: passwordLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
         passwordTextField.widthAnchor.constraint(equalTo: mailAddressTextField.widthAnchor).isActive = true
         
         loginButton.centerXAnchor.constraint(equalTo: mailAddressTextField.centerXAnchor).isActive = true
         loginButton.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor, constant: 100.0).isActive = true
         loginButton.widthAnchor.constraint(equalTo: mailAddressTextField.widthAnchor).isActive = true
-        
     }
     
 }

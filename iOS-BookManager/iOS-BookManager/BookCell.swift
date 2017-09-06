@@ -2,7 +2,7 @@ import UIKit
 
 class BookCell: UITableViewCell {
     
-    let bookTitleLabel: UILabel = {
+    fileprivate let bookTitleLabel: UILabel = {
         let label = UILabel()
         label.text = ""
         label.layer.masksToBounds = true
@@ -12,7 +12,7 @@ class BookCell: UITableViewCell {
         return label
     }()
     
-    let bookPriceLabel: UILabel = {
+    fileprivate let bookPriceLabel: UILabel = {
         let label = UILabel()
         label.text = ""
         label.layer.masksToBounds = true
@@ -22,7 +22,7 @@ class BookCell: UITableViewCell {
         return label
     }()
     
-    let boughtDateLabel: UILabel = {
+    fileprivate let boughtDateLabel: UILabel = {
         let label = UILabel()
         label.text = ""
         label.layer.masksToBounds = true
@@ -32,7 +32,7 @@ class BookCell: UITableViewCell {
         return label
     }()
     
-    let bookEditLabel: UILabel = {
+    fileprivate let bookEditLabel: UILabel = {
         let label = UILabel()
         label.text = ">"
         label.layer.masksToBounds = true
@@ -42,12 +42,9 @@ class BookCell: UITableViewCell {
         return label
     }()
     
-    let bookImageView: UIImageView = {
+    fileprivate let bookImageView: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .center
-        view.backgroundColor = UIColor.gray
-        view.contentMode = .scaleAspectFill
-        view.clipsToBounds = true
+        view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -69,7 +66,7 @@ class BookCell: UITableViewCell {
     func registCell(book: Book) {
         // セルに書籍データを登録！
         bookTitleLabel.text = book.name
-        bookPriceLabel.text = String(describing: book.price) + R.string.localizable.taxout()
+        bookPriceLabel.text = R.string.localizable.taxout(book.price)
         boughtDateLabel.text = book.boughtDate
         bookImageView.image = UIImage(named: book.imagePath)
     }
@@ -77,7 +74,7 @@ class BookCell: UITableViewCell {
 }
 
 extension BookCell {
-    func setBookCellLayout() {
+    fileprivate func setBookCellLayout() {
         
         contentView.addSubview(bookImageView)
         contentView.addSubview(bookTitleLabel)

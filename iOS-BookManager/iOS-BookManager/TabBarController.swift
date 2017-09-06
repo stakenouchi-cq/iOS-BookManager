@@ -8,14 +8,14 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let bookLineUpViewController = BookLineUpViewController()
         let settingViewController = SettingViewController()
         
-        let navigationController1 = UINavigationController(rootViewController: bookLineUpViewController)
-        let navigationController2 = UINavigationController(rootViewController: settingViewController)
-        
         bookLineUpViewController.title = R.string.localizable.booklineup()
         settingViewController.title = R.string.localizable.setting()
         
+        let navigationControllerLeft = UINavigationController(rootViewController: bookLineUpViewController)
+        let navigationControllerRight = UINavigationController(rootViewController: settingViewController)
+        
         self.delegate = self
-        self.viewControllers = [navigationController1, navigationController2]
+        self.viewControllers = [navigationControllerLeft, navigationControllerRight]
     }
     
     override func didReceiveMemoryWarning() {

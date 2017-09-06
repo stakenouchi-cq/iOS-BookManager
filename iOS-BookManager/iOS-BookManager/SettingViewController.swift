@@ -2,7 +2,7 @@ import UIKit
 
 class SettingViewController: UIViewController {
     
-    let gotoSettingButton: UIButton = {
+    fileprivate let gotoSettingButton: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.localizable.accountsetting(), for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -17,7 +17,6 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar // ナビゲーションバーを取得
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
         self.navigationItem.title = R.string.localizable.setting()
         
@@ -40,7 +39,7 @@ class SettingViewController: UIViewController {
 
 extension SettingViewController {
 
-    func setSettingViewLayout() {
+    fileprivate func setSettingViewLayout() {
         self.view.addSubview(gotoSettingButton)
         gotoSettingButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         gotoSettingButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -100).isActive = true

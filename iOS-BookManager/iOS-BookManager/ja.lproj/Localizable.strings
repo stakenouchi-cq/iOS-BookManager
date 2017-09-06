@@ -10,7 +10,7 @@
 "close" = "閉じる";
 "back" = "戻る";
 "loadmore" = "*** もっと読み込む ***";
-"taxout" = "円 + 税";
+"taxout" = "%d円 + 税";
 "bookname" = "書籍名";
 "price" = "金額";
 "boughtdate" = "購入日";

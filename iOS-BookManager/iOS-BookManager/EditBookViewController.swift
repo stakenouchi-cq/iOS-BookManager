@@ -2,7 +2,7 @@ import UIKit
 
 class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    let tabBarHeight = CGFloat(49)
+    fileprivate let tabBarHeight = CGFloat(49)
     
     // フォームの初期値をセット
     // 親クラスから値渡しをする
@@ -16,7 +16,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         }
     }
     
-    let addImageButton: UIButton = {
+    fileprivate let addImageButton: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.localizable.addtmb(), for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -27,7 +27,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return button
     }()
     
-    let bookNameLabel: UILabel = {
+    fileprivate let bookNameLabel: UILabel = {
         let label = UILabel()
         label.text = R.string.localizable.bookname()
         label.layer.masksToBounds = true
@@ -37,7 +37,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return label
     }()
     
-    let bookPriceLabel: UILabel = {
+    fileprivate let bookPriceLabel: UILabel = {
         let label = UILabel()
         label.text = R.string.localizable.price()
         label.layer.masksToBounds = true
@@ -47,7 +47,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return label
     }()
     
-    let boughtDateLabel: UILabel = {
+    fileprivate let boughtDateLabel: UILabel = {
         let label = UILabel()
         label.text = R.string.localizable.boughtdate()
         label.layer.masksToBounds = true
@@ -57,7 +57,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return label
     }()
     
-    lazy var bookNameTextField: UITextField = {
+    fileprivate lazy var bookNameTextField: UITextField = {
         let textField = UITextField()
         textField.text = ""
         textField.borderStyle = .roundedRect
@@ -69,7 +69,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return textField
     }()
     
-    lazy var bookPriceTextField: UITextField = {
+    fileprivate lazy var bookPriceTextField: UITextField = {
         let textField = UITextField()
         textField.text = ""
         textField.borderStyle = .roundedRect
@@ -82,7 +82,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return textField
     }()
     
-    lazy var boughtDateTextField: UIDatePickerTextField = {
+    fileprivate lazy var boughtDateTextField: UIDatePickerTextField = {
         let textField = UIDatePickerTextField()
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -90,34 +90,30 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return textField
     }()
     
-    let bookImageView: UIImageView = {
+    fileprivate let bookImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
-        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         view.sizeToFit()
         return view
     }()
     
-    var bookImage = UIImage()
+    fileprivate var bookImage = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
         // ナビゲーションバーの表示
-        self.navigationController?.navigationBar // ナビゲーションバーを取得
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
         self.navigationItem.title = R.string.localizable.editbook()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: "saveBookData")
         
         bookImageView.image = bookImage
         setEditBookView()
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: "saveBookData")
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() // Enter押したら入力おしまい
@@ -141,17 +137,17 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
 }
 
 extension EditBookViewController: UIImagePickerControllerDelegate {
-    func choosePicture() {
+    fileprivate func choosePicture() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let picker = UIImagePickerController()
-            picker.modalPresentationStyle = UIModalPresentationStyle.popover
+            picker.modalPresentationStyle = .popover
             picker.delegate = self
-            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            picker.sourceType = .photoLibrary
             
             if let popover = picker.popoverPresentationController {
                 popover.sourceView = self.view
                 popover.sourceRect = self.view.frame
-                popover.permittedArrowDirections = UIPopoverArrowDirection.any
+                popover.permittedArrowDirections = .any
             }
             self.present(picker, animated: true, completion: nil)
         }
@@ -168,7 +164,7 @@ extension EditBookViewController: UIImagePickerControllerDelegate {
 }
 
 extension EditBookViewController {
-    func setEditBookView() {
+    fileprivate func setEditBookView() {
         
         // アドレスと入力フォーム類の位置設定
         self.view.addSubview(bookImageView)
@@ -180,7 +176,7 @@ extension EditBookViewController {
         self.view.addSubview(boughtDateTextField)
         self.view.addSubview(addImageButton)
         
-        let marginBtwLabTextField = CGFloat(30.0)
+        let marginBtwLabForm = CGFloat(30.0)
         let marginBtwLabels = CGFloat(self.view.frame.height*0.1)
         
         bookImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30.0).isActive = true
@@ -195,17 +191,17 @@ extension EditBookViewController {
         bookNameLabel.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
         bookNameLabel.topAnchor.constraint(equalTo: bookImageView.bottomAnchor, constant: 20.0).isActive = true
         bookNameTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
-        bookNameTextField.centerYAnchor.constraint(equalTo: bookNameLabel.centerYAnchor, constant: marginBtwLabTextField).isActive = true
+        bookNameTextField.centerYAnchor.constraint(equalTo: bookNameLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
         bookNameTextField.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8).isActive = true
         bookPriceLabel.leadingAnchor.constraint(equalTo: bookNameLabel.leadingAnchor).isActive = true
         bookPriceLabel.centerYAnchor.constraint(equalTo: bookNameLabel.centerYAnchor, constant: marginBtwLabels).isActive = true
         bookPriceTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
-        bookPriceTextField.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabTextField).isActive = true
+        bookPriceTextField.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
         bookPriceTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
         boughtDateLabel.leadingAnchor.constraint(equalTo: bookNameLabel.leadingAnchor).isActive = true
         boughtDateLabel.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabels).isActive = true
         boughtDateTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
-        boughtDateTextField.centerYAnchor.constraint(equalTo: boughtDateLabel.centerYAnchor, constant: marginBtwLabTextField).isActive = true
+        boughtDateTextField.centerYAnchor.constraint(equalTo: boughtDateLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
         boughtDateTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
         
     }

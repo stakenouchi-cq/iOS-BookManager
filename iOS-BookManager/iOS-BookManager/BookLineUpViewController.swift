@@ -2,28 +2,10 @@ import UIKit
 
 class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    var books: [Book] = []
+    fileprivate var books: [Book] = []
     
-    var bookDataDict: [Dictionary<String, Any>] = [
-        ["name": "スッキリわかるJava入門", "price": 3500, "boughtDate": "2014/04/03", "imagePath": "javabook.jpg"],
-        ["name": "Oxford英英辞典", "price": 5000, "boughtDate": "2014/04/02", "imagePath": "Oxford_Dict.jpg"],
-        ["name": "詳細!Swift 3 iPhoneアプリ開発入門ノート", "price": 4000, "boughtDate": "2014/03/15", "imagePath": "sw3book.jpg"],
-        ["name": "200点アップのTOEICテスト英単語 - 得点に大きくつながる意外な意味を持つ英単語 -", "price": 2500, "boughtDate": "2006/10/15", "imagePath": "toeicbook.jpg"],
-        ["name": "Accelerated C++ - 効率的なプログラミングのための新しい定跡 -", "price": 3400, "boughtDate": "2009/07/30", "imagePath": "cppbook.jpg"]
-    ]
-    
-    func generateBookObjects() -> Void {
-        for bookData in bookDataDict {
-            let name = bookData["name"] as! String
-            let price = bookData["price"] as! Int
-            let boughtDate = bookData["boughtDate"] as! String
-            let imagePath = bookData["imagePath"] as! String
-            books.append(Book(name: name, price: price, boughtDate: boughtDate, imagePath: imagePath))
-        }
-    }
-    
-    let loadButton: UIButton = {
-       let button = UIButton()
+    fileprivate let loadButton: UIButton = {
+        let button = UIButton()
         button.setTitle(R.string.localizable.loadmore(), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .blue
@@ -33,8 +15,8 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
         return button
     }()
     
-    lazy var bookTableView: UITableView = {
-       let tableView = UITableView()
+    fileprivate lazy var bookTableView: UITableView = {
+        let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(BookCell.self, forCellReuseIdentifier: NSStringFromClass(BookCell.self))
@@ -43,24 +25,36 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
         return tableView
     }()
     
+    fileprivate let backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.title = R.string.localizable.back()
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        generateBookObjects() // 書籍のデータ郡を生成
-        setNavigationBarInfo() // ナビゲーションバーの記述が肥大化するため，今回はextension部にコードを書く
+        generateBookDataSet()
+        // ナビゲーションバーのタイトルを設定
+        self.navigationItem.title = R.string.localizable.booklineup()
+        self.navigationItem.backBarButtonItem = backButton
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.add(), style: .plain, target: self, action: "addBook")
         setBookLineupViewLayout()
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        // 書籍編集画面に行った時に戻るボタンが表示されるよう，viewWillAppearに定義
-        let backButton = UIBarButtonItem()
-        self.navigationItem.backBarButtonItem = backButton
-        backButton.title = R.string.localizable.back()
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func generateBookDataSet() {
+        books.append(Book(name: "スッキリわかるJava入門", price: 3500, boughtDate: "2014/04/03", imagePath: "javabook.jpg"))
+        
+        books.append(Book(name: "Oxford英英辞典", price: 5000, boughtDate: "2014/11/27", imagePath: "Oxford_Dict.jpg"))
+        
+        books.append(Book(name: "詳細!Swift 3 iPhoneアプリ開発入門ノート", price: 4000, boughtDate: "2014/03/15", imagePath: "sw3book.jpg"))
+        books.append(Book(name: "200点アップのTOEICテスト英単語 - 得点に大きくつながる意外な意味を持つ英単語 -", price: 2500, boughtDate: "2006/10/13", imagePath: "toeicbook.jpg"))
+        books.append(Book(name: "Accelerated C++ - 効率的なプログラミングのための新しい定跡 -", price: 3400, boughtDate: "2009/07/19", imagePath: "cppbook.jpg"))
     }
     
     func addBook() {
@@ -99,7 +93,6 @@ extension BookLineUpViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // タップされたcellに対応する書籍編集画面へ移動
         let editBookViewController = EditBookViewController()
-        print(books[indexPath.row].price)
         editBookViewController.book = books[indexPath.row]
         self.navigationController?.pushViewController(editBookViewController, animated: true)
     }
@@ -112,15 +105,7 @@ extension BookLineUpViewController {
 }
 
 extension BookLineUpViewController {
-    func setNavigationBarInfo() {
-        // ナビゲーションバーのタイトルを設定
-        self.navigationItem.title = R.string.localizable.booklineup()
-        // 左上部の戻るボタンを非表示(画面遷移後は表示)
-        self.navigationItem.hidesBackButton = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.add(), style: .plain, target: self, action: "addBook")
-    }
-    
-    func setBookLineupViewLayout() {
+    fileprivate func setBookLineupViewLayout() {
         self.view.addSubview(bookTableView)
         self.view.addSubview(loadButton)
         

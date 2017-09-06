@@ -10,7 +10,7 @@
 "close" = "Close";
 "back" = "Back";
 "loadmore" = "*** Load More ***";
-"taxout" = "yen (tax out)";
+"taxout" = "¥%d (tax out)";
 "bookname" = "Title of book";
 "price" = "Price";
 "boughtdate" = "Purchase Date";
