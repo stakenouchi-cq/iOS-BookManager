@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		567F35D91F5FA76200614FDB /* cat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 567F35D81F5FA76200614FDB /* cat.gif */; };
+		567F35DB1F5FAC1C00614FDB /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F35DA1F5FAC1C00614FDB /* DateUtil.swift */; };
 		5683564D1F5D11050055CC21 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */; };
 		56F98A9C1F56735200441CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56F98A9E1F56735200441CC4 /* Localizable.strings */; };
 		56F98AA11F5693AB00441CC4 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AA01F5693AB00441CC4 /* Book.swift */; };
@@ -58,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		567F35D81F5FA76200614FDB /* cat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = cat.gif; path = ../../../../Downloads/cat.gif; sourceTree = "<group>"; };
+		567F35DA1F5FAC1C00614FDB /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
 		56F98A9D1F56735200441CC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56F98A9F1F56738E00441CC4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -184,11 +188,13 @@
 				F6EF97B11F4E8AB5002D6326 /* toeicbook.jpg */,
 				F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */,
 				F6EF97B51F4E8BF5002D6326 /* no_image.png */,
+				567F35D81F5FA76200614FDB /* cat.gif */,
 				F6EF97801F4E845D002D6326 /* Assets.xcassets */,
 				F6EF97AD1F4E8628002D6326 /* javabook.jpg */,
 				F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */,
 				F6EF97851F4E845D002D6326 /* Info.plist */,
 				56F98A9E1F56735200441CC4 /* Localizable.strings */,
+				567F35DA1F5FAC1C00614FDB /* DateUtil.swift */,
 			);
 			path = "iOS-BookManager";
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 			files = (
 				F616E8C21F54FE1E00B6711F /* Cartfile in Resources */,
 				F616E8C01F54257B00B6711F /* .swiftlint.yml in Resources */,
+				567F35D91F5FA76200614FDB /* cat.gif in Resources */,
 				F6EF97811F4E845D002D6326 /* Assets.xcassets in Resources */,
 				F6EF97AE1F4E8628002D6326 /* javabook.jpg in Resources */,
 				F6EF97B41F4E8B2A002D6326 /* cppbook.jpg in Resources */,
@@ -415,6 +422,7 @@
 				5683564D1F5D11050055CC21 /* AccountSettingViewController.swift in Sources */,
 				F6EF97AA1F4E858A002D6326 /* BookLineUpViewController.swift in Sources */,
 				F616E8B51F53A9F700B6711F /* SettingViewController.swift in Sources */,
+				567F35DB1F5FAC1C00614FDB /* DateUtil.swift in Sources */,
 				56F98AA31F569CC400441CC4 /* BookCell.swift in Sources */,
 				F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */,
 				56F98AAF1F57D33200441CC4 /* R.generated.swift in Sources */,
