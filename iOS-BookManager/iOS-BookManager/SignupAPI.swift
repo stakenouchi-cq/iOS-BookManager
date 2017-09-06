@@ -9,7 +9,7 @@ struct SignupRequest: BMRequest {
     }
     
     var path: String {
-        return "/signup"
+        return "/sign_up"
     }
     
     var headerFields: [String : String] {

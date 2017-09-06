@@ -23,6 +23,11 @@ class SettingViewController: UIViewController {
         setSettingViewLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("email: \(UserDefaults.standard.string(forKey: "email")!)")
+        print("token: \(UserDefaults.standard.string(forKey: "token")!)")
+    }
+    
     func gotoAccountSetting() {
         let accountSettingViewController = AccountSettingViewController()
         let navi = UINavigationController(rootViewController: accountSettingViewController) // モーダル画面でもナビゲーションバーが出るようにする

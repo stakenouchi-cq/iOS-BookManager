@@ -81,8 +81,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let password: String = passwordTextField.text!
         
         print("ログイン開始します")
-        let request = LoginRequest(email: email, password: password)
-        Session.send(request) { result in
+        let loginRequest = LoginRequest(email: email, password: password)
+        
+        Session.send(loginRequest) { result in
             switch result {
             case .success(let response):
                 print(response)

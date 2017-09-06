@@ -183,13 +183,10 @@
 			isa = PBXGroup;
 			children = (
 				F6EF97791F4E845C002D6326 /* AppDelegate.swift */,
-				56F98AAE1F57D33200441CC4 /* R.generated.swift */,
-				5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */,
 				568356501F5D1ED60055CC21 /* UserData.swift */,
 				5683564E1F5D1C3F0055CC21 /* APIBase.swift */,
 				568356541F5D29350055CC21 /* SignupAPI.swift */,
 				568356521F5D20110055CC21 /* LoginAPI.swift */,
-				F6EF97A71F4E854C002D6326 /* LoginViewController.swift */,
 				568356561F5D29B70055CC21 /* LogoutAPI.swift */,
 				5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */,
 				56F98AAE1F57D33200441CC4 /* R.generated.swift */,
@@ -450,7 +447,6 @@
 				568356531F5D20110055CC21 /* LoginAPI.swift in Sources */,
 				568356551F5D29350055CC21 /* SignupAPI.swift in Sources */,
 				5683564F1F5D1C3F0055CC21 /* APIBase.swift in Sources */,
-				56F98AB51F5902F800441CC4 /* ButtonTags.swift in Sources */,
 				56F98AB11F57DE7900441CC4 /* DatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

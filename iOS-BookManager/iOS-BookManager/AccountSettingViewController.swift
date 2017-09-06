@@ -99,9 +99,32 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
     }
     
     func saveAccountData() {
-        print("Account data is saved.")
+        let email = mailAddressTextField.text!
+        let password = passwordTextField.text!
+        let passwordConfirm = passwordConfirmTextField.text!
+        let loginRequest = LoginRequest(email: email, password: password)
+        let logoutRequest = LogoutRequest(token: UserDefaults.standard.string(forKey: "token")!)
+        
+        if (password == passwordConfirm) {
+            Session.send(logoutRequest) // 現在ログイン中のアカウントをログアウトする
+            Session.send(loginRequest) { result in
+                switch result {
+                case .success(let response):
+                    print(response)
+                    print("Your account is changed.")
+                    UserDefaults.standard.set(response.id, forKey: "id")
+                    UserDefaults.standard.set(response.email, forKey: "email")
+                    UserDefaults.standard.set(response.token, forKey: "token")
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        } else {
+            print("You'd enter 2 passwords are same.")
+        }
+        
     }
-    
+
     // キーボード入力の終了ルールを定義
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true) // キーボードの外に触れたら入力おしまい
