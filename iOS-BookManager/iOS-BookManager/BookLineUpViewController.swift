@@ -107,7 +107,6 @@ extension BookLineUpViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(BookCell.self), for: indexPath) as! BookCell
-        print(indexPath.row)
         cell.registCell(book: books[indexPath.row])
         cell.selectionStyle = .none
         return cell
