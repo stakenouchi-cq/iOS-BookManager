@@ -1,8 +1,9 @@
 import UIKit
+import Kingfisher
 
 class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    fileprivate let tabBarHeight = CGFloat(49)
+    var imageURL = URL(string: "")
     
     // フォームの初期値をセット
     // 親クラスから値渡しをする
@@ -11,8 +12,8 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
             // selfは省略可なので，省略
             bookNameTextField.text = book.name
             bookPriceTextField.text = String(book.price)
-            boughtDateTextField.text = book.boughtDate
-            bookImage = UIImage(named: book.imagePath)!
+            purchaseDateTextField.text = book.purchaseDate
+            imageURL = book.imageURL
         }
     }
     
@@ -47,9 +48,9 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return label
     }()
     
-    fileprivate let boughtDateLabel: UILabel = {
+    fileprivate let purchaseDateLabel: UILabel = {
         let label = UILabel()
-        label.text = R.string.localizable.boughtdate()
+        label.text = R.string.localizable.purchaseDate()
         label.layer.masksToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 16.0)
@@ -82,7 +83,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return textField
     }()
     
-    fileprivate lazy var boughtDateTextField: UIDatePickerTextField = {
+    fileprivate lazy var purchaseDateTextField: UIDatePickerTextField = {
         let textField = UIDatePickerTextField()
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -90,15 +91,14 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return textField
     }()
     
-    fileprivate let bookImageView: UIImageView = {
+    fileprivate lazy var bookImageView: UIImageView = {
         let view = UIImageView()
+        view.kf.setImage(with: self.imageURL as! Resource)
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         view.sizeToFit()
         return view
     }()
-    
-    fileprivate var bookImage = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +109,6 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         self.navigationItem.title = R.string.localizable.editbook()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: "saveBookData")
         
-        bookImageView.image = bookImage
         setEditBookView()
         
     }
@@ -172,8 +171,8 @@ extension EditBookViewController {
         self.view.addSubview(bookNameTextField)
         self.view.addSubview(bookPriceLabel)
         self.view.addSubview(bookPriceTextField)
-        self.view.addSubview(boughtDateLabel)
-        self.view.addSubview(boughtDateTextField)
+        self.view.addSubview(purchaseDateLabel)
+        self.view.addSubview(purchaseDateTextField)
         self.view.addSubview(addImageButton)
         
         let marginBtwLabForm = CGFloat(30.0)
@@ -198,11 +197,11 @@ extension EditBookViewController {
         bookPriceTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
         bookPriceTextField.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
         bookPriceTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
-        boughtDateLabel.leadingAnchor.constraint(equalTo: bookNameLabel.leadingAnchor).isActive = true
-        boughtDateLabel.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabels).isActive = true
-        boughtDateTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
-        boughtDateTextField.centerYAnchor.constraint(equalTo: boughtDateLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
-        boughtDateTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
+        purchaseDateLabel.leadingAnchor.constraint(equalTo: bookNameLabel.leadingAnchor).isActive = true
+        purchaseDateLabel.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabels).isActive = true
+        purchaseDateTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
+        purchaseDateTextField.centerYAnchor.constraint(equalTo: purchaseDateLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
+        purchaseDateTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
         
     }
     

@@ -48,13 +48,11 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     }
     
     func generateBookDataSet() {
-        books.append(Book(name: "スッキリわかるJava入門", price: 3500, boughtDate: "2014/04/03", imagePath: "javabook.jpg"))
-        
-        books.append(Book(name: "Oxford英英辞典", price: 5000, boughtDate: "2014/11/27", imagePath: "Oxford_Dict.jpg"))
-        
-        books.append(Book(name: "詳細!Swift 3 iPhoneアプリ開発入門ノート", price: 4000, boughtDate: "2014/03/15", imagePath: "sw3book.jpg"))
-        books.append(Book(name: "200点アップのTOEICテスト英単語 - 得点に大きくつながる意外な意味を持つ英単語 -", price: 2500, boughtDate: "2006/10/13", imagePath: "toeicbook.jpg"))
-        books.append(Book(name: "Accelerated C++ - 効率的なプログラミングのための新しい定跡 -", price: 3400, boughtDate: "2009/07/19", imagePath: "cppbook.jpg"))
+        books.append(Book(name: "Oxford英英辞典", price: 5000, purchaseDate: "2014/11/27", imageURL: URL(string: "https://images-fe.ssl-images-amazon.com/images/I/51OEYvMOYEL._AC_US320_QL65_.jpg")!))
+        books.append(Book(name: "Kotlinスタートブック -新しいAndroidプログラミング", price: 3780, purchaseDate: "2016/07/13", imageURL: URL(string: "https://images-fe.ssl-images-amazon.com/images/I/51HzwN0d1iL._AC_US320_QL65_.jpg")!))
+        books.append(Book(name: "詳細!Swift 3 iPhoneアプリ開発入門ノート", price: 4000, purchaseDate: "2014/03/15", imageURL: URL(string: "https://images-fe.ssl-images-amazon.com/images/I/61wRhxNyAtL._AC_US320_QL65_.jpg")!))
+        books.append(Book(name: "200点アップのTOEICテスト英単語 - 得点に大きくつながる意外な意味を持つ英単語 -", price: 2500, purchaseDate: "2006/10/13", imageURL: URL(string: "https://images-fe.ssl-images-amazon.com/images/I/513W1QHXX9L._AC_US320_QL65_.jpg")!))
+        books.append(Book(name: "Accelerated C++ - 効率的なプログラミングのための新しい定跡 -", price: 3400, purchaseDate: "2009/07/19", imageURL: URL(string: "https://images-fe.ssl-images-amazon.com/images/I/51Pke5cnOZL._AC_US320_QL65_.jpg")!))
     }
     
     func addBook() {

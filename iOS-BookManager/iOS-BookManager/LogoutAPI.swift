@@ -18,12 +18,4 @@ struct LogoutRequest: BMRequest {
         ]
     }
     
-    let token: String
-    
-    var bodyParameters: BodyParameters? {
-        return JSONBodyParameters(JSONObject: [
-            "token": token
-        ])
-    }
-    
 }

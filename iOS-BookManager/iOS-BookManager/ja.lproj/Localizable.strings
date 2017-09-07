@@ -13,7 +13,7 @@
 "taxout" = "%d円 + 税";
 "bookname" = "書籍名";
 "price" = "金額";
-"boughtdate" = "購入日";
+"purchaseDate" = "購入日";
 "addtmb" = "画像添付ボタン";
 "addbook" = "書籍追加";
 "editbook" = "書籍編集";

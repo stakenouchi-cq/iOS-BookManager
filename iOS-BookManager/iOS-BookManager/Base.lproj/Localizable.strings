@@ -13,7 +13,7 @@
 "taxout" = "¥%d (tax out)";
 "bookname" = "Title of book";
 "price" = "Price";
-"boughtdate" = "Purchase Date";
+"purchaseDate" = "Purchase Date";
 "addtmb" = "Append Image";
 "addbook" = "Add Book Information";
 "editbook" = "Edit Book Information";

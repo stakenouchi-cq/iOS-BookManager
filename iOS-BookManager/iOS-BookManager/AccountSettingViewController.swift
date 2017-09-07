@@ -103,7 +103,7 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
         let password = passwordTextField.text!
         let passwordConfirm = passwordConfirmTextField.text!
         let loginRequest = LoginRequest(email: email, password: password)
-        let logoutRequest = LogoutRequest(token: UserDefaults.standard.string(forKey: "token")!)
+        let logoutRequest = LogoutRequest()
         
         if (password == passwordConfirm) {
             Session.send(logoutRequest) // 現在ログイン中のアカウントをログアウトする
