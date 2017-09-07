@@ -44,6 +44,10 @@ excluded:
 - Carthage/
 - R.generated.swift
 - iOS-BookManager/UserData.swift
+- iOS-BookManager/BookData.swift
+- iOS-BookManager/GetBookListAPI.swift
+- iOS-BookManager/AddBookAPI.swift
+- iOS-BookManager/EditBookAPI.swift
 
 # 変数名の最大文字数
 variable_name_max_length:

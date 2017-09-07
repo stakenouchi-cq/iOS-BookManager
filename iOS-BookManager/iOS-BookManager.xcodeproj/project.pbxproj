@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		560C2A541F5FFC4C0082C000 /* GetBookListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C2A531F5FFC4C0082C000 /* GetBookListAPI.swift */; };
-		560C2A561F5FFECE0082C000 /* RegistBookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C2A551F5FFECE0082C000 /* RegistBookAPI.swift */; };
-		567F35D91F5FA76200614FDB /* cat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 567F35D81F5FA76200614FDB /* cat.gif */; };
+		560C2A561F5FFECE0082C000 /* AddBookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C2A551F5FFECE0082C000 /* AddBookAPI.swift */; };
+		560C2A581F61164F0082C000 /* EditBookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C2A571F61164F0082C000 /* EditBookAPI.swift */; };
 		567F35DB1F5FAC1C00614FDB /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F35DA1F5FAC1C00614FDB /* DateUtil.swift */; };
 		5683564D1F5D11050055CC21 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */; };
 		5683564F1F5D1C3F0055CC21 /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5683564E1F5D1C3F0055CC21 /* APIBase.swift */; };
@@ -18,7 +18,7 @@
 		568356551F5D29350055CC21 /* SignupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356541F5D29350055CC21 /* SignupAPI.swift */; };
 		568356571F5D29B70055CC21 /* LogoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356561F5D29B70055CC21 /* LogoutAPI.swift */; };
 		56F98A9C1F56735200441CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56F98A9E1F56735200441CC4 /* Localizable.strings */; };
-		56F98AA11F5693AB00441CC4 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AA01F5693AB00441CC4 /* Book.swift */; };
+		56F98AA11F5693AB00441CC4 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AA01F5693AB00441CC4 /* BookData.swift */; };
 		56F98AA31F569CC400441CC4 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AA21F569CC400441CC4 /* BookCell.swift */; };
 		56F98AA61F57C6F900441CC4 /* License in Resources */ = {isa = PBXBuildFile; fileRef = 56F98AA51F57C6F900441CC4 /* License */; };
 		56F98AA81F57C70400441CC4 /* rswift in Resources */ = {isa = PBXBuildFile; fileRef = 56F98AA71F57C70400441CC4 /* rswift */; };
@@ -41,12 +41,6 @@
 		F6EF979A1F4E845D002D6326 /* iOS_BookManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97991F4E845D002D6326 /* iOS_BookManagerUITests.swift */; };
 		F6EF97A81F4E854C002D6326 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97A71F4E854C002D6326 /* LoginViewController.swift */; };
 		F6EF97AA1F4E858A002D6326 /* BookLineUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */; };
-		F6EF97AC1F4E8610002D6326 /* Oxford_Dict.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */; };
-		F6EF97AE1F4E8628002D6326 /* javabook.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AD1F4E8628002D6326 /* javabook.jpg */; };
-		F6EF97B01F4E8A28002D6326 /* sw3book.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */; };
-		F6EF97B21F4E8AB5002D6326 /* toeicbook.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97B11F4E8AB5002D6326 /* toeicbook.jpg */; };
-		F6EF97B41F4E8B2A002D6326 /* cppbook.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97B31F4E8B2A002D6326 /* cppbook.jpg */; };
-		F6EF97B61F4E8BF5002D6326 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = F6EF97B51F4E8BF5002D6326 /* no_image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +62,8 @@
 
 /* Begin PBXFileReference section */
 		560C2A531F5FFC4C0082C000 /* GetBookListAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBookListAPI.swift; sourceTree = "<group>"; };
-		560C2A551F5FFECE0082C000 /* RegistBookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistBookAPI.swift; sourceTree = "<group>"; };
-		567F35D81F5FA76200614FDB /* cat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = cat.gif; path = ../../../../Downloads/cat.gif; sourceTree = "<group>"; };
+		560C2A551F5FFECE0082C000 /* AddBookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookAPI.swift; sourceTree = "<group>"; };
+		560C2A571F61164F0082C000 /* EditBookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookAPI.swift; sourceTree = "<group>"; };
 		567F35DA1F5FAC1C00614FDB /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
 		5683564E1F5D1C3F0055CC21 /* APIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
@@ -79,7 +73,7 @@
 		568356561F5D29B70055CC21 /* LogoutAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutAPI.swift; sourceTree = "<group>"; };
 		56F98A9D1F56735200441CC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56F98A9F1F56738E00441CC4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		56F98AA01F5693AB00441CC4 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		56F98AA01F5693AB00441CC4 /* BookData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 		56F98AA21F569CC400441CC4 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		56F98AA51F57C6F900441CC4 /* License */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License; sourceTree = "<group>"; };
 		56F98AA71F57C70400441CC4 /* rswift */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rswift; sourceTree = "<group>"; };
@@ -108,12 +102,6 @@
 		F6EF979B1F4E845D002D6326 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6EF97A71F4E854C002D6326 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookLineUpViewController.swift; sourceTree = "<group>"; };
-		F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Oxford_Dict.jpg; path = ../../../../Downloads/Oxford_Dict.jpg; sourceTree = "<group>"; };
-		F6EF97AD1F4E8628002D6326 /* javabook.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = javabook.jpg; path = ../../../../Downloads/javabook.jpg; sourceTree = "<group>"; };
-		F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sw3book.jpg; path = ../../../../Downloads/sw3book.jpg; sourceTree = "<group>"; };
-		F6EF97B11F4E8AB5002D6326 /* toeicbook.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = toeicbook.jpg; path = ../../../../Downloads/toeicbook.jpg; sourceTree = "<group>"; };
-		F6EF97B31F4E8B2A002D6326 /* cppbook.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cppbook.jpg; path = ../../../../Downloads/cppbook.jpg; sourceTree = "<group>"; };
-		F6EF97B51F4E8BF5002D6326 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_image.png; path = ../../../../Downloads/no_image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,35 +175,29 @@
 			isa = PBXGroup;
 			children = (
 				F6EF97791F4E845C002D6326 /* AppDelegate.swift */,
+				56F98AAE1F57D33200441CC4 /* R.generated.swift */,
 				568356501F5D1ED60055CC21 /* UserData.swift */,
 				5683564E1F5D1C3F0055CC21 /* APIBase.swift */,
 				568356541F5D29350055CC21 /* SignupAPI.swift */,
 				568356521F5D20110055CC21 /* LoginAPI.swift */,
-				568356561F5D29B70055CC21 /* LogoutAPI.swift */,
-				5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */,
-				56F98AAE1F57D33200441CC4 /* R.generated.swift */,
-				56F98AA01F5693AB00441CC4 /* Book.swift */,
-				56F98AA21F569CC400441CC4 /* BookCell.swift */,
-				F616E8BC1F5401B300B6711F /* TabBarController.swift */,
-				56F98AB01F57DE7900441CC4 /* DatePicker.swift */,
 				F6EF97A71F4E854C002D6326 /* LoginViewController.swift */,
-				F616E8B41F53A9F700B6711F /* SettingViewController.swift */,
-				F619D59A1F500E5400113B7B /* EditBookViewController.swift */,
+				56F98AA01F5693AB00441CC4 /* BookData.swift */,
+				560C2A531F5FFC4C0082C000 /* GetBookListAPI.swift */,
+				560C2A551F5FFECE0082C000 /* AddBookAPI.swift */,
 				F619D5981F4FB0B200113B7B /* AddBookViewController.swift */,
 				F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */,
-				F6EF97B31F4E8B2A002D6326 /* cppbook.jpg */,
-				F6EF97B11F4E8AB5002D6326 /* toeicbook.jpg */,
-				F6EF97AF1F4E8A28002D6326 /* sw3book.jpg */,
-				F6EF97B51F4E8BF5002D6326 /* no_image.png */,
-				567F35D81F5FA76200614FDB /* cat.gif */,
+				56F98AA21F569CC400441CC4 /* BookCell.swift */,
+				568356561F5D29B70055CC21 /* LogoutAPI.swift */,
+				F616E8B41F53A9F700B6711F /* SettingViewController.swift */,
+				5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */,
+				560C2A571F61164F0082C000 /* EditBookAPI.swift */,
+				F619D59A1F500E5400113B7B /* EditBookViewController.swift */,
+				F616E8BC1F5401B300B6711F /* TabBarController.swift */,
+				56F98AB01F57DE7900441CC4 /* DatePicker.swift */,
 				F6EF97801F4E845D002D6326 /* Assets.xcassets */,
-				F6EF97AD1F4E8628002D6326 /* javabook.jpg */,
-				F6EF97AB1F4E8610002D6326 /* Oxford_Dict.jpg */,
 				F6EF97851F4E845D002D6326 /* Info.plist */,
 				56F98A9E1F56735200441CC4 /* Localizable.strings */,
 				567F35DA1F5FAC1C00614FDB /* DateUtil.swift */,
-				560C2A531F5FFC4C0082C000 /* GetBookListAPI.swift */,
-				560C2A551F5FFECE0082C000 /* RegistBookAPI.swift */,
 			);
 			path = "iOS-BookManager";
 			sourceTree = "<group>";
@@ -354,17 +336,10 @@
 			files = (
 				F616E8C21F54FE1E00B6711F /* Cartfile in Resources */,
 				F616E8C01F54257B00B6711F /* .swiftlint.yml in Resources */,
-				567F35D91F5FA76200614FDB /* cat.gif in Resources */,
 				F6EF97811F4E845D002D6326 /* Assets.xcassets in Resources */,
-				F6EF97AE1F4E8628002D6326 /* javabook.jpg in Resources */,
-				F6EF97B41F4E8B2A002D6326 /* cppbook.jpg in Resources */,
 				56F98AA81F57C70400441CC4 /* rswift in Resources */,
 				56F98A9C1F56735200441CC4 /* Localizable.strings in Resources */,
-				F6EF97B01F4E8A28002D6326 /* sw3book.jpg in Resources */,
-				F6EF97B21F4E8AB5002D6326 /* toeicbook.jpg in Resources */,
 				56F98AA61F57C6F900441CC4 /* License in Resources */,
-				F6EF97AC1F4E8610002D6326 /* Oxford_Dict.jpg in Resources */,
-				F6EF97B61F4E8BF5002D6326 /* no_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +414,7 @@
 				F6EF97A81F4E854C002D6326 /* LoginViewController.swift in Sources */,
 				F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */,
 				568356571F5D29B70055CC21 /* LogoutAPI.swift in Sources */,
-				56F98AA11F5693AB00441CC4 /* Book.swift in Sources */,
+				56F98AA11F5693AB00441CC4 /* BookData.swift in Sources */,
 				568356511F5D1ED60055CC21 /* UserData.swift in Sources */,
 				F616E8BD1F5401B300B6711F /* TabBarController.swift in Sources */,
 				5683564D1F5D11050055CC21 /* AccountSettingViewController.swift in Sources */,
@@ -449,8 +424,9 @@
 				567F35DB1F5FAC1C00614FDB /* DateUtil.swift in Sources */,
 				56F98AA31F569CC400441CC4 /* BookCell.swift in Sources */,
 				F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */,
-				560C2A561F5FFECE0082C000 /* RegistBookAPI.swift in Sources */,
+				560C2A561F5FFECE0082C000 /* AddBookAPI.swift in Sources */,
 				56F98AAF1F57D33200441CC4 /* R.generated.swift in Sources */,
+				560C2A581F61164F0082C000 /* EditBookAPI.swift in Sources */,
 				F619D5991F4FB0B200113B7B /* AddBookViewController.swift in Sources */,
 				568356531F5D20110055CC21 /* LoginAPI.swift in Sources */,
 				568356551F5D29350055CC21 /* SignupAPI.swift in Sources */,

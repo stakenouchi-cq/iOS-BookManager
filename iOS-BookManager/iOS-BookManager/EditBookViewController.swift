@@ -1,19 +1,21 @@
 import UIKit
+import APIKit
 import Kingfisher
 
 class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    var imageURL = URL(string: "")
-    
-    // フォームの初期値をセット
-    // 親クラスから値渡しをする
+    var image = ""
+    fileprivate var openedCameraRoll = false
+    var bookID = 0
+    // フォームの初期値をセット．親クラスから値渡しをする
     var book: Book! {
         didSet {
             // selfは省略可なので，省略
+            bookID = book.id
             bookNameTextField.text = book.name
             bookPriceTextField.text = String(book.price)
-            purchaseDateTextField.text = book.purchaseDate
-            imageURL = book.imageURL
+            purchaseDateTextField.text = adaptToForm(date: book.purchaseDate)
+            image = book.image
         }
     }
     
@@ -93,7 +95,8 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
     fileprivate lazy var bookImageView: UIImageView = {
         let view = UIImageView()
-        view.kf.setImage(with: self.imageURL as! Resource)
+        view.kf.indicatorType = .activity
+        view.kf.setImage(with: URL(string: self.image))
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         view.sizeToFit()
@@ -124,7 +127,26 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     }
     
     func saveBookData() {
-        print("Datas of the book are saved.")
+        // print("Datas of the book are saved.")
+        let name = bookNameTextField.text
+        let price = bookPriceTextField.text
+        let purchaseDate = purchaseDateTextField.text
+        // image情報はoptionalなので，ここでunwrapする(pngであれば，そのまま保存作業へ突入)
+        if let imageData = self.bookImageView.image {
+            let data = UIImagePNGRepresentation(imageData)
+            let encodeString = data?.base64EncodedString()
+            let request = EditBookRequest(id: bookID, name: name!, image: encodeString!, price: Int(price!)!, purchaseDate: purchaseDate!)
+            Session.send(request) { result in
+                switch result {
+                case .success(let responce):
+                    print(responce)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        } else {
+            print("Extension of image must be .png")
+        }
     }
     
     func addThumbnail() {

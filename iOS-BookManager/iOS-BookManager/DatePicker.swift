@@ -9,7 +9,7 @@ class UIDatePickerTextField: UITextField, UITextFieldDelegate, UIPickerViewDeleg
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        dateFormatter.adaptToForm() // localeや時刻の表示形式を設定
+        dateFormatter.adaptToLocale() // localeや時刻の表示形式を設定
         datePicker.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged) // 値が変わったら関数を呼び出す
         datePicker.datePickerMode = .date // 年月日でPickerを表示
         self.inputView = datePicker

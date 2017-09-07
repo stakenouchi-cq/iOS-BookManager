@@ -68,8 +68,9 @@ class BookCell: UITableViewCell {
         // セルに書籍データを登録！
         bookTitleLabel.text = book.name
         bookPriceLabel.text = R.string.localizable.taxout(book.price)
-        purchaseDateLabel.text = book.purchaseDate
-        bookImageView.kf.setImage(with: book.imageURL)
+        purchaseDateLabel.text = adaptToForm(date: book.purchaseDate)
+        bookImageView.kf.indicatorType = .activity
+        bookImageView.kf.setImage(with: URL(string: book.image))
     }
     
 }

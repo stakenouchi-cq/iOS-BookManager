@@ -1,8 +1,12 @@
 import UIKit
+import APIKit
+import Himotoki
 
 class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
     fileprivate var books: [Book] = []
+    let limit = 20
+    var page = 1
     
     fileprivate let loadButton: UIButton = {
         let button = UIButton()
@@ -21,7 +25,7 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
         tableView.dataSource = self
         tableView.register(BookCell.self, forCellReuseIdentifier: NSStringFromClass(BookCell.self))
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height-49.0)
         return tableView
     }()
     
@@ -34,26 +38,50 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        generateBookDataSet()
+        self.view.backgroundColor = .white
         // ナビゲーションバーのタイトルを設定
         self.navigationItem.title = R.string.localizable.booklineup()
         self.navigationItem.backBarButtonItem = backButton
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.add(), style: .plain, target: self, action: "addBook")
-        setBookLineupViewLayout()
         
+        setBookLineupViewLayout()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func generateBookDataSet() {
-        books.append(Book(name: "Oxford英英辞典", price: 5000, purchaseDate: "2014/11/27", imageURL: URL(string: "https://images-fe.ssl-images-amazon.com/images/I/51OEYvMOYEL._AC_US320_QL65_.jpg")!))
-        books.append(Book(name: "Kotlinスタートブック -新しいAndroidプログラミング", price: 3780, purchaseDate: "2016/07/13", imageURL: URL(string: "https://images-fe.ssl-images-amazon.com/images/I/51HzwN0d1iL._AC_US320_QL65_.jpg")!))
-        books.append(Book(name: "詳細!Swift 3 iPhoneアプリ開発入門ノート", price: 4000, purchaseDate: "2014/03/15", imageURL: URL(string: "https://images-fe.ssl-images-amazon.com/images/I/61wRhxNyAtL._AC_US320_QL65_.jpg")!))
-        books.append(Book(name: "200点アップのTOEICテスト英単語 - 得点に大きくつながる意外な意味を持つ英単語 -", price: 2500, purchaseDate: "2006/10/13", imageURL: URL(string: "https://images-fe.ssl-images-amazon.com/images/I/513W1QHXX9L._AC_US320_QL65_.jpg")!))
-        books.append(Book(name: "Accelerated C++ - 効率的なプログラミングのための新しい定跡 -", price: 3400, purchaseDate: "2009/07/19", imageURL: URL(string: "https://images-fe.ssl-images-amazon.com/images/I/51Pke5cnOZL._AC_US320_QL65_.jpg")!))
+    override func viewWillAppear(_ animated: Bool) {
+        // 登録画面などから戻ってきても，更新して最新状態を保てるようviewWillAppearに置く
+        // いったんリストを空にしてから，読み込んだ分だけ再読み込み
+        self.books = []
+        for k in (1...page) {
+            getBookDataSet(limit: limit, page: k)
+        }
     }
+    
+    
+    func getBookDataSet(limit: Int, page: Int) {
+        let request = GetBookListRequest(limit: limit, page: page)
+        Session.send(request) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                self.books += response.result
+                self.bookTableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func loadMoreBooks() {
+        page += 1
+        print("page: \(page)")
+        getBookDataSet(limit: limit, page: page)
+        self.bookTableView.reloadData()
+    }
+
     
     func addBook() {
         // 書籍追加ボタン押下時の処理を追加
@@ -62,10 +90,6 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
         print("Open add book screen.")
         addBookViewController.modalTransitionStyle = .crossDissolve
         present(navi, animated: true, completion: nil)
-    }
-    
-    func loadMoreBooks() {
-        print("More Books will be loaded.")
     }
     
 }
@@ -83,6 +107,7 @@ extension BookLineUpViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(BookCell.self), for: indexPath) as! BookCell
+        print(indexPath.row)
         cell.registCell(book: books[indexPath.row])
         cell.selectionStyle = .none
         return cell
@@ -97,7 +122,7 @@ extension BookLineUpViewController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // セルの高さを設定
-        return 100
+        return 120
     }
     
 }

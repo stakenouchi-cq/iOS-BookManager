@@ -1,4 +1,5 @@
 import UIKit
+import APIKit
 import Kingfisher
 
 class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
@@ -115,7 +116,27 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
     }
     
     func saveBookData() {
-        print("Datas of the book are saved.")
+        let name = bookNameTextField.text
+        let price = bookPriceTextField.text
+        let purchaseDate = purchaseDateTextField.text
+        // image情報はoptionalなので，ここでunwrapする(pngであれば，そのまま保存作業へ突入)
+        if let imageData = self.bookImageView.image {
+            let data = UIImagePNGRepresentation(imageData)
+            let encodeString = data?.base64EncodedString()
+            // print(encodeString)
+            let request = AddBookRequest(name: name!, image: encodeString!, price: Int(price!)!, purchaseDate: purchaseDate!)
+            Session.send(request) { result in
+                switch result {
+                case .success(let responce):
+                    print(responce)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        } else {
+            print("Extension of image must be .png")
+        }
+        
     }
     
     func addThumbnail() {
