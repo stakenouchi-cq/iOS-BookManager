@@ -80,7 +80,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let email: String = mailAddressTextField.text!
         let password: String = passwordTextField.text!
         
-        print("ログイン開始します")
+        print("Start login...")
         let loginRequest = LoginRequest(email: email, password: password)
         
         Session.send(loginRequest) { result in
@@ -93,6 +93,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 UIApplication.shared.keyWindow?.rootViewController = TabBarController()
             case .failure(let error):
                 print(error)
+                AlertUtil.showAlert(target: self, title: "Error", message: "Login Failed.", completion: {})
             }
         }
     }

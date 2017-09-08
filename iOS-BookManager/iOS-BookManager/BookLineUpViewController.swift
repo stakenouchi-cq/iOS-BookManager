@@ -4,10 +4,10 @@ import Himotoki
 
 class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    fileprivate var books: [Book] = []
-    let limit = 20
-    var page = 1
-    
+    fileprivate var books = [Book]()
+    fileprivate let limit = 3
+    fileprivate var page = 1
+
     fileprivate let loadButton: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.localizable.loadmore(), for: .normal)
@@ -44,6 +44,7 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
         self.navigationItem.backBarButtonItem = backButton
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.add(), style: .plain, target: self, action: "addBook")
         
+        getBookDataSet(limit: limit, page: 1) // 最初のページの書籍データを取得
         setBookLineupViewLayout()
     }
     
@@ -51,17 +52,7 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        // 登録画面などから戻ってきても，更新して最新状態を保てるようviewWillAppearに置く
-        // いったんリストを空にしてから，読み込んだ分だけ再読み込み
-        self.books = []
-        for k in (1...page) {
-            getBookDataSet(limit: limit, page: k)
-        }
-    }
-    
-    
-    func getBookDataSet(limit: Int, page: Int) {
+    fileprivate func getBookDataSet(limit: Int, page: Int) {
         let request = GetBookListRequest(limit: limit, page: page)
         Session.send(request) { result in
             switch result {
@@ -76,12 +67,13 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     }
     
     func loadMoreBooks() {
-        page += 1
-        print("page: \(page)")
-        getBookDataSet(limit: limit, page: page)
-        self.bookTableView.reloadData()
+        // 「もっと読み込む」ボタンを押下時に，読み込む書籍を追加
+        self.page += 1
+        self.books = [Book]() // 書籍が追加された後に更新すると，セルが重複するため1から読み直す
+        for p in (1...page) {
+            getBookDataSet(limit: limit, page: p)
+        }
     }
-
     
     func addBook() {
         // 書籍追加ボタン押下時の処理を追加

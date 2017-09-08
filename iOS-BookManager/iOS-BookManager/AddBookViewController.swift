@@ -123,18 +123,19 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
         if let imageData = self.bookImageView.image {
             let data = UIImagePNGRepresentation(imageData)
             let encodeString = data?.base64EncodedString()
-            // print(encodeString)
             let request = AddBookRequest(name: name!, image: encodeString!, price: Int(price!)!, purchaseDate: purchaseDate!)
             Session.send(request) { result in
                 switch result {
                 case .success(let responce):
                     print(responce)
+                    AlertUtil.showAlert(target: self, title: "Success", message: "The book data has been saved.", completion: {})
                 case .failure(let error):
                     print(error)
+                    AlertUtil.showAlert(target: self, title: "Error", message: "Failed to save book data.", completion: {})
                 }
             }
         } else {
-            print("Extension of image must be .png")
+            AlertUtil.showAlert(target: self, title: "Image type Error", message: "Extension of image must be .png", completion: {})
         }
         
     }

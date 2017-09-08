@@ -106,21 +106,22 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
         let logoutRequest = LogoutRequest()
         
         if (password == passwordConfirm) {
-            Session.send(logoutRequest) // 現在ログイン中のアカウントをログアウトする
             Session.send(loginRequest) { result in
                 switch result {
                 case .success(let response):
                     print(response)
                     print("Your account is changed.")
+                    AlertUtil.showAlert(target: self, title: "Success", message: "Account informaition has been changed.", completion: {})
                     UserDefaults.standard.set(response.id, forKey: "id")
                     UserDefaults.standard.set(response.email, forKey: "email")
                     UserDefaults.standard.set(response.token, forKey: "token")
                 case .failure(let error):
                     print(error)
+                    AlertUtil.showAlert(target: self, title: "Error", message: "Login Failed.", completion: {})
                 }
             }
         } else {
-            print("You'd enter 2 passwords are same.")
+            AlertUtil.showAlert(target: self, title: "Error", message: "Passwords must be same.", completion: {})
         }
         
     }

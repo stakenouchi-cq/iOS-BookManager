@@ -4,9 +4,8 @@ import Kingfisher
 
 class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    var image = ""
-    fileprivate var openedCameraRoll = false
-    var bookID = 0
+    fileprivate var image = ""
+    fileprivate var bookID = 0
     // フォームの初期値をセット．親クラスから値渡しをする
     var book: Book! {
         didSet {
@@ -116,18 +115,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         
     }
     
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder() // Enter押したら入力おしまい
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true) // キーボードの外に触れたら入力おしまい
-    }
-    
     func saveBookData() {
-        // print("Datas of the book are saved.")
         let name = bookNameTextField.text
         let price = bookPriceTextField.text
         let purchaseDate = purchaseDateTextField.text
@@ -140,19 +128,31 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
                 switch result {
                 case .success(let responce):
                     print(responce)
+                    AlertUtil.showAlert(target: self, title: "Success", message: "The book data's informainton has been changed.", completion: {})
                 case .failure(let error):
                     print(error)
+                    AlertUtil.showAlert(target: self, title: "Error", message: "Failed to change book data.", completion: {})
                 }
             }
         } else {
-            print("Extension of image must be .png")
+            AlertUtil.showAlert(target: self, title: "Image type Error", message: "Extension of image must be .png", completion: {})
         }
+        
     }
     
     func addThumbnail() {
         // 書籍の画像を登録
         print("Choose book image.")
         choosePicture()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // Enter押したら入力おしまい
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true) // キーボードの外に触れたら入力おしまい
     }
     
 }
