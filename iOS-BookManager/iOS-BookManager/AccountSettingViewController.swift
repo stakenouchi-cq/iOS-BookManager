@@ -103,7 +103,6 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
         let password = passwordTextField.text!
         let passwordConfirm = passwordConfirmTextField.text!
         let loginRequest = LoginRequest(email: email, password: password)
-        let logoutRequest = LogoutRequest()
         
         if (password == passwordConfirm) {
             Session.send(loginRequest) { result in
@@ -111,17 +110,17 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
                 case .success(let response):
                     print(response)
                     print("Your account is changed.")
-                    AlertUtil.showAlert(target: self, title: "Success", message: "Account informaition has been changed.", completion: {})
+                    AlertUtil.showAlert(target: self, title: R.string.localizable.success(), message: R.string.localizable.accChanged(), completion: {})
                     UserDefaults.standard.set(response.id, forKey: "id")
                     UserDefaults.standard.set(response.email, forKey: "email")
                     UserDefaults.standard.set(response.token, forKey: "token")
                 case .failure(let error):
                     print(error)
-                    AlertUtil.showAlert(target: self, title: "Error", message: "Login Failed.", completion: {})
+                    AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failLogin(), completion: {})
                 }
             }
         } else {
-            AlertUtil.showAlert(target: self, title: "Error", message: "Passwords must be same.", completion: {})
+            AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.failPass(), completion: {})
         }
         
     }

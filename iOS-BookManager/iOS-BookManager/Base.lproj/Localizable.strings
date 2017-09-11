@@ -18,3 +18,15 @@
 "addbook" = "Add Book Information";
 "editbook" = "Edit Book Information";
 "save" = "Save";
+"success" = "Success";
+"failed" = "Failed";
+"error" = "Error";
+"failPass" = "Passwords must be same.";
+"failLogin" = "Login Failed.";
+"failBookSaved" = "Failed to save book data.";
+"failBookChanged" = "Failed to change book data.";
+"accChanged" = "Account informaition has been changed";
+"bookChanged" = "Book data has been changed";
+"bookSaved" = "The book data has been saved.";
+"imgTypeError" = "Image type Error";
+"mustPng" = "Extension of image must be .png";

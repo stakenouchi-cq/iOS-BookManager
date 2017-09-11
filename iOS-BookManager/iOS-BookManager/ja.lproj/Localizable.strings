@@ -18,3 +18,15 @@
 "addbook" = "書籍追加";
 "editbook" = "書籍編集";
 "save" = "保存";
+"success" = "成功";
+"failed" = "失敗";
+"error" = "エラー";
+"failPass" = "パスワードを両方ともに揃えて下さい";
+"failLogin" = "ログインに失敗しました";
+"failBookSaved" = "書籍データの保存に失敗しました";
+"failBookChanged" = "書籍データの更新に失敗しました";
+"accChanged" = "アカウント情報が更新されました";
+"bookChanged" = "書籍データが更新されました";
+"bookSaved" = "書籍データが保存されました";
+"imgTypeError" = "画像の拡張子エラー";
+"mustPng" = "PNGの画像を使って下さい";

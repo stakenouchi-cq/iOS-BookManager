@@ -128,14 +128,14 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
                 switch result {
                 case .success(let responce):
                     print(responce)
-                    AlertUtil.showAlert(target: self, title: "Success", message: "The book data's informainton has been changed.", completion: {})
+                    AlertUtil.showAlert(target: self, title: R.string.localizable.success(), message: R.string.localizable.bookChanged(), completion: {})
                 case .failure(let error):
                     print(error)
-                    AlertUtil.showAlert(target: self, title: "Error", message: "Failed to change book data.", completion: {})
+                    AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.failBookChanged(), completion: {})
                 }
             }
         } else {
-            AlertUtil.showAlert(target: self, title: "Image type Error", message: "Extension of image must be .png", completion: {})
+            AlertUtil.showAlert(target: self, title: R.string.localizable.imgTypeError(), message: R.string.localizable.mustPng(), completion: {})
         }
         
     }

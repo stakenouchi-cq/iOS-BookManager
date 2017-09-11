@@ -93,7 +93,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 UIApplication.shared.keyWindow?.rootViewController = TabBarController()
             case .failure(let error):
                 print(error)
-                AlertUtil.showAlert(target: self, title: "Error", message: "Login Failed.", completion: {})
+                AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failLogin(), completion: {})
             }
         }
     }
