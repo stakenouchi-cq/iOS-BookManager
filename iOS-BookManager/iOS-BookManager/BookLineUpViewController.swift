@@ -44,15 +44,34 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
         self.navigationItem.backBarButtonItem = backButton
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.add(), style: .plain, target: self, action: "addBook")
         
-        getBookDataSet(limit: limit, page: 1) // 最初のページの書籍データを取得
         setBookLineupViewLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // 他画面から戻ってきた後は，ページ番号を振り出しに戻す
+        page = 1
+        getFirstBookDataSet() // 1ページ目の書籍リストのみ取得
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    fileprivate func getBookDataSet(limit: Int, page: Int) {
+    fileprivate func getFirstBookDataSet() {
+        let request = GetBookListRequest(limit: limit, page: 1)
+        Session.send(request) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                self.books = response.result
+                self.bookTableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    fileprivate func getMoreBookDataSet(page: Int) {
         let request = GetBookListRequest(limit: limit, page: page)
         Session.send(request) { result in
             switch result {
@@ -69,12 +88,9 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     func loadMoreBooks() {
         // 「もっと読み込む」ボタンを押下時に，読み込む書籍を追加
         self.page += 1
-        self.books = [Book]() // 書籍が追加された後に更新すると，セルが重複するため1から読み直す
-        for p in (1...page) {
-            getBookDataSet(limit: limit, page: p)
-        }
+        getMoreBookDataSet(page: page)
     }
-    
+
     func addBook() {
         // 書籍追加ボタン押下時の処理を追加
         let addBookViewController = AddBookViewController()
