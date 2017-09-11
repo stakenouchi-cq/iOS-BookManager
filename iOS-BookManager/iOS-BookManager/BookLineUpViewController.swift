@@ -49,7 +49,7 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         // 他画面から戻ってきた後は，ページ番号を振り出しに戻す
-        page = 1
+        self.page = 1
         getFirstBookDataSet() // 1ページ目の書籍リストのみ取得
     }
     
