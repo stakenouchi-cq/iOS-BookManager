@@ -31,3 +31,4 @@
 "signupSucceess" = "Succeeded to signup!";
 "imgTypeError" = "Image type Error";
 "mustPng" = "Extension of image must be .png";
+"userError" = "Problems occured at current user";

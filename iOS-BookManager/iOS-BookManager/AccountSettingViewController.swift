@@ -99,29 +99,36 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
     }
     
     func saveAccountData() {
-        let email = mailAddressTextField.text!
-        let password = passwordTextField.text!
-        let passwordConfirm = passwordConfirmTextField.text!
-        let signupRequest = SignupRequest(email: email, password: password)
-        
-        if (password != passwordConfirm) {
+        // 各入力欄のnilチェック
+        guard
+            let email = mailAddressTextField.text,
+            let password = passwordTextField.text,
+            let passwordConfirm = passwordConfirmTextField.text
+        else {
             return
-        } else {
-            Session.send(signupRequest) { result in
-                switch result {
-                case .success(let response):
-                    print(response)
-                    print("Sign up Succeeded.")
-                    UserDefaults.standard.set(response.id, forKey: "id")
-                    UserDefaults.standard.set(response.email, forKey: "email")
-                    UserDefaults.standard.set(response.token, forKey: "token")
-                    UIApplication.shared.keyWindow?.rootViewController = TabBarController() // ログイン後は書籍一覧画面に遷移
-                case .failure(let error):
-                    print(error)
-                    AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failLogin(), completion: {})
-                }
+        }
+        // 入力欄のパスワードが両方ともに一緒かどうかのチェック
+        guard password == passwordConfirm else {
+            AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failPass(), completion: {})
+            return
+        }
+        
+        let signupRequest = SignupRequest(email: email, password: password)
+        Session.send(signupRequest) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                print("Sign up Succeeded.")
+                UserDefaults.standard.set(response.id, forKey: "id")
+                UserDefaults.standard.set(response.email, forKey: "email")
+                UserDefaults.standard.set(response.token, forKey: "token")
+                UIApplication.shared.keyWindow?.rootViewController = TabBarController() // ログイン後は書籍一覧画面に遷移
+            case .failure(let error):
+                print(error)
+                AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failLogin(), completion: {})
             }
         }
+        
     }
 
     // キーボード入力の終了ルールを定義

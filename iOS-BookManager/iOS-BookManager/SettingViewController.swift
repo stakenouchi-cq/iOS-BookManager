@@ -24,8 +24,14 @@ class SettingViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("email: \(UserDefaults.standard.string(forKey: "email")!)")
-        print("token: \(UserDefaults.standard.string(forKey: "token")!)")
+        guard
+            let email = UserDefaults.standard.string(forKey: "email"),
+            let token = UserDefaults.standard.string(forKey: "token")
+        else {
+            AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.userError(), completion: {})
+            return
+        }
+        print("email: \(email), token: \(token)")
     }
     
     func gotoAccountSetting() {

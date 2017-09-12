@@ -77,10 +77,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func tappedLoginButton(sender: UIButton) {
-        let email: String = mailAddressTextField.text!
-        let password: String = passwordTextField.text!
+        // 各入力欄のnilチェック
+        guard
+            let email: String = mailAddressTextField.text,
+            let password: String = passwordTextField.text
+        else {
+            return
+        }
         
-        print("Start login...")
         let loginRequest = LoginRequest(email: email, password: password)
         
         Session.send(loginRequest) { result in

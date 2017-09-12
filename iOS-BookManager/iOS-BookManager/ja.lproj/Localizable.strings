@@ -31,3 +31,4 @@
 "signupSucceess" = "アカウントの新規作成に成功しました";
 "imgTypeError" = "画像の拡張子エラー";
 "mustPng" = "PNGの画像を使って下さい";
+"userError" = "ログイン中のユーザー関連で問題が発生しています";

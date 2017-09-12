@@ -116,13 +116,22 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
     }
     
     func saveBookData() {
-        guard let imageData = self.bookImageView.image else { return }
+        guard let imageData = self.bookImageView.image else {
+            AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failBookSaved(), completion: {})
+            return
+        }
         let data = UIImagePNGRepresentation(imageData)
-        let encodeString = data?.base64EncodedString()
-        let name = bookNameTextField.text
-        let price = bookPriceTextField.text
-        let purchaseDate = purchaseDateTextField.text
-        let request = EditBookRequest(id: bookID, name: name!, image: encodeString!, price: Int(price!)!, purchaseDate: purchaseDate!)
+        
+        guard
+            let name = bookNameTextField.text,
+            let price = Int(bookPriceTextField.text!),
+            let purchaseDate = purchaseDateTextField.text,
+            let encodeString = data?.base64EncodedString()
+            else {
+                return
+        }
+        
+        let request = EditBookRequest(id: bookID, name: name, image: encodeString, price: price, purchaseDate: purchaseDate)
         Session.send(request) { result in
             switch result {
             case .success(let responce):
@@ -164,7 +173,7 @@ extension EditBookViewController: UIImagePickerControllerDelegate {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         // ビューに表示する
         self.bookImageView.image = image
         // 写真を選ぶビューを引っ込める

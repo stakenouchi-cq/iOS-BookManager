@@ -21,11 +21,10 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     
     fileprivate lazy var bookTableView: UITableView = {
         let tableView = UITableView()
-        let tabBarHeight: CGFloat = (self.tabBarController?.tabBar.frame.height)!
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 120
-        tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - tabBarHeight)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(BookCell.self, forCellReuseIdentifier: NSStringFromClass(BookCell.self))
         return tableView
     }()
@@ -124,10 +123,11 @@ extension BookLineUpViewController {
         self.view.addSubview(bookTableView)
         self.view.addSubview(loadButton)
         
-        let tabBarHeight: CGFloat = (self.tabBarController?.tabBar.frame.height)!
-        
-        loadButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1.0*tabBarHeight).isActive = true
         loadButton.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        loadButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1.0*TabBarController().tabBarHeight).isActive = true
+        bookTableView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        bookTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        bookTableView.bottomAnchor.constraint(equalTo: loadButton.topAnchor).isActive = true
     }
     
 }
