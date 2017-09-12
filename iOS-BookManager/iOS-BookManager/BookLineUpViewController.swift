@@ -50,6 +50,8 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         // 他画面から戻ってきた後は，ページ番号を振り出しに戻す
         self.page = 1
+        self.books = []
+        self.bookTableView.reloadData()
         getBookDataSet(page: self.page) // 1ページ目の書籍リストのみ取得
     }
     
@@ -63,9 +65,6 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
             switch result {
             case .success(let response):
                 print(response)
-                if page == 1 {
-                    self.books = []
-                }
                 self.books.append(contentsOf: response.result) // 要素を複数個appendするので，contentsOfを使う
                 self.bookTableView.reloadData()
             case .failure(let error):
