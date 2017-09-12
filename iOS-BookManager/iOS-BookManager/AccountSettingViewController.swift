@@ -104,7 +104,10 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
         let passwordConfirm = passwordConfirmTextField.text!
         let loginRequest = LoginRequest(email: email, password: password)
         
-        if (password == passwordConfirm) {
+        if (password != passwordConfirm) {
+            AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.failPass(), completion: {})
+            return
+        } else {
             Session.send(loginRequest) { result in
                 switch result {
                 case .success(let response):
@@ -119,10 +122,7 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
                     AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failLogin(), completion: {})
                 }
             }
-        } else {
-            AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.failPass(), completion: {})
         }
-        
     }
 
     // キーボード入力の終了ルールを定義

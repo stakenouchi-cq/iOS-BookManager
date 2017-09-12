@@ -64,10 +64,9 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
             case .success(let response):
                 print(response)
                 if page == 1 {
-                    self.books = response.result
-                } else {
-                    self.books += response.result
+                    self.books = []
                 }
+                self.books.append(contentsOf: response.result) // 要素を複数個appendするので，contentsOfを使う
                 self.bookTableView.reloadData()
             case .failure(let error):
                 print(error)
@@ -78,7 +77,7 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     func loadMoreBooks() {
         // 「もっと読み込む」ボタンを押下時に，読み込む書籍を追加
         self.page += 1
-        getBookDataSet(page: page)
+        getBookDataSet(page: self.page)
     }
 
     func addBook() {
