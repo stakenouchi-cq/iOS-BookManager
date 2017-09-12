@@ -50,34 +50,24 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         // 他画面から戻ってきた後は，ページ番号を振り出しに戻す
         self.page = 1
-        getFirstBookDataSet() // 1ページ目の書籍リストのみ取得
+        getBookDataSet(page: self.page) // 1ページ目の書籍リストのみ取得
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    fileprivate func getFirstBookDataSet() {
-        let request = GetBookListRequest(limit: limit, page: 1)
-        Session.send(request) { result in
-            switch result {
-            case .success(let response):
-                print(response)
-                self.books = response.result
-                self.bookTableView.reloadData()
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    fileprivate func getMoreBookDataSet(page: Int) {
+    fileprivate func getBookDataSet(page: Int) {
         let request = GetBookListRequest(limit: limit, page: page)
         Session.send(request) { result in
             switch result {
             case .success(let response):
                 print(response)
-                self.books += response.result
+                if page == 1 {
+                    self.books = response.result
+                } else {
+                    self.books += response.result
+                }
                 self.bookTableView.reloadData()
             case .failure(let error):
                 print(error)
@@ -88,7 +78,7 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     func loadMoreBooks() {
         // 「もっと読み込む」ボタンを押下時に，読み込む書籍を追加
         self.page += 1
-        getMoreBookDataSet(page: page)
+        getBookDataSet(page: page)
     }
 
     func addBook() {
