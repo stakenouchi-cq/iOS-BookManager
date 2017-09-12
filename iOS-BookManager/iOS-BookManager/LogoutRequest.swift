@@ -1,7 +1,7 @@
 import APIKit
 import Himotoki
 
-struct LogoutRequest: BMRequest {
+struct LogoutRequest: BookManagerRequest {
     typealias Response = User
     
     var method: HTTPMethod {

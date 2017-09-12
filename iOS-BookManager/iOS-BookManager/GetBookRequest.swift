@@ -1,8 +1,11 @@
 import APIKit
 import Himotoki
 
-struct GetBookListRequest: BMRequest {
-    typealias Response = GetBookListResponse
+struct GetBookRequest: BookManagerRequest {
+    typealias Response = GetBookResponse
+    
+    let limit: Int
+    let page: Int
     
     var method: HTTPMethod {
         return .get
@@ -18,9 +21,6 @@ struct GetBookListRequest: BMRequest {
         ]
     }
     
-    let limit: Int
-    let page: Int
-    
     var parameters: Any? {
         return [
             "limit": self.limit,
@@ -28,11 +28,4 @@ struct GetBookListRequest: BMRequest {
         ]
     }
     
-}
-
-struct GetBookListResponse: Decodable {
-    let result: [Book]
-    static func decode(_ e: Extractor) throws -> GetBookListResponse {
-        return try GetBookListResponse(result: e <|| "result")
-    }
 }

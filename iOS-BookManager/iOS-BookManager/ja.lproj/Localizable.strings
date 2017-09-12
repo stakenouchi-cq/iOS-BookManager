@@ -28,5 +28,6 @@
 "accChanged" = "アカウント情報が更新されました";
 "bookChanged" = "書籍データが更新されました";
 "bookSaved" = "書籍データが保存されました";
+"signupSucceess" = "アカウントの新規作成に成功しました";
 "imgTypeError" = "画像の拡張子エラー";
 "mustPng" = "PNGの画像を使って下さい";

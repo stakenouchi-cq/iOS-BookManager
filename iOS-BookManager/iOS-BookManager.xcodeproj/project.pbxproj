@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		560C2A541F5FFC4C0082C000 /* GetBookListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C2A531F5FFC4C0082C000 /* GetBookListAPI.swift */; };
-		560C2A561F5FFECE0082C000 /* AddBookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C2A551F5FFECE0082C000 /* AddBookAPI.swift */; };
-		560C2A581F61164F0082C000 /* EditBookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C2A571F61164F0082C000 /* EditBookAPI.swift */; };
+		560C2A541F5FFC4C0082C000 /* GetBookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C2A531F5FFC4C0082C000 /* GetBookRequest.swift */; };
+		560C2A561F5FFECE0082C000 /* AddBookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C2A551F5FFECE0082C000 /* AddBookRequest.swift */; };
+		560C2A581F61164F0082C000 /* EditBookRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C2A571F61164F0082C000 /* EditBookRequest.swift */; };
+		5676A8DE1F67A76D0065E87D /* GetBookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5676A8DD1F67A76D0065E87D /* GetBookResponse.swift */; };
+		5676A8E01F67A7B50065E87D /* AddBookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5676A8DF1F67A7B50065E87D /* AddBookResponse.swift */; };
+		5676A8E21F67A8390065E87D /* EditBookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5676A8E11F67A8390065E87D /* EditBookResponse.swift */; };
 		567F35DB1F5FAC1C00614FDB /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F35DA1F5FAC1C00614FDB /* DateUtil.swift */; };
 		5683564D1F5D11050055CC21 /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */; };
 		5683564F1F5D1C3F0055CC21 /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5683564E1F5D1C3F0055CC21 /* APIBase.swift */; };
 		568356511F5D1ED60055CC21 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356501F5D1ED60055CC21 /* UserData.swift */; };
-		568356531F5D20110055CC21 /* LoginAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356521F5D20110055CC21 /* LoginAPI.swift */; };
-		568356551F5D29350055CC21 /* SignupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356541F5D29350055CC21 /* SignupAPI.swift */; };
-		568356571F5D29B70055CC21 /* LogoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356561F5D29B70055CC21 /* LogoutAPI.swift */; };
+		568356531F5D20110055CC21 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356521F5D20110055CC21 /* LoginRequest.swift */; };
+		568356551F5D29350055CC21 /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356541F5D29350055CC21 /* SignupRequest.swift */; };
+		568356571F5D29B70055CC21 /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568356561F5D29B70055CC21 /* LogoutRequest.swift */; };
 		56F1B6941F62484F00185472 /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F1B6931F62484F00185472 /* AlertUtil.swift */; };
 		56F98A9C1F56735200441CC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56F98A9E1F56735200441CC4 /* Localizable.strings */; };
 		56F98AA11F5693AB00441CC4 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F98AA01F5693AB00441CC4 /* BookData.swift */; };
@@ -62,16 +65,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		560C2A531F5FFC4C0082C000 /* GetBookListAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBookListAPI.swift; sourceTree = "<group>"; };
-		560C2A551F5FFECE0082C000 /* AddBookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookAPI.swift; sourceTree = "<group>"; };
-		560C2A571F61164F0082C000 /* EditBookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookAPI.swift; sourceTree = "<group>"; };
+		560C2A531F5FFC4C0082C000 /* GetBookRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBookRequest.swift; sourceTree = "<group>"; };
+		560C2A551F5FFECE0082C000 /* AddBookRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookRequest.swift; sourceTree = "<group>"; };
+		560C2A571F61164F0082C000 /* EditBookRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookRequest.swift; sourceTree = "<group>"; };
+		5676A8DD1F67A76D0065E87D /* GetBookResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBookResponse.swift; sourceTree = "<group>"; };
+		5676A8DF1F67A7B50065E87D /* AddBookResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookResponse.swift; sourceTree = "<group>"; };
+		5676A8E11F67A8390065E87D /* EditBookResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBookResponse.swift; sourceTree = "<group>"; };
 		567F35DA1F5FAC1C00614FDB /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
 		5683564E1F5D1C3F0055CC21 /* APIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
 		568356501F5D1ED60055CC21 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		568356521F5D20110055CC21 /* LoginAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAPI.swift; sourceTree = "<group>"; };
-		568356541F5D29350055CC21 /* SignupAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupAPI.swift; sourceTree = "<group>"; };
-		568356561F5D29B70055CC21 /* LogoutAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutAPI.swift; sourceTree = "<group>"; };
+		568356521F5D20110055CC21 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		568356541F5D29350055CC21 /* SignupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
+		568356561F5D29B70055CC21 /* LogoutRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
 		56F1B6931F62484F00185472 /* AlertUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		56F98A9D1F56735200441CC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		56F98A9F1F56738E00441CC4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -180,20 +186,23 @@
 				56F98AAE1F57D33200441CC4 /* R.generated.swift */,
 				568356501F5D1ED60055CC21 /* UserData.swift */,
 				5683564E1F5D1C3F0055CC21 /* APIBase.swift */,
-				568356541F5D29350055CC21 /* SignupAPI.swift */,
-				568356561F5D29B70055CC21 /* LogoutAPI.swift */,
-				568356521F5D20110055CC21 /* LoginAPI.swift */,
-				560C2A571F61164F0082C000 /* EditBookAPI.swift */,
+				568356541F5D29350055CC21 /* SignupRequest.swift */,
+				568356561F5D29B70055CC21 /* LogoutRequest.swift */,
+				568356521F5D20110055CC21 /* LoginRequest.swift */,
+				560C2A531F5FFC4C0082C000 /* GetBookRequest.swift */,
+				5676A8DD1F67A76D0065E87D /* GetBookResponse.swift */,
+				560C2A551F5FFECE0082C000 /* AddBookRequest.swift */,
+				5676A8DF1F67A7B50065E87D /* AddBookResponse.swift */,
+				560C2A571F61164F0082C000 /* EditBookRequest.swift */,
+				5676A8E11F67A8390065E87D /* EditBookResponse.swift */,
 				F6EF97A71F4E854C002D6326 /* LoginViewController.swift */,
 				56F98AA01F5693AB00441CC4 /* BookData.swift */,
-				560C2A531F5FFC4C0082C000 /* GetBookListAPI.swift */,
-				560C2A551F5FFECE0082C000 /* AddBookAPI.swift */,
 				F619D5981F4FB0B200113B7B /* AddBookViewController.swift */,
+				F619D59A1F500E5400113B7B /* EditBookViewController.swift */,
 				F6EF97A91F4E858A002D6326 /* BookLineUpViewController.swift */,
 				56F98AA21F569CC400441CC4 /* BookCell.swift */,
 				F616E8B41F53A9F700B6711F /* SettingViewController.swift */,
 				5683564C1F5D11050055CC21 /* AccountSettingViewController.swift */,
-				F619D59A1F500E5400113B7B /* EditBookViewController.swift */,
 				F6EF97801F4E845D002D6326 /* Assets.xcassets */,
 				F6EF97851F4E845D002D6326 /* Info.plist */,
 				56F98A9E1F56735200441CC4 /* Localizable.strings */,
@@ -417,23 +426,26 @@
 				56F1B6941F62484F00185472 /* AlertUtil.swift in Sources */,
 				F6EF97A81F4E854C002D6326 /* LoginViewController.swift in Sources */,
 				F619D59B1F500E5400113B7B /* EditBookViewController.swift in Sources */,
-				568356571F5D29B70055CC21 /* LogoutAPI.swift in Sources */,
+				568356571F5D29B70055CC21 /* LogoutRequest.swift in Sources */,
 				56F98AA11F5693AB00441CC4 /* BookData.swift in Sources */,
 				568356511F5D1ED60055CC21 /* UserData.swift in Sources */,
 				F616E8BD1F5401B300B6711F /* TabBarController.swift in Sources */,
 				5683564D1F5D11050055CC21 /* AccountSettingViewController.swift in Sources */,
 				F6EF97AA1F4E858A002D6326 /* BookLineUpViewController.swift in Sources */,
-				560C2A541F5FFC4C0082C000 /* GetBookListAPI.swift in Sources */,
+				5676A8DE1F67A76D0065E87D /* GetBookResponse.swift in Sources */,
+				560C2A541F5FFC4C0082C000 /* GetBookRequest.swift in Sources */,
 				F616E8B51F53A9F700B6711F /* SettingViewController.swift in Sources */,
 				567F35DB1F5FAC1C00614FDB /* DateUtil.swift in Sources */,
+				5676A8E01F67A7B50065E87D /* AddBookResponse.swift in Sources */,
 				56F98AA31F569CC400441CC4 /* BookCell.swift in Sources */,
 				F6EF977A1F4E845C002D6326 /* AppDelegate.swift in Sources */,
-				560C2A561F5FFECE0082C000 /* AddBookAPI.swift in Sources */,
+				560C2A561F5FFECE0082C000 /* AddBookRequest.swift in Sources */,
 				56F98AAF1F57D33200441CC4 /* R.generated.swift in Sources */,
-				560C2A581F61164F0082C000 /* EditBookAPI.swift in Sources */,
+				560C2A581F61164F0082C000 /* EditBookRequest.swift in Sources */,
 				F619D5991F4FB0B200113B7B /* AddBookViewController.swift in Sources */,
-				568356531F5D20110055CC21 /* LoginAPI.swift in Sources */,
-				568356551F5D29350055CC21 /* SignupAPI.swift in Sources */,
+				568356531F5D20110055CC21 /* LoginRequest.swift in Sources */,
+				568356551F5D29350055CC21 /* SignupRequest.swift in Sources */,
+				5676A8E21F67A8390065E87D /* EditBookResponse.swift in Sources */,
 				5683564F1F5D1C3F0055CC21 /* APIBase.swift in Sources */,
 				56F98AB11F57DE7900441CC4 /* DatePicker.swift in Sources */,
 			);

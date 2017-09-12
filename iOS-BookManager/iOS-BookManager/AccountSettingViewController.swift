@@ -79,8 +79,8 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
         self.navigationItem.title = R.string.localizable.accountsetting()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.close(), style: .plain, target: self, action: "closeView")
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: "saveAccountData")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.close(), style: .plain, target: self, action: #selector(closeView))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: #selector(saveAccountData))
         
         setLoginViewLayout() // レイアウトの定義
     }
@@ -102,21 +102,20 @@ class AccountSettingViewController: UIViewController, UITextFieldDelegate {
         let email = mailAddressTextField.text!
         let password = passwordTextField.text!
         let passwordConfirm = passwordConfirmTextField.text!
-        let loginRequest = LoginRequest(email: email, password: password)
+        let signupRequest = SignupRequest(email: email, password: password)
         
         if (password != passwordConfirm) {
-            AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.failPass(), completion: {})
             return
         } else {
-            Session.send(loginRequest) { result in
+            Session.send(signupRequest) { result in
                 switch result {
                 case .success(let response):
                     print(response)
-                    print("Your account is changed.")
-                    AlertUtil.showAlert(target: self, title: R.string.localizable.success(), message: R.string.localizable.accChanged(), completion: {})
+                    print("Sign up Succeeded.")
                     UserDefaults.standard.set(response.id, forKey: "id")
                     UserDefaults.standard.set(response.email, forKey: "email")
                     UserDefaults.standard.set(response.token, forKey: "token")
+                    UIApplication.shared.keyWindow?.rootViewController = TabBarController() // ログイン後は書籍一覧画面に遷移
                 case .failure(let error):
                     print(error)
                     AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failLogin(), completion: {})

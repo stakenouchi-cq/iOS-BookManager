@@ -1,8 +1,13 @@
 import APIKit
 import Himotoki
 
-struct AddBookRequest: BMRequest {
+struct AddBookRequest: BookManagerRequest {
     typealias Response = AddBookResponse
+    
+    let name: String
+    let image: String
+    let price: Int
+    let purchaseDate: String
     
     var method: HTTPMethod {
         return .post
@@ -18,11 +23,6 @@ struct AddBookRequest: BMRequest {
         ]
     }
     
-    let name: String
-    let image: String
-    let price: Int
-    let purchaseDate: String
-    
     var bodyParameters: BodyParameters? {
         return JSONBodyParameters(JSONObject: [
             "name": name,
@@ -32,12 +32,4 @@ struct AddBookRequest: BMRequest {
             ])
     }
     
-}
-
-struct AddBookResponse: Decodable {
-    // 新規登録された書籍のID番号をresponseとして表示
-    let result: Book
-    static func decode(_ e: Extractor) throws -> AddBookResponse {
-        return try AddBookResponse(result: e <| "result")
-    }
 }

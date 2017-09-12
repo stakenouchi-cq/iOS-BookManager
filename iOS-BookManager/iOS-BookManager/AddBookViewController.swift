@@ -11,7 +11,7 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
         button.backgroundColor = .blue
         button.sizeToFit()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: "addThumbnail", for: .touchUpInside) // ログインボタン押下時の動作
+        button.addTarget(self, action: #selector(choosePicture), for: .touchUpInside) // ログインボタン押下時の動作
         return button
     }()
     
@@ -94,8 +94,8 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
         self.navigationItem.title = R.string.localizable.addbook()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.close(), style: .plain, target: self, action: "closeView")
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: "saveBookData")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.close(), style: .plain, target: self, action: #selector(closeView))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: #selector(saveBookData))
         
         setAddBookView()
         
@@ -116,41 +116,30 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
     }
     
     func saveBookData() {
+        guard let imageData = self.bookImageView.image else { return }
+        let data = UIImagePNGRepresentation(imageData)
+        let encodeString = data?.base64EncodedString()
         let name = bookNameTextField.text
         let price = bookPriceTextField.text
         let purchaseDate = purchaseDateTextField.text
-        // image情報はoptionalなので，ここでunwrapする(pngであれば，そのまま保存作業へ突入)
-        if let imageData = self.bookImageView.image {
-            let data = UIImagePNGRepresentation(imageData)
-            let encodeString = data?.base64EncodedString()
-            let request = AddBookRequest(name: name!, image: encodeString!, price: Int(price!)!, purchaseDate: purchaseDate!)
-            Session.send(request) { result in
-                switch result {
-                case .success(let responce):
-                    print(responce)
-                    AlertUtil.showAlert(target: self, title: R.string.localizable.success(), message: R.string.localizable.bookSaved(), completion: {})
-                case .failure(let error):
-                    print(error)
-                    AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.failBookSaved(), completion: {})
-                }
+        let request = AddBookRequest(name: name!, image: encodeString!, price: Int(price!)!, purchaseDate: purchaseDate!)
+        Session.send(request) { result in
+            switch result {
+            case .success(let responce):
+                print(responce)
+                AlertUtil.showAlert(target: self, title: R.string.localizable.success(), message: R.string.localizable.bookSaved(), completion: {})
+            case .failure(let error):
+                print(error)
+                AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.failBookSaved(), completion: {})
             }
-        } else {
-            AlertUtil.showAlert(target: self, title: R.string.localizable.imgTypeError(), message: R.string.localizable.mustPng(), completion: {})
         }
-        
-    }
-    
-    func addThumbnail() {
-        // 書籍の画像を登録
-        print("Choose book image.")
-        choosePicture()
     }
     
 }
 
 extension AddBookViewController: UIImagePickerControllerDelegate {
     
-    fileprivate func choosePicture() {
+    func choosePicture() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let picker = UIImagePickerController()
             picker.modalPresentationStyle = .popover

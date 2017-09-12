@@ -9,7 +9,7 @@ class SettingViewController: UIViewController {
         button.backgroundColor = .blue
         button.sizeToFit()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: "gotoAccountSetting", for: .touchUpInside) // ログインボタン押下時の動作
+        button.addTarget(self, action: #selector(gotoAccountSetting), for: .touchUpInside) // ログインボタン押下時の動作
         return button
     }()
     

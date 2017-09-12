@@ -15,17 +15,18 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
         button.backgroundColor = .blue
         button.sizeToFit()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: "loadMoreBooks", for: .touchUpInside)
+        button.addTarget(self, action: #selector(loadMoreBooks), for: .touchUpInside)
         return button
     }()
     
     fileprivate lazy var bookTableView: UITableView = {
         let tableView = UITableView()
+        let tabBarHeight: CGFloat = (self.tabBarController?.tabBar.frame.height)!
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 120
+        tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - tabBarHeight)
         tableView.register(BookCell.self, forCellReuseIdentifier: NSStringFromClass(BookCell.self))
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height-49.0)
         return tableView
     }()
     
@@ -42,7 +43,7 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
         // ナビゲーションバーのタイトルを設定
         self.navigationItem.title = R.string.localizable.booklineup()
         self.navigationItem.backBarButtonItem = backButton
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.add(), style: .plain, target: self, action: "addBook")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.add(), style: .plain, target: self, action: #selector(addBook))
         
         setBookLineupViewLayout()
     }
@@ -52,15 +53,15 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
         self.page = 1
         self.books = []
         self.bookTableView.reloadData()
-        getBookDataSet(page: self.page) // 1ページ目の書籍リストのみ取得
+        loadBookData(page: self.page) // 1ページ目の書籍リストのみ取得
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    fileprivate func getBookDataSet(page: Int) {
-        let request = GetBookListRequest(limit: limit, page: page)
+    fileprivate func loadBookData(page: Int) {
+        let request = GetBookRequest(limit: limit, page: page)
         Session.send(request) { result in
             switch result {
             case .success(let response):
@@ -76,7 +77,7 @@ class BookLineUpViewController: UIViewController, UINavigationBarDelegate, UITab
     func loadMoreBooks() {
         // 「もっと読み込む」ボタンを押下時に，読み込む書籍を追加
         self.page += 1
-        getBookDataSet(page: self.page)
+        loadBookData(page: self.page)
     }
 
     func addBook() {
@@ -115,19 +116,16 @@ extension BookLineUpViewController {
         self.navigationController?.pushViewController(editBookViewController, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // セルの高さを設定
-        return 120
-    }
-    
 }
 
 extension BookLineUpViewController {
+    
     fileprivate func setBookLineupViewLayout() {
         self.view.addSubview(bookTableView)
         self.view.addSubview(loadButton)
         
-        let tabBarHeight = CGFloat(49)
+        let tabBarHeight: CGFloat = (self.tabBarController?.tabBar.frame.height)!
+        
         loadButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1.0*tabBarHeight).isActive = true
         loadButton.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
     }

@@ -1,7 +1,7 @@
 import APIKit
 import Himotoki
 
-struct EditBookRequest: BMRequest {
+struct EditBookRequest: BookManagerRequest {
     typealias Response = EditBookResponse
     
     let id: Int
@@ -33,11 +33,4 @@ struct EditBookRequest: BMRequest {
             ])
     }
     
-}
-
-struct EditBookResponse: Decodable {
-    let result: Book
-    static func decode(_ e: Extractor) throws -> EditBookResponse {
-        return try EditBookResponse(result: e <| "result")
-    }
 }

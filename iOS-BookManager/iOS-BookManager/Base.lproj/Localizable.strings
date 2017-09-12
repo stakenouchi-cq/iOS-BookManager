@@ -28,5 +28,6 @@
 "accChanged" = "Account informaition has been changed";
 "bookChanged" = "Book data has been changed";
 "bookSaved" = "The book data has been saved.";
+"signupSucceess" = "Succeeded to signup!";
 "imgTypeError" = "Image type Error";
 "mustPng" = "Extension of image must be .png";
