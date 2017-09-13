@@ -43,7 +43,11 @@ excluded:
 - Pods/
 - Carthage/
 - R.generated.swift
-- iOS-BookManager/User.swift
+- iOS-BookManager/UserData.swift
+- iOS-BookManager/BookData.swift
+- iOS-BookManager/GetBookResponse.swift
+- iOS-BookManager/AddBookResponse.swift
+- iOS-BookManager/EditBookResponse.swift
 
 # 変数名の最大文字数
 variable_name_max_length:

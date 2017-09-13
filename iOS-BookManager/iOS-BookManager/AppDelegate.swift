@@ -18,12 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefault.bool(forKey: "firstLaunch") {
             userDefault.set(false, forKey: "firstLaunch")
             print("It is the 1st launch")
-            // 初回起動の場合，ログイン画面を表示
-            self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+            // 初回起動の場合，アカウント新規登録画面を表示
+            self.window?.rootViewController = UINavigationController(rootViewController: AccountSettingViewController())
         } else {
             print("It is not the 1st launch")
-            // 初回でない場合，書籍一覧表を表示
-            self.window?.rootViewController = TabBarController()
+            // 初回起動でない場合，ログイン画面を表示
+            self.window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         }
         
         // 戻るボタンの矢印画像を非表示

@@ -9,7 +9,7 @@ class SettingViewController: UIViewController {
         button.backgroundColor = .blue
         button.sizeToFit()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: "gotoAccountSetting", for: .touchUpInside) // ログインボタン押下時の動作
+        button.addTarget(self, action: #selector(gotoAccountSetting), for: .touchUpInside) // ログインボタン押下時の動作
         return button
     }()
     
@@ -21,6 +21,17 @@ class SettingViewController: UIViewController {
         self.navigationItem.title = R.string.localizable.setting()
         
         setSettingViewLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard
+            let email = UserDefaults.standard.string(forKey: "email"),
+            let token = UserDefaults.standard.string(forKey: "token")
+        else {
+            AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.userError(), completion: {})
+            return
+        }
+        print("email: \(email), token: \(token)")
     }
     
     func gotoAccountSetting() {

@@ -1,4 +1,6 @@
 import UIKit
+import APIKit
+import Kingfisher
 
 class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
@@ -9,7 +11,7 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
         button.backgroundColor = .blue
         button.sizeToFit()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: "addThumbnail", for: .touchUpInside) // ログインボタン押下時の動作
+        button.addTarget(self, action: #selector(choosePicture), for: .touchUpInside) // ログインボタン押下時の動作
         return button
     }()
     
@@ -33,9 +35,9 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
         return label
     }()
     
-    fileprivate let boughtDateLabel: UILabel = {
+    fileprivate let purchaseDateLabel: UILabel = {
         let label = UILabel()
-        label.text = R.string.localizable.boughtdate()
+        label.text = R.string.localizable.purchaseDate()
         label.layer.masksToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 16.0)
@@ -68,7 +70,7 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
         return textField
     }()
     
-    fileprivate lazy var boughtDateTextField: UIDatePickerTextField = {
+    fileprivate lazy var purchaseDateTextField: UIDatePickerTextField = {
         let textField = UIDatePickerTextField()
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -78,13 +80,12 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
     
     fileprivate let bookImageView: UIImageView = {
         let view = UIImageView()
+        view.kf.setImage(with: URL(string: "https://cdn1.iconfinder.com/data/icons/social-17/48/photos2-512.png"))
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         view.sizeToFit()
         return view
     }()
-    
-    fileprivate var bookImage = UIImage(named: "no_image.png")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,10 +94,9 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
         self.navigationItem.title = R.string.localizable.addbook()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.close(), style: .plain, target: self, action: "closeView")
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: "saveBookData")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: R.string.localizable.close(), style: .plain, target: self, action: #selector(closeView))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: #selector(saveBookData))
         
-        bookImageView.image = bookImage
         setAddBookView()
         
     }
@@ -116,20 +116,40 @@ class AddBookViewController: UIViewController, UITextFieldDelegate, UINavigation
     }
     
     func saveBookData() {
-        print("Datas of the book are saved.")
-    }
-    
-    func addThumbnail() {
-        // 書籍の画像を登録
-        print("Choose book image.")
-        choosePicture()
+        
+        guard let imageData = self.bookImageView.image else {
+            AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failBookSaved(), completion: {})
+            return
+        }
+        let data = UIImagePNGRepresentation(imageData)
+        
+        guard
+            let name = bookNameTextField.text,
+            let price = Int(bookPriceTextField.text!),
+            let purchaseDate = purchaseDateTextField.text,
+            let encodeString = data?.base64EncodedString()
+            else {
+                return
+        }
+        
+        let request = AddBookRequest(name: name, image: encodeString, price: price, purchaseDate: purchaseDate)
+        Session.send(request) { result in
+            switch result {
+            case .success(let responce):
+                print(responce)
+                AlertUtil.showAlert(target: self, title: R.string.localizable.success(), message: R.string.localizable.bookSaved(), completion: {})
+            case .failure(let error):
+                print(error)
+                AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.failBookSaved(), completion: {})
+            }
+        }
     }
     
 }
 
 extension AddBookViewController: UIImagePickerControllerDelegate {
     
-    fileprivate func choosePicture() {
+    func choosePicture() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let picker = UIImagePickerController()
             picker.modalPresentationStyle = .popover
@@ -146,7 +166,7 @@ extension AddBookViewController: UIImagePickerControllerDelegate {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         // ビューに表示する
         self.bookImageView.image = image
         // 写真を選ぶビューを引っ込める
@@ -163,8 +183,8 @@ extension AddBookViewController {
         self.view.addSubview(bookNameTextField)
         self.view.addSubview(bookPriceLabel)
         self.view.addSubview(bookPriceTextField)
-        self.view.addSubview(boughtDateLabel)
-        self.view.addSubview(boughtDateTextField)
+        self.view.addSubview(purchaseDateLabel)
+        self.view.addSubview(purchaseDateTextField)
         self.view.addSubview(addImageButton)
         
         let marginBtwLabForm = CGFloat(30.0)
@@ -189,11 +209,11 @@ extension AddBookViewController {
         bookPriceTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
         bookPriceTextField.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
         bookPriceTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
-        boughtDateLabel.leadingAnchor.constraint(equalTo: bookNameLabel.leadingAnchor).isActive = true
-        boughtDateLabel.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabels).isActive = true
-        boughtDateTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
-        boughtDateTextField.centerYAnchor.constraint(equalTo: boughtDateLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
-        boughtDateTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
+        purchaseDateLabel.leadingAnchor.constraint(equalTo: bookNameLabel.leadingAnchor).isActive = true
+        purchaseDateLabel.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabels).isActive = true
+        purchaseDateTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
+        purchaseDateTextField.centerYAnchor.constraint(equalTo: purchaseDateLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
+        purchaseDateTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
     }
     
 }

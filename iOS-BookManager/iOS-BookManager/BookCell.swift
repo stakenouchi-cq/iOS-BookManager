@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class BookCell: UITableViewCell {
     
@@ -22,7 +23,7 @@ class BookCell: UITableViewCell {
         return label
     }()
     
-    fileprivate let boughtDateLabel: UILabel = {
+    fileprivate let purchaseDateLabel: UILabel = {
         let label = UILabel()
         label.text = ""
         label.layer.masksToBounds = true
@@ -67,8 +68,9 @@ class BookCell: UITableViewCell {
         // セルに書籍データを登録！
         bookTitleLabel.text = book.name
         bookPriceLabel.text = R.string.localizable.taxout(book.price)
-        boughtDateLabel.text = book.boughtDate
-        bookImageView.image = UIImage(named: book.imagePath)
+        purchaseDateLabel.text = adaptToForm(date: book.purchaseDate)
+        bookImageView.kf.indicatorType = .activity
+        bookImageView.kf.setImage(with: URL(string: book.image))
     }
     
 }
@@ -79,7 +81,7 @@ extension BookCell {
         contentView.addSubview(bookImageView)
         contentView.addSubview(bookTitleLabel)
         contentView.addSubview(bookPriceLabel)
-        contentView.addSubview(boughtDateLabel)
+        contentView.addSubview(purchaseDateLabel)
         contentView.addSubview(bookEditLabel)
         
         bookImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5.0).isActive = true
@@ -93,8 +95,8 @@ extension BookCell {
         bookPriceLabel.leadingAnchor.constraint(equalTo: bookImageView.trailingAnchor, constant: 15.0).isActive = true
         bookPriceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.0).isActive = true
         
-        boughtDateLabel.trailingAnchor.constraint(equalTo: bookTitleLabel.trailingAnchor).isActive = true
-        boughtDateLabel.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor).isActive = true
+        purchaseDateLabel.trailingAnchor.constraint(equalTo: bookTitleLabel.trailingAnchor).isActive = true
+        purchaseDateLabel.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor).isActive = true
         
         bookEditLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5.0).isActive = true
         bookEditLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true

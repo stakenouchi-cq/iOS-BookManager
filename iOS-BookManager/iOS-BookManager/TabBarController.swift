@@ -2,6 +2,10 @@ import UIKit
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
+    var tabBarHeight: CGFloat {
+        return self.tabBar.frame.height
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

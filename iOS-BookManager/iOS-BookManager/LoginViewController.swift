@@ -77,7 +77,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func tappedLoginButton(sender: UIButton) {
-        UIApplication.shared.keyWindow?.rootViewController = TabBarController()
+        // 各入力欄のnilチェック
+        guard
+            let email: String = mailAddressTextField.text,
+            let password: String = passwordTextField.text
+        else {
+            return
+        }
+        
+        let loginRequest = LoginRequest(email: email, password: password)
+        
+        Session.send(loginRequest) { result in
+            switch result {
+            case .success(let response):
+                print(response)
+                UserDefaults.standard.set(response.id, forKey: "id")
+                UserDefaults.standard.set(response.email, forKey: "email")
+                UserDefaults.standard.set(response.token, forKey: "token")
+                UIApplication.shared.keyWindow?.rootViewController = TabBarController()
+            case .failure(let error):
+                print(error)
+                AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failLogin(), completion: {})
+            }
+        }
     }
     
     // キーボード入力の終了ルールを定義

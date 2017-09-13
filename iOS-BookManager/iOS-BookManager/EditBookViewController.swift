@@ -1,18 +1,20 @@
 import UIKit
+import APIKit
+import Kingfisher
 
 class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
-    fileprivate let tabBarHeight = CGFloat(49)
-    
-    // フォームの初期値をセット
-    // 親クラスから値渡しをする
+    fileprivate var image = ""
+    fileprivate var bookID = 0
+    // フォームの初期値をセット．親クラスから値渡しをする
     var book: Book! {
         didSet {
             // selfは省略可なので，省略
+            bookID = book.id
             bookNameTextField.text = book.name
             bookPriceTextField.text = String(book.price)
-            boughtDateTextField.text = book.boughtDate
-            bookImage = UIImage(named: book.imagePath)!
+            purchaseDateTextField.text = adaptToForm(date: book.purchaseDate)
+            image = book.image
         }
     }
     
@@ -23,7 +25,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         button.backgroundColor = .blue
         button.sizeToFit()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: "addThumbnail", for: .touchUpInside) // ログインボタン押下時の動作
+        button.addTarget(self, action: #selector(choosePicture), for: .touchUpInside) // ログインボタン押下時の動作
         return button
     }()
     
@@ -47,9 +49,9 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return label
     }()
     
-    fileprivate let boughtDateLabel: UILabel = {
+    fileprivate let purchaseDateLabel: UILabel = {
         let label = UILabel()
-        label.text = R.string.localizable.boughtdate()
+        label.text = R.string.localizable.purchaseDate()
         label.layer.masksToBounds = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 16.0)
@@ -82,7 +84,7 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return textField
     }()
     
-    fileprivate lazy var boughtDateTextField: UIDatePickerTextField = {
+    fileprivate lazy var purchaseDateTextField: UIDatePickerTextField = {
         let textField = UIDatePickerTextField()
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -90,15 +92,15 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         return textField
     }()
     
-    fileprivate let bookImageView: UIImageView = {
+    fileprivate lazy var bookImageView: UIImageView = {
         let view = UIImageView()
+        view.kf.indicatorType = .activity
+        view.kf.setImage(with: URL(string: self.image))
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         view.sizeToFit()
         return view
     }()
-    
-    fileprivate var bookImage = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,13 +109,40 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         // ナビゲーションバーの表示
         self.navigationController?.setNavigationBarHidden(false, animated: false) // ナビゲーションバーを表示
         self.navigationItem.title = R.string.localizable.editbook()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: "saveBookData")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: R.string.localizable.save(), style: .plain, target: self, action: #selector(saveBookData))
         
-        bookImageView.image = bookImage
         setEditBookView()
         
     }
     
+    func saveBookData() {
+        guard let imageData = self.bookImageView.image else {
+            AlertUtil.showAlert(target: self, title: R.string.localizable.failed(), message: R.string.localizable.failBookSaved(), completion: {})
+            return
+        }
+        let data = UIImagePNGRepresentation(imageData)
+        
+        guard
+            let name = bookNameTextField.text,
+            let price = Int(bookPriceTextField.text!),
+            let purchaseDate = purchaseDateTextField.text,
+            let encodeString = data?.base64EncodedString()
+            else {
+                return
+        }
+        
+        let request = EditBookRequest(id: bookID, name: name, image: encodeString, price: price, purchaseDate: purchaseDate)
+        Session.send(request) { result in
+            switch result {
+            case .success(let responce):
+                print(responce)
+                AlertUtil.showAlert(target: self, title: R.string.localizable.success(), message: R.string.localizable.bookSaved(), completion: {})
+            case .failure(let error):
+                print(error)
+                AlertUtil.showAlert(target: self, title: R.string.localizable.error(), message: R.string.localizable.failBookSaved(), completion: {})
+            }
+        }
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() // Enter押したら入力おしまい
@@ -124,20 +153,10 @@ class EditBookViewController: UIViewController, UITextFieldDelegate, UINavigatio
         self.view.endEditing(true) // キーボードの外に触れたら入力おしまい
     }
     
-    func saveBookData() {
-        print("Datas of the book are saved.")
-    }
-    
-    func addThumbnail() {
-        // 書籍の画像を登録
-        print("Choose book image.")
-        choosePicture()
-    }
-    
 }
 
 extension EditBookViewController: UIImagePickerControllerDelegate {
-    fileprivate func choosePicture() {
+    func choosePicture() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let picker = UIImagePickerController()
             picker.modalPresentationStyle = .popover
@@ -154,7 +173,7 @@ extension EditBookViewController: UIImagePickerControllerDelegate {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         // ビューに表示する
         self.bookImageView.image = image
         // 写真を選ぶビューを引っ込める
@@ -172,8 +191,8 @@ extension EditBookViewController {
         self.view.addSubview(bookNameTextField)
         self.view.addSubview(bookPriceLabel)
         self.view.addSubview(bookPriceTextField)
-        self.view.addSubview(boughtDateLabel)
-        self.view.addSubview(boughtDateTextField)
+        self.view.addSubview(purchaseDateLabel)
+        self.view.addSubview(purchaseDateTextField)
         self.view.addSubview(addImageButton)
         
         let marginBtwLabForm = CGFloat(30.0)
@@ -198,11 +217,11 @@ extension EditBookViewController {
         bookPriceTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
         bookPriceTextField.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
         bookPriceTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
-        boughtDateLabel.leadingAnchor.constraint(equalTo: bookNameLabel.leadingAnchor).isActive = true
-        boughtDateLabel.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabels).isActive = true
-        boughtDateTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
-        boughtDateTextField.centerYAnchor.constraint(equalTo: boughtDateLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
-        boughtDateTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
+        purchaseDateLabel.leadingAnchor.constraint(equalTo: bookNameLabel.leadingAnchor).isActive = true
+        purchaseDateLabel.centerYAnchor.constraint(equalTo: bookPriceLabel.centerYAnchor, constant: marginBtwLabels).isActive = true
+        purchaseDateTextField.leadingAnchor.constraint(equalTo: bookImageView.leadingAnchor).isActive = true
+        purchaseDateTextField.centerYAnchor.constraint(equalTo: purchaseDateLabel.centerYAnchor, constant: marginBtwLabForm).isActive = true
+        purchaseDateTextField.widthAnchor.constraint(equalTo: bookNameTextField.widthAnchor).isActive = true
         
     }
     
