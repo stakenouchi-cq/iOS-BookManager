@@ -1,7 +1,7 @@
 import APIKit
 import Himotoki
 
-struct User: Decodable {
+struct User: Himotoki.Decodable {
     var id: Int
     var email: String
     var token: String

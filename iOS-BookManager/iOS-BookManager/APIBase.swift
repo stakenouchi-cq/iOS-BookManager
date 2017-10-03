@@ -9,7 +9,7 @@ extension BookManagerRequest {
     }
 }
 
-extension BookManagerRequest where Response: Decodable {
+extension BookManagerRequest where Response: Himotoki.Decodable {
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
         return try Response.decodeValue(object)
     }

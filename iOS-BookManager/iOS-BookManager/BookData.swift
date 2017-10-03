@@ -1,7 +1,7 @@
 import APIKit
 import Himotoki
 
-struct Book: Decodable {
+struct Book: Himotoki.Decodable {
     var id: Int
     var name: String
     var image: String
